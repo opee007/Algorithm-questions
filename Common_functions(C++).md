@@ -121,3 +121,14 @@ isdigit()
 ### 序列容器
 
 常用容器： vector、deque、list、queue、stack．序列的元素必须是严格的线性顺序排序。因此序列中的元素具有确定的顺序，可以执行将值插入到特定位置、删除特定区间等操作。
+
+```c++
+vector<int> a(10, 2); // 初始化长度为10, 值全为2．
+vector<int> a(b.begin(), b.end()); //初始化为与b相同．
+a.insert(a.begin(), 3);
+a.insert(a.begin(), 5, 3); //插入５个３．
+a.insert(a.begin(), b.begin(), b.begin()+3); 
+
+a.erase(a.begin());
+a.erase(a.begin(), a.begin()+10);
+```

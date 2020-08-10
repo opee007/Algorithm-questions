@@ -2,16 +2,23 @@
 #include <cstdio>
 #include <string>
 #include <stdlib.h>
+#include <vector>
 using namespace std;
 main ()
 {   
-    string a = "12.3";
+    // string a = "12.3";
+    vector<int> a(1, 2);
+    a.insert(a.begin(), 2, 3);
     //  = new char [2]; 
-    cout<< (int)stoi(a);
+    a.erase(a.begin());
+    a.erase(a.begin(), a.begin()+2);
+    for(int i =0; i<a.size(); i++)
+        cout<<a[i]; 
+    // (int)stoi(a);
     // "123.2";
     // string b = "124";
     // cout<<(a>b);
-    cout<<a;
+    // cout<<a;
     // char a[3];
     // string a;
     // getline(cin, a);

@@ -123,6 +123,7 @@ isdigit()
 常用容器： vector、deque、list、queue、stack．序列的元素必须是严格的线性顺序排序。因此序列中的元素具有确定的顺序，可以执行将值插入到特定位置、删除特定区间等操作。
 
 ```c++
+// 一些序列容器通用
 vector<int> a(10, 2); // 初始化长度为10, 值全为2．
 vector<int> a(b.begin(), b.end()); //初始化为与b相同．
 a.insert(a.begin(), 3);
@@ -131,4 +132,16 @@ a.insert(a.begin(), b.begin(), b.begin()+3);
 
 a.erase(a.begin());
 a.erase(a.begin(), a.begin()+10);
+a.clear();
+
+front(), back(), ...
+```
+
+### string对象
+
+```c++
+string s;
+s.erase(int a, int b) //从下标a起删除b个
+s.find(string) //查找string首次出现的下标，判断是否找到只能用s.find(str)== std::string::npos
+s.c_str() //c_str()返回的bai是一个临时指针，不能对其进行操作
 ```

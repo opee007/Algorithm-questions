@@ -6,14 +6,22 @@
 using namespace std;
 main ()
 {   
+
+    string a = "abc55555313164641asdgkhaksgh5555555555defgh";
+    a.c_str();
+    cout<<sizeof(a.size());
+    // vector<int> a(5, 2);
+    // a.erase(0,2);
+    // cout<<a;
     // string a = "12.3";
-    vector<int> a(1, 2);
-    a.insert(a.begin(), 2, 3);
-    //  = new char [2]; 
-    a.erase(a.begin());
-    a.erase(a.begin(), a.begin()+2);
-    for(int i =0; i<a.size(); i++)
-        cout<<a[i]; 
+    // vector<int> a(1, 2);
+    // a.insert(a.begin(), 2, 3);
+    // //  = new char [2]; 
+    // a.erase(a.begin());
+    // // a.erase(a.begin(), a.begin()+2);
+    // a.clear();
+    // for(int i =0; i<a.size(); i++)
+    //     cout<<a[i]; 
     // (int)stoi(a);
     // "123.2";
     // string b = "124";

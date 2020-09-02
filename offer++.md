@@ -1839,6 +1839,89 @@ public:
 };
 ```
 
+### 12. 整数转罗马数字 intToRoman
+```c++
+class Solution {
+public:
+    string intToRoman(int num) {
+        int values[] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        string reps[] = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        string res;
+        // 贪心
+        for (int i = 0; i < 13; i ++ ) 
+            while(num >= values[i])
+            {
+                num -= values[i];
+                res += reps[i];
+            }
+        return res;
+    }
+};
+```
+
+### 13. 罗马数字转整数
+<https://leetcode-cn.com/problems/roman-to-integer/>
+```c++
+class Solution {
+public:
+    int romanToInt(string s) {
+        int result=0;
+        map<char,int> luomab={
+            {'I',1},
+            {'V',5},
+            {'X',10},
+            {'L',50},
+            {'C',100},
+            {'D', 500},
+            {'M', 1000}
+        };//初始化哈希表
+        for(int i=0;i<s.length();i++)
+        {
+            if(luomab[s[i]] < luomab[s[i+1]])
+                result -= luomab[s[i]];
+            else
+            {
+                result += luomab[s[i]];
+            }
+        }
+        return result;
+    }
+};
+```
+### 14. 最长公共前缀
+编写一个函数来查找字符串数组中的最长公共前缀。
+如果不存在公共前缀，返回空字符串 ""。
+
+```c++
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+        string ans;
+        if(strs.size()==0) return ans;
+        for(int j = 0; j<strs[0].size(); j++){
+            char c = strs[0][j];
+            bool flag = true;
+            for(int i = 0; i < strs.size(); i++){
+                if(strs[i][j] != c) {flag = false; return ans;}
+            }
+            if(flag) ans += c;
+        }
+        return ans;
+    }
+};
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

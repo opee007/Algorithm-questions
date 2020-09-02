@@ -1351,3 +1351,98 @@ public:
     }
 };
 ```
+
+## 岛屿问题
+
+### 岛屿数量
+给你一个由 '1'（陆地）和 '0'（水）组成的的二维网格，请你计算网格中岛屿的数量。
+岛屿总是被水包围，并且每座岛屿只能由水平方向或竖直方向上相邻的陆地连接形成。
+此外，你可以假设该网格的四条边均被水包围。
+
+```c++
+class Solution {
+public:
+    int numIslands(vector<vector<char>>& grid) {
+        int n = grid.size();
+        int ans = 0;
+        if(n==0) return ans;
+        int m = grid[0].size();
+        for(int i = 0; i<n; i++){
+            for(int j =0; j<m; j++){
+                if(grid[i][j] == '1'){
+                    dfs(grid, n, m, i ,j);
+                    ans++;
+                }
+            }
+        }
+        return ans;
+    }
+
+    void dfs(vector<vector<char>>& grid, int n, int m, int r, int c){
+        if(r<0||r>=n||c<0||c>=m||grid[r][c]=='0') return;
+        grid[r][c] = '0';
+        dfs(grid, n, m, r-1, c);
+        dfs(grid, n, m, r+1, c);
+        dfs(grid, n, m, r, c-1);
+        dfs(grid, n, m, r, c+1);
+    }
+};
+```
+
+### 岛屿的最大面积
+给定一个包含了一些 0 和 1 的非空二维数组 grid 。
+一个 岛屿 是由一些相邻的 1 (代表土地) 构成的组合，这里的「相邻」要求两个 1 必须在水平或者竖直方向上相邻。你可以假设 grid 的四个边缘都被 0（代表水）包围着。
+找到给定的二维数组中最大的岛屿面积。(如果没有岛屿，则返回面积为 0 。)
+
+```c++
+class Solution {
+public:
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
+        int ans = 0;
+        for(int i =0; i<grid.size(); i++){
+            for(int j=0; j<grid[0].size(); j++){
+                int temp = 0;
+                dfs(grid, i, j, temp);
+                ans = max(ans, temp);
+            }
+        }
+        return ans;
+    }
+
+    void dfs(vector<vector<int>>& grid, int i , int j, int &temp){
+        if(i<0||i>=grid.size()||j<0||j>=grid[0].size()||grid[i][j]==0) return;
+        else{grid[i][j]=0; temp++;}
+        dfs(grid, i-1, j, temp);
+        dfs(grid, i+1, j, temp);
+        dfs(grid, i, j-1, temp);
+        dfs(grid, i, j+1, temp);
+    }
+};
+```
+
+### 岛屿的周长
+给定一个包含 0 和 1 的二维网格地图，其中 1 表示陆地 0 表示水域。
+网格中的格子水平和垂直方向相连（对角线方向不相连）。整个网格被水完全包围，但其中恰好有一个岛屿（或者说，一个或多个表示陆地的格子相连组成的岛屿）。
+岛屿中没有“湖”（“湖” 指水域在岛屿内部且不和岛屿周围的水相连）。格子是边长为 1 的正方形。网格为长方形，且宽度和高度均不超过 100 。计算这个岛屿的周长。
+
+```c++
+class Solution {
+public:
+    int islandPerimeter(vector<vector<int>>& grid) {
+        int n = grid.size();
+        if(n == 0) return 0;
+        int m = grid[0].size();
+        int ans = 0;
+        for(int i = 0; i<n; i++){
+            for(int j =0; j<m; j++){
+                if(grid[i][j] == 1) {
+                    ans += 4;
+                    if(i-1>=0 && grid[i-1][j] == 1) ans -= 2;
+                    if(j-1>=0 && grid[i][j-1] == 1) ans -= 2;
+                }
+            }
+        }s
+        return ans;
+    }
+};
+```

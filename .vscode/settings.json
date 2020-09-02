@@ -1,4 +1,7 @@
 {
     "python.pythonPath": "D:\\Anaconda3\\python.exe",
-    "python.linting.enabled": false
+    "python.linting.enabled": false,
+    "files.associations": {
+        "xutility": "cpp"
+    }
 }

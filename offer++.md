@@ -1305,19 +1305,255 @@ public:
 };
 ```
 
+### 一排路由器可以覆盖的信号
+一条直线上等距离放置了n台路由器。路由器自左向右从1到n编号。第i台路由器到第j台路由器的距离为| i-j |。
+每台路由器都有自己的信号强度，第i台路由器的信号强度为ai。所有与第i台路由器距离不超过ai的路由器可以收到第i台路由器的信号
+（注意，每台路由器都能收到自己的信号）。问一共有多少台路由器可以收到至少k台不同路由器的信号。<https://www.nowcoder.com/profile/1334434/codeBookDetail?submissionId=86144859>
 
+```c++
+#include<iostream>
+#include<vector>
+using namespace std;
+int main() {
+    int n, k;
+    cin >> n >> k;
+    vector<int> ve(n);
+    for (int i = 0; i < n; i++) {
+        cin >> ve[i];
+    }
+    vector<int> anst(n, 0);
+    for (int i = 0; i < n; i++) {
+        int l = i - ve[i], r = i + ve[i];
+        if (l >= 0) anst[l]++; else anst[0]++;
+        if (r >= n - 1)continue; else anst[r + 1]--;
+    }
+    int temp = 0, ans = 0;
+    for (auto i : anst) {
+        temp += i;
+        if (temp >= k) ans++;
+    }
+    cout << ans;
+    return 0;
+}
+```
+### 滑动窗口最大值
+给定一个数组和滑动窗口的大小，请找出所有滑动窗口里的最大值。
+例如，如果输入数组[2, 3, 4, 2, 6, 2, 5, 1]及滑动窗口的大小3, 那么一共存在6个滑动窗口，它们的最大值分别为[4, 4, 6, 6, 6, 5]。
 
+```c++
+#include <iostream>
+#include <vector>
+#include <stack>
+#include <deque>
+using namespace std;
+int main()
+{   
+    vector<int> nums = { 2, 3, 4, 2, 6, 2, 5, 1 };
+    int k = 3;
+    deque<int> q;
+    vector<int> ans;
+    //记录下标
+    for (int i = 0; i < nums.size(); i++) {
+        //当前最大值坐标不在范围里，移除
+        if (q.size() && q.front() < i - k + 1) q.pop_front();
+        // 单调队列
+        while (q.size() && nums[i] > nums[q.back()]) q.pop_back();
+        q.push_back(i);
+        if (i >= k-1) ans.push_back(nums[q.front()]);
+    }
+ 
+    for (int i = 0; i < ans.size(); i++)
+        cout << ans[i] << ',';
+    return 0;
+}
+```
+###　股票最大利润
+假设把某股票的价格按照时间先后顺序存储在数组中，请问买卖该股票一次可能获得的最大利润是多少？
+``` c++
+class Solution {
+public:
+    int maxDiff(vector<int>& nums) {
+        if (nums.size() < 2) return 0;
+        int mint = INT_MAX;
+        int ans = INT_MIN;
+        for (int i = 0; i < nums.size(); i++) {
+            mint = min(mint, nums[i]);
+            ans = max(ans, nums[i] - mint);
+        }
+        return ans;
+    }
+};
+```
+### 乘积数组 B[i]=A[0]×A[1]…×A[n-1]
+```c++
+class Solution {
+public:
+    vector<int> multiply(const vector<int>& A) {
+        vector<int> ans;
+        int t = 1;
+        if (A.empty()) return ans;
+        for (int i = 0; i < A.size(); i++) {
+            t *= A[i];
+            ans.push_back(t);
 
+        }
+        t = 1;
+        for (int i = ans.size() - 1; i > 0; i--) {
+            ans[i] = t * ans[i - 1];
+            t *= A[i];
+        }
+        ans[0] = t;
+        return ans;
+    }
+};
+```
+### 分裂二叉树最大乘积
+给你一棵二叉树，它的根为 root 。请你删除 1 条边，使二叉树分裂成两棵子树，且它们子树和的乘积尽可能大。   
+由于答案可能会很大，请你将结果对 10 ^ 9 + 7 取模后再返回。
 
+```c++
+class Solution {
+public:
+    const int mod = 1e9 + 7;
+    vector<int> temp;
+    long long dfs(TreeNode* root) {
+        if (!root) return 0;
+        long long res = root->val + dfs(root->left) + dfs(root->right);
+        temp.push_back(res);
+        return res;
+    }
+    int maxProduct(TreeNode* root) {
+        long long ans = 0;
+        int v = dfs(root);
+        for (long long t : temp) {
+            // cout<<t<<' ';
+            ans = max(ans, t * (v - t));
+        }
+        return (long long)ans % (int)(1e9 + 7);
+    }
+};
+```
+### 二叉树最低公共祖先
 
+```c++
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if (!root) return NULL;
+        if (root == p || root == q) return root;
+        auto left = lowestCommonAncestor(root->left, p, q);
+        auto right = lowestCommonAncestor(root->right, p, q);
+        if (left && right) return root;
+        if (left) return left;
+        return right;
+    }
+};
+```
+### 大数相乘
 
+```c++
+string BigMutiple(string num1, string num2) {
+    string res = "";
+    //两个数的位数
+    int m = num1.size(), n = num2.size();
+    //一个i位数乘以一个j位数，结果至少是i+j-1位数
+    vector<long long> tmp(m + n - 1);
+    //每一位进行笛卡尔乘法
+    for (int i = 0; i < m; i++) {
+        int a = num1[i] - '0';
+        for (int j = 0; j < n; j++) {
+            int b = num2[j] - '0';
+            tmp[i + j] += a * b;
+        }
+    }
+    //进行进位处理，注意左侧是大右侧是小
+    int carry = 0;
+    for (int i = tmp.size() - 1; i >= 0; i--) {
+        int t = tmp[i] + carry;
+        tmp[i] = t % 10;
+        carry = t / 10;
+    }
+    //若遍历完仍然有进位
+    while (carry != 0) {
+        int t = carry % 10;
+        carry /= 10;
+        tmp.insert(tmp.begin(), t);
+    }
+    //将结果存入到返回值中
+    for (auto a : tmp) {
+        res = res + to_string(a);
+    }
+    if (res.size() > 0 && res[0] == '0')return "0";
+    return res;
+}
 
+//测试函数
+int main() {
+    string num1, num2;
+    while (cin >> num1 >> num2) {
+        cout << BigMutiple(num1, num2) << endl;
+    }
+    return 0;
+}
+```
+### 大数相加
 
+```c++
+string add(const string& a, const string& b) {
+    const int n = a.size(), m = b.size();
+    if(n < m) return add(b, a);
 
+    string c; 
+    vector<int> tem;
+    // 数位和，两个加数对应的数位都加到 sum 上  
+    // 0 <= sum <= 19
+    int sum = 0;  
+    for(int i = 0; i < n; i++) {
+        sum += a[i] - '0';        
+        if(i < m) sum += b[i] - '0';
+        tem.push_back(sum % 10); // 获取该数位的数字
+        sum /= 10;             // 获取进位信息
+    }
+    if(sum) tem.push_back(sum);  // 最高位的进位处理
+    for (auto a : tem) {
+        c = c + to_string(a);
+    }
+    return c;
+}
+int main() {
+    string num1, num2;
+    
+    while (cin >> num1 >> num2) {
+        reverse(num1.begin(), num1.end());
+        reverse(num2.begin(), num2.end());
+        string anst = add(num1, num2);
+        string ans = string(anst.rbegin(), anst.rend());
+        cout << ans << endl;
+    }
+    return 0;
+}
+```
+### 不用加减乘除做加法
+A + B 分为2个部分，A^B是不进位加法，(A&B) << 1是进位，二者相加就起到了相同的作用。
+因为A + B = A^B + ((A&B) << 1)，所以说 还是会用到加号+，对此我们的解决方案是 使用一个while()循环，
+不断迭代赋值，将 异或的结果和进位的结果分别变成a和b，因为b不断左移，所以总有一天会变成0，这时候while就跳出来。
+答案一直存储在a里面，也就是异或(不进位加法)中，最后进位b=0，a没有必要进位了，答案就是最后的a。
+```c++
+class Solution {
+public:
+    int add(int a, int b) {
+        while (b)
+        {
+            int sum = a ^ b;
+            int carry = (a & b) << 1;
+            a = sum;
+            b = carry;
+        }
 
-
-
-
+        return a;
+    }
+};
+```
 
 
 

@@ -1,50 +1,40 @@
 #include <iostream>
-#include <cstdio>
 #include <string>
-#include <stdlib.h>
 #include <vector>
+#include <algorithm>
 using namespace std;
-main ()
-{   
 
-    string a = "abc55555313164641asdgkhaksgh5555555555defgh";
-    a.c_str();
-    cout<<sizeof(a.size());
-    // vector<int> a(5, 2);
-    // a.erase(0,2);
-    // cout<<a;
-    // string a = "12.3";
-    // vector<int> a(1, 2);
-    // a.insert(a.begin(), 2, 3);
-    // //  = new char [2]; 
-    // a.erase(a.begin());
-    // // a.erase(a.begin(), a.begin()+2);
-    // a.clear();
-    // for(int i =0; i<a.size(); i++)
-    //     cout<<a[i]; 
-    // (int)stoi(a);
-    // "123.2";
-    // string b = "124";
-    // cout<<(a>b);
-    // cout<<a;
-    // char a[3];
-    // string a;
-    // getline(cin, a);
-    // cin>>a;
-    // cin.getline(a);
-    // int a;
-    // cin>>a;
-    // printf("%6d\n", a);
-    // long long b; cin>>b;
-    // printf("%lld\n", b); //l对整型指long型，对实型指double型
-    // printf("%f\n", a);
-    // printf("%e\n", a); 
-    // printf("%s\n", a);
-    // printf("%i\n", a);
-    // printf("%o\n", a);
-    // printf("%x\n", a);
-    // printf("%X\n", a);
-    // cout<<a<<endl;
-    // printf("%d", (int)sizeof(a));
-    // cout<<a[5]<<endl;
+
+string add(const string& a, const string& b) {
+    const int n = a.size(), m = b.size();
+    if(n < m) return add(b, a);
+
+    string c; 
+    vector<int> tem;
+    // 数位和，两个加数对应的数位都加到 sum 上  
+    // 0 <= sum <= 19
+    int sum = 0;  
+    for(int i = 0; i < n; i++) {
+        sum += a[i] - '0';        
+        if(i < m) sum += b[i] - '0';
+        tem.push_back(sum % 10); // 获取该数位的数字
+        sum /= 10;             // 获取进位信息
+    }
+    if(sum) tem.push_back(sum);  // 最高位的进位处理
+    for (auto a : tem) {
+        c = c + to_string(a);
+    }
+    return c;
+}
+int main() {
+    string num1, num2;
+    
+    while (cin >> num1 >> num2) {
+        reverse(num1.begin(), num1.end());
+        reverse(num2.begin(), num2.end());
+        string anst = add(num1, num2);
+        string ans = string(anst.rbegin(), anst.rend());
+        cout << ans << endl;
+    }
+    return 0;
 }

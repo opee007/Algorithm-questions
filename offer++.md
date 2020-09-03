@@ -71,10 +71,21 @@
 	* 3.9. [9. 回文数 isPalindrome1](#isPalindrome1)
 	* 3.10. [10. 正则表达式匹配 isMatch q](#isMatchq)
 	* 3.11. [11. 成水最多的容器 maxWaterArea](#maxWaterArea)
+	* 3.12. [12. 整数转罗马数字 intToRoman](#intToRoman)
+	* 3.13. [13. 罗马数字转整数 romanToInt](#romanToInt)
+	* 3.14. [14. 最长公共前缀 longestCommonPrefix](#longestCommonPrefix)
 * 4. [岛屿问题 land problem](#landproblem)
 	* 4.1. [岛屿数量 numIslands](#numIslands)
 	* 4.2. [岛屿的最大面积 maxAreaOfIsland](#maxAreaOfIsland)
 	* 4.3. [岛屿的周长 islandPerimeter](#islandPerimeter)
+* 5. [子集排列问题 sbuset permute prpblem](#sbusetpermuteprpblem)
+	* 5.1. [全排列 permute](#permute)
+	* 5.2. [全排列 结果无重复 permuteUnique](#permuteUnique)
+	* 5.3. [数组总和  combinationSum](#combinationSum)
+	* 5.4. [数组总和 结果无重复 combinationSum2](#combinationSum2)
+	* 5.5. [子集  结果无重复 subsetsWithDup](#subsetsWithDup)
+	* 5.6. [子集 subsets1](#subsets1)
+	* 5.7. [字符串排列 结果无重复 stringpermutation](#stringpermutation)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -1839,7 +1850,7 @@ public:
 };
 ```
 
-### 12. 整数转罗马数字 intToRoman
+###  3.12. <a name='intToRoman'></a>12. 整数转罗马数字 intToRoman
 ```c++
 class Solution {
 public:
@@ -1859,7 +1870,7 @@ public:
 };
 ```
 
-### 13. 罗马数字转整数
+###  3.13. <a name='romanToInt'></a>13. 罗马数字转整数 romanToInt
 <https://leetcode-cn.com/problems/roman-to-integer/>
 ```c++
 class Solution {
@@ -1888,7 +1899,7 @@ public:
     }
 };
 ```
-### 14. 最长公共前缀
+###  3.14. <a name='longestCommonPrefix'></a>14. 最长公共前缀 longestCommonPrefix
 编写一个函数来查找字符串数组中的最长公共前缀。
 如果不存在公共前缀，返回空字符串 ""。
 
@@ -2025,6 +2036,217 @@ public:
                 }
             }
         }s
+        return ans;
+    }
+};
+```
+
+
+##  5. <a name='sbusetpermuteprpblem'></a>子集排列问题 sbuset permute prpblem
+//递归思想：   
+//①画出递归树，找到状态变量(回溯函数的参数)，这一步非常重要※   
+//②根据题意，确立结束条件   
+//③找准选择列表(与函数参数相关), 与第一步紧密关联※
+//④判断是否需要剪枝   
+//⑤作出选择，递归调用，进入下一层   
+//⑥撤销选择   
+###  5.1. <a name='permute'></a>全排列 permute
+给定一个 没有重复 数字的序列，返回其所有可能的全排列。
+
+```c++
+class Solution {
+private:
+    vector<vector<int>> ans;
+    vector<int> path;
+public:
+    void dfs(vector<int>& nums, vector<bool>& vis) {
+        if (path.size() == nums.size()) {
+            ans.push_back(path);
+            return;
+        }
+        for (int i = 0; i < nums.size(); i++) {
+            if (vis[i]) continue;
+            vis[i] = true;
+            path.push_back(nums[i]);
+            dfs(nums, vis);
+            vis[i] = false;
+            path.pop_back();
+        }
+    }
+
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<bool> vis(nums.size(), false);
+        dfs(nums, vis);
+        return ans;
+    }
+};
+```
+###  5.2. <a name='permuteUnique'></a>全排列 结果无重复 permuteUnique
+给定一个可包含重复数字的序列，返回所有不重复的全排列。
+```c++
+class Solution {
+private:
+    vector<vector<int>> ans;
+    vector<int> path;
+public:
+    void dfs(vector<int>& nums, vector<bool>& vis) {
+        if (path.size() == nums.size()) {
+            ans.push_back(path);
+            return;
+        }
+        for (int i = 0; i < nums.size(); i++) {
+            if (vis[i]) continue;
+            // 剪枝
+            if (i > 0 && !vis[i - 1] && nums[i] == nums[i - 1]) continue;
+            vis[i] = true;
+            path.push_back(nums[i]);
+            dfs(nums, vis);
+            vis[i] = false;
+            path.pop_back();
+        }
+    }
+
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        vector<bool> vis(nums.size(), false);
+        // 先排序
+        sort(nums.begin(), nums.end());
+        dfs(nums, vis);
+        return ans;
+    }
+};
+```
+
+###  5.3. <a name='combinationSum'></a>数组总和  combinationSum
+给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。candidates 中的数字可以无限制重复被选取。
+```c++
+class Solution {
+public:
+    vector<vector<int>> ans;
+    vector<int> tem;
+
+    void dfs(int start, vector<int>& candidates, int t) {
+        if (t < 0) return;
+        if (t == 0) { ans.push_back(tem); }
+        for (int i = start; i < candidates.size(); i++) {
+
+            tem.push_back(candidates[i]);
+            dfs(i, candidates, t - candidates[i]);
+            tem.pop_back();
+        }
+
+    }
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        sort(candidates.begin(), candidates.end());
+        dfs(0, candidates, target);
+        return ans;
+    }
+};
+```
+
+###  5.4. <a name='combinationSum2'></a>数组总和 结果无重复 combinationSum2
+给定一个数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。candidates 中的每个数字在每个组合中只能使用一次。
+```c++
+class Solution {
+public:
+    vector<vector<int>> ans;
+    vector<int> tem;
+
+    void dfs(int start, vector<int>& candidates, int t) {
+        if (t < 0) return;
+        if (t == 0) { ans.push_back(tem); }
+        for (int i = start; i < candidates.size(); i++) {
+            if (i > start && candidates[i] == candidates[i - 1]) continue;
+            tem.push_back(candidates[i]);
+            dfs(i + 1, candidates, t - candidates[i]);
+            tem.pop_back();
+        }
+
+    }
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        sort(candidates.begin(), candidates.end());
+        dfs(0, candidates, target);
+        return ans;
+    }
+};
+```
+
+###  5.5. <a name='subsetsWithDup'></a>子集  结果无重复 subsetsWithDup
+
+```c++
+class Solution_subset2 {
+public:
+    vector<vector<int>> ans;
+    vector<int> tem;
+    void dfs(int start, vector<int>& nums) {
+        ans.push_back(tem);
+        for (int i = start; i < nums.size(); i++) {
+            if (i > start && nums[i] == nums[i - 1]) continue;
+            tem.push_back(nums[i]);
+            dfs(i + 1, nums);
+            tem.pop_back();
+        }
+    }
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        dfs(0, nums);
+        return ans;
+    }
+};
+```
+
+###  5.6. <a name='subsets1'></a>子集 subsets1
+给定一组不含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。
+```c++
+void subsets(int start, vector<int> &input) {
+	ans.push_back(tem);
+	for (int i = start; i < input.size(); i++) {
+		tem.push_back(input[i]);
+		subsets(i + 1, input);
+		tem.pop_back();
+	}
+}
+int main() {
+	vector<int> input = { 1,2,3 };
+	subsets(0, input);
+	for (int i = 0; i < ans.size(); i++) {
+		for (int j = 0; j < ans[i].size(); j++) {
+			cout << ans[i][j] << ',';
+		}
+		cout << endl;
+	}
+}
+```
+###  5.7. <a name='stringpermutation'></a>字符串排列 结果无重复 stringpermutation
+输入一个字符串，打印出该字符串中字符的所有排列。
+你可以以任意顺序返回这个字符串数组，但里面不能有重复元素。   
+输入：s = "abc" 
+输出：["abc","acb","bac","bca","cab","cba"] 
+
+```c++
+class Solution {
+public:
+    vector<string> ans;
+    string path;
+    void dfs(vector<bool>& vis, string& s) {
+        if (path.size() == s.size()) {
+            ans.push_back(path);
+            return;
+        }
+        for (int i = 0; i < s.size(); i++) {
+            if (!vis[i]) {
+                if (i > 0 && !vis[i - 1] && s[i] == s[i - 1]) continue;
+                path.push_back(s[i]);
+                vis[i] = true;
+                dfs(vis, s);
+                vis[i] = false;
+                path.pop_back();
+            }
+        }
+    }
+    vector<string> permutation(string s) {
+        vector<bool> vis(s.size());
+        sort(s.begin(), s.end());
+        dfs(vis, s);
         return ans;
     }
 };

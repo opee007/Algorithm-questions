@@ -9,6 +9,8 @@
 	* 2.5. [归并排序 mergeSort O(nlogn) 稳定](#mergeSortOnlogn)
 	* 2.6. [堆排序 heapSort O(nlogn)](#heapSortOnlogn)
 * 3. [二分查找模板 bsTemplate](#bsTemplate)
+	* 3.1. [在排序数组中查找元素的第一个和最后一个位置 searchRange](#searchRange)
+	* 3.2. [x的平方根 sqrtofx](#xsqrtofx)
 * 4. [剑指Offer](#Offer)
 	* 4.1. [找出数组中重复数字 duplicateInArray](#duplicateInArray)
 	* 4.2. [不修改数组找出重复的数字 duplicateInArray2](#duplicateInArray2)
@@ -296,9 +298,47 @@ int bsearch_2(int l, int r)
     }
     return l;
 }
-```
-###　x的平方根
 
+```
+###  3.1. <a name='searchRange'></a>在排序数组中查找元素的第一个和最后一个位置 searchRange
+给定一个按照升序排列的整数数组 nums，和一个目标值 target。找出给定目标值在数组中的开始位置和结束位置。
+
+你的算法时间复杂度必须是 O(log n) 级别。
+如果数组中不存在目标值，返回 [-1, -1]。
+```c++
+class Solution {
+public:
+    int lbs(vector<int>& nums, int target){
+        int l = 0, r = nums.size() - 1;
+        while(l < r){
+            int mid = (l + r) >> 1;
+            if(nums[mid] >= target) r = mid;
+            else l = mid + 1; 
+        }
+        return r;
+    }
+
+    int rbs(vector<int>& nums, int target){
+        int l = 0, r = nums.size() - 1;
+        while(l < r){
+            int mid = (l + r + 1) >> 1;
+            if(nums[mid] <= target) l = mid;
+            else r = mid - 1; 
+        }
+        return r;
+    }
+    vector<int> searchRange(vector<int>& nums, int target) {
+        if(nums.size() == 0) return {-1, -1};
+        int left = lbs(nums, target);
+        int right = rbs(nums, target);
+        if(nums[left] != target) return {-1, -1};
+        return {left, right};
+    }
+};
+
+```
+###  3.2. <a name='xsqrtofx'></a>x的平方根 sqrtofx
+快速求sqrt(x)
 ```c++
 class Solution {
 public:

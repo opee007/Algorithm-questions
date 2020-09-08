@@ -1,6 +1,17 @@
 <!-- vscode-markdown-toc -->
-* 1. [数据范围 datarange](#datarange)
-	* 1.1. [由数据范围反推算法复杂度以及算法内容  datarange2algorithm](#datarange2algorithm)
+* 1. [C++ 刷题知识 Brush the question.](#CBrushthequestion.)
+	* 1.1. [vector(动态数组)](#vector)
+		* 1.1.1. [vector初始化 init](#vectorinit)
+		* 1.1.2. [vector 重要操作 method](#vectormethod)
+		* 1.1.3. [vector 读写 readwrite](#vectorreadwrite)
+		* 1.1.4. [vector常用algorithm算法](#vectoralgorithm)
+	* 1.2. [set集合](#set)
+		* 1.2.1. [set重要操作 method](#setmethod)
+	* 1.3. [string 字符串](#string)
+		* 1.3.1. [string method](#stringmethod)
+	* 1.4. [map 映射](#map)
+	* 1.5. [unordered_map——哈希表](#unordered_map)
+	* 1.6. [由数据范围反推算法复杂度以及算法内容  datarange2algorithm](#datarange2algorithm)
 * 2. [排序算法总结](#)
 	* 2.1. [冒泡排序 bubbleSort O(n^2) 稳定](#bubbleSortOn2)
 	* 2.2. [快速排序 quickSort O(nlogn)](#quickSortOnlogn)
@@ -98,8 +109,221 @@
 	/vscode-markdown-toc-config -->
 <!-- /vscode-markdown-toc --># offer++
 
-##  1. <a name='datarange'></a>数据范围 datarange
-###  1.1. <a name='datarange2algorithm'></a>由数据范围反推算法复杂度以及算法内容  datarange2algorithm
+##  1. <a name='CBrushthequestion.'></a>C++ 刷题知识 Brush the question.
+###  1.1. <a name='vector'></a>vector(动态数组)
+vector 是向量类型，它可以容纳许多类型的数据，如若干个整数，所以称其为容器。vector 是C++ STL的一个重要成员，使用它时需要包含头文件：#include<vector>;
+####  1.1.1. <a name='vectorinit'></a>vector初始化 init
+```c++
+    (1) vector<int> a(10); //定义了10个整型元素的向量（尖括号中为元素类型名，它可以是任何合法的数据类型），但没有给出初值，其值是不确定的。
+   （2）vector<int> a(10,1); //定义了10个整型元素的向量,且给出每个元素的初值为1
+   （3）vector<int> a(b); //用b向量来创建a向量，整体复制性赋值
+   （4）vector<int> a(b.begin(),b.begin+3); //定义了a值为b中第0个到第2个（共3个）元素
+   （5）int b[7]={1,2,3,4,5,9,8};
+        vector<int> a(b,b+7); //从数组中获得初值
+```
+####  1.1.2. <a name='vectormethod'></a>vector 重要操作 method
+```c++
+    （1）a.assign(b.begin(), b.begin()+3); //b为向量，将b的0~2个元素构成的向量赋给a
+    （2）a.assign(4,2); //是a只含4个元素，且每个元素为2
+    （3）a.back(); //返回a的最后一个元素
+    （4）a.front(); //返回a的第一个元素
+    （5）a[i]; //返回a的第i个元素，当且仅当a[i]存在2013-12-07
+    （6）a.clear(); //清空a中的元素
+    （7）a.empty(); //判断a是否为空，空则返回ture,不空则返回false
+    （8）a.pop_back(); //删除a向量的最后一个元素
+    （9）a.erase(a.begin()+1,a.begin()+3); //删除a中第1个（从第0个算起）到第2个元素，也就是说删除的元素从a.begin()+1算起（包括它）一直到a.begin()+3（不包括它）
+    （10）a.push_back(5); //在a的最后一个向量后插入一个元素，其值为5
+    （11）a.insert(a.begin()+1,5); //在a的第1个元素（从第0个算起）的位置插入数值5，如a为1,2,3,4，插入元素后为1,5,2,3,4
+    （12）a.insert(a.begin()+1,3,5); //在a的第1个元素（从第0个算起）的位置插入3个数，其值都为5
+    （13）a.insert(a.begin()+1,b+3,b+6); //b为数组，在a的第1个元素（从第0个算起）的位置插入b的第3个元素到第5个元素（不包括b+6），如b为1,2,3,4,5,9,8，插入元素后为1,4,5,9,2,3,4,5,9,8
+    （14）a.size(); //返回a中元素的个数；
+    （15）a.capacity(); //返回a在内存中总共可以容纳的元素个数
+    （16）a.resize(10); //将a的现有元素个数调至10个，多则删，少则补，其值随机
+    （17）a.resize(10,2); //将a的现有元素个数调至10个，多则删，少则补，其值为2
+    （18）a.reserve(100); //将a的容量（capacity）扩充至100，也就是说现在测试a.capacity();的时候返回值是100.这种操作只有在需要给a添加大量数据的时候才显得有意义，因为这将避免内存多次容量扩充操作（当a的容量不足时电脑会自动扩容，当然这必然降低性能） 
+    （19）a.swap(b); //b为向量，将a中的元素和b中的元素进行整体性交换
+    （20）a==b; //b为向量，向量的比较操作还有!=,>=,<=,>,<
+```
+####  1.1.3. <a name='vectorreadwrite'></a>vector 读写 readwrite
+```c++
+// 添加元素
+int a[6]={1,2,3,4,5,6};
+vector<int> b;
+vector<int> c(a,a+4);
+for(vector<int>::iterator it=c.begin();it<c.end();it++)
+b.push_back(*it);
+
+// 通过遍历器方式读取
+int a[6]={1,2,3,4,5,6};
+vector<int> b(a,a+4);
+for(vector<int>::iterator it=b.begin();it!=b.end();it++)
+    cout<<*it<<" ";
+```
+####  1.1.4. <a name='vectoralgorithm'></a>vector常用algorithm算法
+```c++
+#include<algorithm>
+（1）sort(a.begin(),a.end()); //对a中的从a.begin()（包括它）到a.end()（不包括它）的元素进行从小到大排列
+（2）reverse(a.begin(),a.end()); //对a中的从a.begin()（包括它）到a.end()（不包括它）的元素倒置，但不排列，如a中元素为1,3,2,4,倒置后为4,2,3,1
+（3）copy(a.begin(),a.end(),b.begin()+1); //把a中的从a.begin()（包括它）到a.end()（不包括它）的元素复制到b中，从b.begin()+1的位置（包括它）开始复制，覆盖掉原有元素
+（4）find(a.begin(),a.end(),10); //在a中的从a.begin()（包括它）到a.end()（不包括它）的元素中查找10，若存在返回其在向量中的位置
+    vector<int>::iterator t = find(b.begin(), b.end(), 0);
+    if (t != b.end()) cout << *t;
+```
+
+###  1.2. <a name='set'></a>set集合
+set翻译为集合，是一个内部自动有序且不含重复元素的容器。默认是升序。底层采用红黑树实现。   
+set的定义：set<’typename’> s，降序的定义方式为set<typename,greater<typename>> s。typename可以是任意类型包括STL容器。Set数组的定义方式为，set<typename> s[size].s[0]…s[size-1]都是set类型。迭代器的定义方式set<typename>::iterator it   
+set容器内元素的访问：set只能通过迭代器(iterator)访问。
+
+####  1.2.1. <a name='setmethod'></a>set重要操作 method
+set的常见用途：
+set最主要的作用是自动去重并且升序排序，因此碰到需要去重但不方便开数组的
+时候，可以尝试用set解决。
+注意：set中的元素是唯一的，如果需要处理不唯一的情况可以使用multiset。C++11中还增加了unordered_ set,以散列代替set内部的红黑树，unordered_set可以处理需要去重但是不需要排序的情况，速度比set快得多。Multiset和unordered_set的定义和常用函数和set类似。
+```c++
+（1） insert(x) 可将x插入set容器中，并且自动递增排序和去重，时间复杂度O(logN),其中N是set中元素的数量。
+（2） find（x）返回set中对应值为x的迭代器，时间复杂度O(logN),N为set内元素的个数。
+（3） erase（），erase有两种用法：删除单个元素，删除一个区间内的所有元素。删除单个元素有两种方式，erase(it)删除该迭代器对应的元素，时间复杂度O(1),erase(x)删除该元素,时间复杂度O(logN).删除一个区间的元素，erase(st,ed),删除区间[st,ed)内的元素，时间复杂度O(ed-st)
+（5） clear(),用来清空set中所有元素，复杂度O(N),其中N为set内元素的个数。
+（6） count(x),返回set中x的数量 
+for (auto &ele : st) cout << ele << ' ';
+    cout << st.size() << endl;
+cout << st.count(4) << endl;//set去重了，返回只能是0或1
+cout << *st.find(1) << endl;
+st.erase(1);
+st.erase(st.begin(), st.find(4));
+
+puts("");
+st.clear();
+cout << st.size() << endl;
+```
+###  1.3. <a name='string'></a>string 字符串
+
+定义方式与基本数据类型相同，只需要在string后面跟上变量名称即可。   
+eg. string str;如果需要初始化，可以直接给string类型的变量赋值，string str = “hello”。
+
+####  1.3.1. <a name='stringmethod'></a>string method
+```c++
+// 输入输出
+string str ;
+cin >> str ;
+cout << str << endl ;
+printf("%s\n",str.c_str()) ;
+return 0 ;
+输入：hello
+输出：hello
+hello
+
+// string和vector一样，支持直接对迭代器进行加减某个数字。   
+string str = "hello" ;
+string::iterator it  ;
+for(it = str.begin();it!=str.end();it++){
+    cout << *it ;
+}
+（1） operator+=拼接
+string str1 = "hello" ;
+string str2 = " world" ;
+
+（2） compare operator比较
+两个string类型可以直接使用==,!=,<,<=,>,>=比较大小，比较规则是字典序。
+（3） length()/size()取得大小
+length()返回string的长度，即string存放的字符数，时间复杂度O(1)。size()和length()基本相同。
+（4） insert（）插入（原字符串不会被覆盖）
+insert()函数有很多种写法，这里列出几个常用的写法，时间复杂度度O(N)。
+insert(pos,string)，在pos号位置插入string。
+insert(it,it1,it2)，it为原字符串欲插入的位置，it2和it3为待插字符串的首尾迭代器，用来表示串[it1,it2)将被插在it的位置上。
+（5） erase()删除
+erase()有两种用法，删除单个元素，上出一个区间内所有元素。时间复杂度O(N)。
+a． erase(it)用于删除单个元素，it为需要删除的元素的迭代器。
+b. 删除一个区间的元素有两种方法：
+第一种是erase(st,ed),st，ed为string迭代器，表示删除区间[st,ed)之间的元素。
+第二种是erase(pos,len)，其中pos为需要删除的起始位置，len为删除的字符个数
+（7） substr()截取子串
+substr(pos,len)返回的是以pos位开始长度为len的子串，时间复杂度O(len)。
+（8） find()查找
+str.find(str1),当str1是str的子串时，返回其在str中第一次出现的位置。如果str1不是str的子串，那么返回string::npos
+str.find(str1,pos),从str的pos号位开始匹配str1,返回值与上面的相同，时间复杂度为O(nm),其中n和m分别为str和str1的长度。
+
+与algorithm中find的区别：
+find(a.begin(), a.end(), 'a');
+此函数只能查找单个元素，找不到返回a.end(), 找到返回"a"的迭代器，若取索引可以 find(a.begin(), a.end(), 'a') - a.begin();
+（9） replace()
+str.replace(pos,len,str1),把str从pos号位开始，长度为len的子串替换为str1。
+str.replace(it1,it2,str1)把str的迭代器[it1,it2)替换为str1
+
+string str1 = "hello world" ;
+    string str2 = "kangkang" ;
+    cout << str1.replace(6,5,str2) << endl ;
+    cout << str1.replace(str1.begin()+6,str1.end(),str2) << endl ;
+结果：hello kangkang
+hello kangkang
+```
+###  1.4. <a name='map'></a>map 映射
+
+map翻译成映射，map可以将任何基本类型（包括STL容器）映射到任何基本类。（包括STL容器）。
+
+```c++
+map<string, int> mp;
+mp["aa"] = 1;
+mp.insert({"bb", 2});
+cout << mp["bb"]; // 2
+cout << mp["cc"]; // 0
+mp["dd"]; // 声明之后就存在， value值为 0。
+cout << (mp.find("dd") != mp.end()); // 1
+
+// 遍历 
+for (auto &i : mp) {
+        cout << i.first<<i.second<<',';
+    }
+    cout << endl;
+for (map<string, int>::iterator it = mp.begin(); it != mp.end(); it++) {
+    cout << it->first << ' ' << it->second;
+}
+迭代器本质是指针，所以使用 -> ， 若为set是，因为储存单个值，使用 *it 即可访问。  
+
+// erase(),erase()有两种用法：删除单个元素和删除一个区间内的元素。
+// 删除单个元素时，可以接受迭代器和key值，删除区间元素智能接受迭代器
+（1） 需要建立字符（或字符串）与整数之间映射的题目，使用map可以减少代码量。
+（2） 判断大整数或者其他类型数据是否存在的题目，可以把map当成bool数组用。
+（3） 字符串和字符串之间的映射。
+补充：map和键和值都是唯一的
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###  1.5. <a name='unordered_map'></a>unordered_map——哈希表
+unordered_map是C++中的哈希表，可以在任意类型与类型之间做映射。
+
+1. 引用头文件(C++11)：#include <unordered_map>   
+2. 定义：unordered_map<int,int>、unordered_map<string, double> ...   
+3. 插入：例如将("ABC" -> 5.45) 插入unordered_map<string, double> hash中，hash["ABC"]=5.45   
+4. 查询：hash["ABC"]会返回5.45   
+5. 判断key是否存在：hash.count("ABC") != 0 或 hash.find("ABC") != hash.end()   
+6. 遍历
+```c++
+for (auto &item : hash)
+{
+    cout << item.first << ' ' << item.second << endl;
+}
+或者：
+for (unordered_map<string, double>::iterator it = hash.begin(); it != hash.end(); it ++ )
+{
+    cout << it->first << ' ' << it->second << endl;
+}
+```
+###  1.6. <a name='datarange2algorithm'></a>由数据范围反推算法复杂度以及算法内容  datarange2algorithm
 一般ACM或者笔试题的时间限制是1秒或2秒。
 在这种情况下，C++代码中的操作次数控制在 107107 为最佳。
 

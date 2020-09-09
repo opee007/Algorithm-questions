@@ -2623,33 +2623,6 @@ class Solution {
 public:
     vector<vector<int>> ans;
     vector<int> tem;
-
-    void dfs(int start, vector<int>& candidates, int t) {
-        if (t < 0) return;
-        if (t == 0) { ans.push_back(tem); }
-        for (int i = start; i < candidates.size(); i++) {
-
-            tem.push_back(candidates[i]);
-            dfs(i, candidates, t - candidates[i]);
-            tem.pop_back();
-        }
-
-    }
-    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-        sort(candidates.begin(), candidates.end());
-        dfs(0, candidates, target);
-        return ans;
-    }
-};
-```
-
-###  7.4. <a name='combinationSum2'></a>数组总和 结果无重复 combinationSum2
-给定一个数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。candidates 中的每个数字在每个组合中只能使用一次。
-```c++
-class Solution {
-public:
-    vector<vector<int>> ans;
-    vector<int> tem;
     int sumt = 0;
     void dfs(int start, vector<int> &candidates, int t){
         if(sumt > t) return;
@@ -2665,6 +2638,33 @@ public:
 
     }  
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        //sort(candidates.begin(), candidates.end());
+        dfs(0, candidates, target);
+        return ans;
+    }
+};
+```
+
+###  7.4. <a name='combinationSum2'></a>数组总和 结果无重复 combinationSum2
+给定一个数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。candidates 中的每个数字在每个组合中只能使用一次。
+```c++
+class Solution {
+public:
+    vector<vector<int>> ans;
+    vector<int> tem;
+
+    void dfs(int start, vector<int>& candidates, int t) {
+        if (t < 0) return;
+        if (t == 0) { ans.push_back(tem); }
+        for (int i = start; i < candidates.size(); i++) {
+            if (i > start && candidates[i] == candidates[i - 1]) continue;
+            tem.push_back(candidates[i]);
+            dfs(i + 1, candidates, t - candidates[i]);
+            tem.pop_back();
+        }
+
+    }
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
         sort(candidates.begin(), candidates.end());
         dfs(0, candidates, target);
         return ans;

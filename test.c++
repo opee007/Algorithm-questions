@@ -10,7 +10,7 @@ using namespace std;
 
 
 int main(){
-    time_t start,stop;
+    time_t start, stop;
     start = time(NULL);
     
     stop = time(NULL);

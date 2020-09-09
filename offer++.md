@@ -861,7 +861,7 @@ public:
 };
 ```
 
-###  4.12. <a name='bfsmovingCount'></a>机器人的运动范围（bfs搜索） movingCount
+### 4.12. <a name='bfsmovingCount'></a>机器人的运动范围（bfs搜索） movingCount
 
 地上有一个m行n列的方格，从坐标 [0,0] 到坐标 [m-1,n-1] 。一个机器人从坐标 [0, 0] 的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格 [35, 37] ，因为3+5+3+7=18。但它不能进入方格 [35, 38]，因为3+5+3+8=19。请问该机器人能够到达多少个格子？
 
@@ -1009,7 +1009,7 @@ public:
 };
 ```
 
-###  4.18. <a name='isMatch'></a>正则表达式匹配 isMatch
+### 4.18. <a name='isMatch'></a>正则表达式匹配 isMatch
 
 请实现一个函数用来匹配包括'.'和'*'的正则表达式。模式中的字符'.'表示任意一个字符，而'*'表示它前面的字符可以出现任意次（含0次）。在本题中，匹配是指字符串的所有字符匹配整个模式。
 例如，字符串"aaa"与模式"a.a"和"ab*ac*a"匹配，但是与"aa.a"和"ab*a"均不匹配。
@@ -1038,7 +1038,7 @@ public:
 };
 ```
 
-###  4.19. <a name='isNumber'></a>表示数值的字符串 isNumber
+### 4.19. <a name='isNumber'></a>表示数值的字符串 isNumber
 
 请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。
 例如，字符串"+100","5e2","-123","3.1416"和"-1E-16"都表示数值。但是"12e","1a3.14","1.2.3","+-5"和"12e+4.3"都不是。
@@ -1099,7 +1099,7 @@ class Solution(object):
             return False
 ```
 
-###  4.20. <a name='reOrderArray'></a>调整数组顺序使奇数位于偶数前面 reOrderArray
+### 4.20. <a name='reOrderArray'></a>调整数组顺序使奇数位于偶数前面 reOrderArray
 
 输入一个整数数组，实现一个函数来调整该数组中数字的顺序。使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分。
 样例
@@ -2284,9 +2284,129 @@ public:
         return ans;
     }
 };
+
+```
+### 15. 三数之和 threeSum
+给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。
+注意：答案中不可以包含重复的三元组。
+
+```c++
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>> ans;
+        if(nums.size()<3) return ans;
+        sort(nums.begin(), nums.end());
+        for(int i = 0; i<nums.size(); i++){
+            // 与前一个数字相同的话，去重。
+            if(i>0 && nums[i]==nums[i-1]) continue;
+            int l = i+1, r = nums.size() - 1;
+            while(l < r){
+                // 当答案正确时去重，不能直接去重，如[0, 0, 0, 0];
+                int sumt = nums[i] + nums[l] + nums[r];
+                if(sumt == 0){
+                    while(l<r && nums[l] == nums[l+1]) l++;
+                    while(l<r && nums[r] == nums[r-1]) r--;
+                    ans.push_back({nums[i], nums[l], nums[r]});
+                    l++; r--;
+                }
+                else if(sumt < 0) l++;
+                else r--;
+            }
+        }
+        return ans;
+    }
+};
+
+```
+### 16. 最接近的三数之和 threeSumClosest
+
+给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的三个整数，使得它们的和与 target 最接近。返回这三个数的和。假定每组输入只存在唯一答案。
+
+```c++
+class Solution {
+public:
+    int threeSumClosest(vector<int>& nums, int target) {
+        sort(nums.begin(), nums.end());
+        int maxt = INT_MAX;
+        int ans, l, r, sumt;
+        for(int i = 0; i < nums.size(); i++){
+            if(i > 0 && nums[i] == nums[i-1]) continue;
+            l = i + 1, r = nums.size() - 1;
+            while(l < r){
+                sumt = nums[i] + nums[l] + nums[r];
+                if(abs(sumt - target) < maxt){
+                    ans = sumt;
+                    maxt = abs(sumt - target);
+                }
+                if(sumt == target) return sumt;
+                else if(sumt > target) r--;
+                else l++;
+            }
+        }
+        return ans;
+    }
+};
+```
+
+### 17. 电话号码的字母组合
+给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。
+给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。<https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/>
+```c++
+class Solution {
+public:
+    vector<string> nums = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+    vector<string> ans;
+    string tem;
+    void dfs(string &digits, int ind){
+        if(ind == digits.size()){
+            ans.push_back(tem);
+            return;
+        }
+        for(int j = 0; j < nums[digits[ind] -'0'].size(); j++){
+            tem += nums[digits[ind]-'0'][j];
+            dfs(digits, ind + 1);
+            tem.pop_back();
+        }
+    }
+    vector<string> letterCombinations(string digits) {
+        if(digits.size() == 0) 
+        return ans;
+        dfs(digits, 0);
+        return ans;
+    }
+};
 ```
 
 
+### 20. 有效的括号 kuoisValid
+给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
+
+有效字符串需满足：
+左括号必须用相同类型的右括号闭合。
+左括号必须以正确的顺序闭合。
+```c++
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> st;
+        unordered_map <char, char> mp = {{'}','{'}, {')','('}, {']','['}};
+        for(char c: s){
+            if(mp.count(c) == 0) st.push(c);
+            else{
+                if(st.empty() || mp[c] != st.top()) return false;
+                else st.pop();
+                // bool flag = false;
+                // if(c=='}' && st.top()=='{') {st.pop(); flag = true;}
+                // if(c==')' && st.top()=='(') {st.pop(); flag = true;}
+                // if(c==']' && st.top()=='[') {st.pop(); flag = true;}
+                // if(!flag) return false;
+            }
+        }
+        return st.empty();
+    }
+};
+```
 
 ### 221. 最大正方形 maximal-square
 在一个由 0 和 1 组成的二维矩阵内，找到只包含 1 的最大正方形，并返回其面积。<https://leetcode-cn.com/problems/maximal-square/>

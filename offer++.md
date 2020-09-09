@@ -90,18 +90,28 @@
 	* 5.12. [12. 整数转罗马数字 intToRoman](#intToRoman)
 	* 5.13. [13. 罗马数字转整数 romanToInt](#romanToInt)
 	* 5.14. [14. 最长公共前缀 longestCommonPrefix](#longestCommonPrefix)
+	* 5.15. [15. 三数之和 threeSum](#threeSum)
+	* 5.16. [16. 最接近的三数之和 threeSumClosest](#threeSumClosest)
+	* 5.17. [17. 电话号码的字母组合](#-1)
+	* 5.18. [18. 四数之和](#-1)
+	* 5.19. [19. 删除链表倒数第n个结点](#n)
+	* 5.20. [20. 有效的括号 kuoisValid](#kuoisValid)
+	* 5.21. [21. 合并两个有序链表 mergeTwoLists](#mergeTwoLists)
+	* 5.22. [22. 括号生成 generateParenthesis](#generateParenthesis)
+	* 5.23. [221. 最大正方形 maximal-square](#maximal-square)
 * 6. [岛屿问题 land problem](#landproblem)
 	* 6.1. [岛屿数量 numIslands](#numIslands)
 	* 6.2. [岛屿的最大面积 maxAreaOfIsland](#maxAreaOfIsland)
 	* 6.3. [岛屿的周长 islandPerimeter](#islandPerimeter)
-* 7. [子集排列问题 sbuset permute prpblem](#sbusetpermuteprpblem)
+* 7. [子集组合排列问题 sbuset permute prpblem](#sbusetpermuteprpblem)
 	* 7.1. [全排列 permute](#permute)
 	* 7.2. [全排列 结果无重复 permuteUnique](#permuteUnique)
-	* 7.3. [数组总和  combinationSum](#combinationSum)
-	* 7.4. [数组总和 结果无重复 combinationSum2](#combinationSum2)
-	* 7.5. [子集  结果无重复 subsetsWithDup](#subsetsWithDup)
-	* 7.6. [子集 subsets1](#subsets1)
-	* 7.7. [字符串排列 结果无重复 stringpermutation](#stringpermutation)
+	* 7.3. [组合 combine77](#combine77)
+	* 7.4. [数组总和  combinationSum](#combinationSum)
+	* 7.5. [数组总和 结果无重复 combinationSum2](#combinationSum2)
+	* 7.6. [子集  结果无重复 subsetsWithDup](#subsetsWithDup)
+	* 7.7. [子集 subsets1](#subsets1)
+	* 7.8. [字符串排列 结果无重复 stringpermutation](#stringpermutation)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -861,7 +871,7 @@ public:
 };
 ```
 
-### 4.12. <a name='bfsmovingCount'></a>机器人的运动范围（bfs搜索） movingCount
+###  4.12. <a name='bfsmovingCount'></a>机器人的运动范围（bfs搜索） movingCount
 
 地上有一个m行n列的方格，从坐标 [0,0] 到坐标 [m-1,n-1] 。一个机器人从坐标 [0, 0] 的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格 [35, 37] ，因为3+5+3+7=18。但它不能进入方格 [35, 38]，因为3+5+3+8=19。请问该机器人能够到达多少个格子？
 
@@ -1009,7 +1019,7 @@ public:
 };
 ```
 
-### 4.18. <a name='isMatch'></a>正则表达式匹配 isMatch
+###  4.18. <a name='isMatch'></a>正则表达式匹配 isMatch
 
 请实现一个函数用来匹配包括'.'和'*'的正则表达式。模式中的字符'.'表示任意一个字符，而'*'表示它前面的字符可以出现任意次（含0次）。在本题中，匹配是指字符串的所有字符匹配整个模式。
 例如，字符串"aaa"与模式"a.a"和"ab*ac*a"匹配，但是与"aa.a"和"ab*a"均不匹配。
@@ -1038,7 +1048,7 @@ public:
 };
 ```
 
-### 4.19. <a name='isNumber'></a>表示数值的字符串 isNumber
+###  4.19. <a name='isNumber'></a>表示数值的字符串 isNumber
 
 请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。
 例如，字符串"+100","5e2","-123","3.1416"和"-1E-16"都表示数值。但是"12e","1a3.14","1.2.3","+-5"和"12e+4.3"都不是。
@@ -1099,7 +1109,7 @@ class Solution(object):
             return False
 ```
 
-### 4.20. <a name='reOrderArray'></a>调整数组顺序使奇数位于偶数前面 reOrderArray
+###  4.20. <a name='reOrderArray'></a>调整数组顺序使奇数位于偶数前面 reOrderArray
 
 输入一个整数数组，实现一个函数来调整该数组中数字的顺序。使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分。
 样例
@@ -2286,7 +2296,7 @@ public:
 };
 
 ```
-### 15. 三数之和 threeSum
+###  5.15. <a name='threeSum'></a>15. 三数之和 threeSum
 给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。
 注意：答案中不可以包含重复的三元组。
 
@@ -2319,7 +2329,7 @@ public:
 };
 
 ```
-### 16. 最接近的三数之和 threeSumClosest
+###  5.16. <a name='threeSumClosest'></a>16. 最接近的三数之和 threeSumClosest
 
 给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的三个整数，使得它们的和与 target 最接近。返回这三个数的和。假定每组输入只存在唯一答案。
 
@@ -2349,7 +2359,7 @@ public:
 };
 ```
 
-### 17. 电话号码的字母组合
+###  5.17. <a name='-1'></a>17. 电话号码的字母组合
 给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。
 给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。<https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/>
 ```c++
@@ -2377,9 +2387,62 @@ public:
     }
 };
 ```
+###  5.18. <a name='-1'></a>18. 四数之和
+给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。
 
+注意：答案中不可以包含重复的四元组。
+```c++
+class Solution{
+	public: 
+	vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        sort(nums.begin(),nums.end());
+        vector<vector<int> > res;
+        if(nums.size() < 4)
+        return res;
+        int a, b, c, d;
+        for(a = 0;a < nums.size(); a++){
+        	if(a > 0 && nums[a] == nums[a-1]) continue;      //确保nums[a] 改变了
+        	for(b = a + 1; b < nums.size(); b++){
+        		if(b > a+1 && nums[b] == nums[b-1])continue;   //确保nums[b] 改变了
+        		c = b + 1, d = nums.size() - 1;
+        		while(c < d){
+        			if(nums[a] + nums[b] + nums[c] + nums[d] < target)
+        			    c++;
+        			else if(nums[a]+nums[b]+nums[c]+nums[d]>target)
+        			    d--;
+        			else{
+        				res.push_back({nums[a],nums[b],nums[c],nums[d]});
+                        while(c < d && nums[c + 1] == nums[c]) c++;    //确保nums[c] 改变了
+        				while(c < d && nums[d - 1] == nums[d]) d--;      //确保nums[d] 改变了
+        				c++;
+        				d--;
+					}
+				}
+			}
+		}
+		return res;
+    }
+};
+```
+###  5.19. <a name='n'></a>19. 删除链表倒数第n个结点
+```c++
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode *dummy = new ListNode(0); dummy->next = head;
+        ListNode *l = dummy, *r = dummy;
+        while(n--) r = r->next;
+        while(r->next){
+            r = r -> next;
+            l = l -> next;
+        }
+        l->next = l->next->next;
+        return dummy->next;
+    }
+};
+```
 
-### 20. 有效的括号 kuoisValid
+###  5.20. <a name='kuoisValid'></a>20. 有效的括号 kuoisValid
 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
 
 有效字符串需满足：
@@ -2407,8 +2470,63 @@ public:
     }
 };
 ```
+###  5.21. <a name='mergeTwoLists'></a>21. 合并两个有序链表 mergeTwoLists
+```c++
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode *dummy = new ListNode(0);
+        ListNode *p = dummy;
+        while(l1 && l2){
+            if(l1->val < l2->val){
+                p->next = l1;
+                p = p->next;
+                l1 = l1->next;
+            }
+            else{
+                p->next = l2;
+                p = p->next;
+                l2 = l2->next;
+            }
+        }
+        if(l1) p->next = l1;
+        else p->next = l2;
+        return dummy->next;
+    }
+};
+```
 
-### 221. 最大正方形 maximal-square
+###  5.22. <a name='generateParenthesis'></a>22. 括号生成 generateParenthesis
+数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。
+```c++
+class Solution {
+public:
+    vector<string> ans;
+    string tem; 
+    int left = 0, right = 0;
+    void dfs(int left, int right, int n){
+        if(tem.size() == 2*n) ans.push_back(tem);
+        // 最多方ｎ个左括号
+        if (left < n) {
+            tem.push_back('(');
+            dfs(left + 1, right, n);
+            tem.pop_back();
+        }
+        // 左括号不能比左括号多
+        if (right < left) {
+            tem.push_back(')');
+            dfs(left, right + 1, n);
+            tem.pop_back();
+        }
+    }
+    vector<string> generateParenthesis(int n) {
+        dfs(0, 0 ,n);
+        return ans;
+    }
+};
+```
+
+###  5.23. <a name='maximal-square'></a>221. 最大正方形 maximal-square
 在一个由 0 和 1 组成的二维矩阵内，找到只包含 1 的最大正方形，并返回其面积。<https://leetcode-cn.com/problems/maximal-square/>
 ```c++
 class Solution {
@@ -2700,7 +2818,7 @@ public:
 };
 ```
 
-### 组合 combine77
+###  7.3. <a name='combine77'></a>组合 combine77
 给定两个整数 n 和 k，返回 1 ... n 中所有可能的 k 个数的组合。
 输入: n = 4, k = 2
 输出:
@@ -2736,7 +2854,7 @@ public:
 };
 ```
 
-###  7.3. <a name='combinationSum'></a>数组总和  combinationSum
+###  7.4. <a name='combinationSum'></a>数组总和  combinationSum
 给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。candidates 中的数字可以无限制重复被选取。
 ```c++
 class Solution {
@@ -2765,7 +2883,7 @@ public:
 };
 ```
 
-###  7.4. <a name='combinationSum2'></a>数组总和 结果无重复 combinationSum2
+###  7.5. <a name='combinationSum2'></a>数组总和 结果无重复 combinationSum2
 给定一个数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。candidates 中的每个数字在每个组合中只能使用一次。
 ```c++
 class Solution {
@@ -2792,7 +2910,7 @@ public:
 };
 ```
 
-###  7.5. <a name='subsetsWithDup'></a>子集  结果无重复 subsetsWithDup
+###  7.6. <a name='subsetsWithDup'></a>子集  结果无重复 subsetsWithDup
 
 ```c++
 class Solution_subset2 {
@@ -2816,7 +2934,7 @@ public:
 };
 ```
 
-###  7.6. <a name='subsets1'></a>子集 subsets1
+###  7.7. <a name='subsets1'></a>子集 subsets1
 给定一组不含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。
 ```c++
 void subsets(int start, vector<int> &input) {
@@ -2838,7 +2956,7 @@ int main() {
 	}
 }
 ```
-###  7.7. <a name='stringpermutation'></a>字符串排列 结果无重复 stringpermutation
+###  7.8. <a name='stringpermutation'></a>字符串排列 结果无重复 stringpermutation
 输入一个字符串，打印出该字符串中字符的所有排列。
 你可以以任意顺序返回这个字符串数组，但里面不能有重复元素。   
 输入：s = "abc" 

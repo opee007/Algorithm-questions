@@ -2288,6 +2288,106 @@ public:
 
 
 
+### 221. 最大正方形 maximal-square
+在一个由 0 和 1 组成的二维矩阵内，找到只包含 1 的最大正方形，并返回其面积。<https://leetcode-cn.com/problems/maximal-square/>
+```c++
+class Solution {
+public:
+    int maximalSquare(vector<vector<char>>& matrix) {
+        int n = matrix.size();
+        if(n == 0) return 0;
+        int m = matrix[0].size();         
+        vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
+        int ans = 0;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (matrix[i][j] == '0') 
+                    dp[i + 1][j + 1] = 0;
+                else
+                    dp[i + 1][j + 1] = min(min(dp[i][j + 1], dp[i + 1][j]), dp[i][j]) + 1;
+                ans = max(ans, dp[i + 1][j + 1]);
+            }
+        }
+        return ans * ans;
+    }
+};
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2406,7 +2506,7 @@ public:
 ```
 
 
-##  7. <a name='sbusetpermuteprpblem'></a>子集排列问题 sbuset permute prpblem
+##  7. <a name='sbusetpermuteprpblem'></a>子集组合排列问题 sbuset permute prpblem
 //递归思想：   
 //①画出递归树，找到状态变量(回溯函数的参数)，这一步非常重要※   
 //②根据题意，确立结束条件   
@@ -2480,6 +2580,42 @@ public:
 };
 ```
 
+### 组合 combine77
+给定两个整数 n 和 k，返回 1 ... n 中所有可能的 k 个数的组合。
+输入: n = 4, k = 2
+输出:
+[
+  [2,4],
+  [3,4],
+  [2,3],
+  [1,2],
+  [1,3],
+  [1,4],
+]
+```c++
+class Solution {
+public:
+    vector<vector<int>> ans;
+    vector<int> tem;
+    void dfs(vector<int> &nums, int &k, int ind){
+        if(tem.size() == k) {ans.push_back(tem); return;}
+        for(int i = ind; i< nums.size(); i++){
+            tem.push_back(nums[i]);
+            dfs(nums, k, i+1);
+            tem.pop_back();
+        }
+    }
+    vector<vector<int>> combine(int n, int k) {
+        // vector<bool> vis(n, false);
+        if(n<k) return ans;
+        vector<int> nums;
+        for(int i = 0; i<n; i++) nums.push_back(i+1);
+        dfs(nums, k, 0);
+        return ans;
+    }
+};
+```
+
 ###  7.3. <a name='combinationSum'></a>数组总和  combinationSum
 给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。candidates 中的数字可以无限制重复被选取。
 ```c++
@@ -2514,19 +2650,21 @@ class Solution {
 public:
     vector<vector<int>> ans;
     vector<int> tem;
+    int sumt = 0;
+    void dfs(int start, vector<int> &candidates, int t){
+        if(sumt > t) return;
+        if(t == sumt) {ans.push_back(tem);}
+        for(int i = start; i<candidates.size(); i++){
 
-    void dfs(int start, vector<int>& candidates, int t) {
-        if (t < 0) return;
-        if (t == 0) { ans.push_back(tem); }
-        for (int i = start; i < candidates.size(); i++) {
-            if (i > start && candidates[i] == candidates[i - 1]) continue;
             tem.push_back(candidates[i]);
-            dfs(i + 1, candidates, t - candidates[i]);
+            sumt += candidates[i];
+            dfs(i, candidates, t);
+            sumt -= candidates[i];
             tem.pop_back();
         }
 
-    }
-    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+    }  
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         sort(candidates.begin(), candidates.end());
         dfs(0, candidates, target);
         return ans;

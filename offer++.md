@@ -2526,6 +2526,97 @@ public:
 };
 ```
 
+### 24. 两两交换链表中的节点 swapPairs
+你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
+
+示例:
+给定 1->2->3->4, 你应该返回 2->1->4->3.
+```c++
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        ListNode *dummy = new ListNode(0);
+        dummy ->next = head;
+        ListNode *p = dummy;
+        while(p->next && p->next->next){
+            ListNode *a = p->next, *b = a->next;
+            a->next = b->next;
+            b->next = a;
+            p->next = b;
+            p = a;
+        }
+        return dummy->next;
+    }
+};
+```
+
+### 26. 删除排序数组中的重复项 removeDuplicates (快慢指针)
+给定一个排序数组，你需要在 原地 删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
+
+不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。
+```c++
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        if(nums.size() == 0) return 0;
+        int left = 0, right;
+        for(right  = 0; right < nums.size(); right++){
+            if(nums[left] != nums[right]){
+                left++;
+                nums[left] = nums[right];
+            }
+        }
+        return left + 1;
+    }
+};
+```
+### 27. 移除元素
+给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。
+
+不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。
+元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
+```c++
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int left = 0;
+        for(int right = 0; right<nums.size(); right++){
+            if(nums[right] != val) 
+                nums[left++] = nums[right];
+        }
+        return left;
+    }
+};
+```
+
+### 86. 分隔链表
+给定一个链表和一个特定值 x，对链表进行分隔，使得所有小于 x 的节点都在大于或等于 x 的节点之前。
+你应当保留两个分区中每个节点的初始相对位置。
+
+```c++
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        ListNode *dummy1 = new ListNode(0), *dummy2 = new ListNode(0);
+        ListNode *p1 = dummy1, *p2 = dummy2;
+        while(head){
+            if(head->val < x){
+                p1->next = head;
+                p1 = p1->next;
+            }
+            else {
+                p2->next = head;
+                p2 = p2->next;
+            }
+            head = head->next;
+        }
+        p2->next = NULL;
+        p1->next = dummy2->next;
+        return dummy1->next;
+    }
+};
+```
+
 ###  5.23. <a name='maximal-square'></a>221. 最大正方形 maximal-square
 在一个由 0 和 1 组成的二维矩阵内，找到只包含 1 的最大正方形，并返回其面积。<https://leetcode-cn.com/problems/maximal-square/>
 ```c++

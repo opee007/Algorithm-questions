@@ -98,7 +98,11 @@
 	* 5.20. [20. 有效的括号 kuoisValid](#kuoisValid)
 	* 5.21. [21. 合并两个有序链表 mergeTwoLists](#mergeTwoLists)
 	* 5.22. [22. 括号生成 generateParenthesis](#generateParenthesis)
-	* 5.23. [221. 最大正方形 maximal-square](#maximal-square)
+	* 5.23. [24. 两两交换链表中的节点 swapPairs](#swapPairs)
+	* 5.24. [26. 删除排序数组中的重复项 removeDuplicates (快慢指针)](#removeDuplicates)
+	* 5.25. [27. 移除元素](#-1)
+	* 5.26. [86. 分隔链表](#-1)
+	* 5.27. [221. 最大正方形 maximal-square](#maximal-square)
 * 6. [岛屿问题 land problem](#landproblem)
 	* 6.1. [岛屿数量 numIslands](#numIslands)
 	* 6.2. [岛屿的最大面积 maxAreaOfIsland](#maxAreaOfIsland)
@@ -109,9 +113,10 @@
 	* 7.3. [组合 combine77](#combine77)
 	* 7.4. [数组总和  combinationSum](#combinationSum)
 	* 7.5. [数组总和 结果无重复 combinationSum2](#combinationSum2)
-	* 7.6. [子集  结果无重复 subsetsWithDup](#subsetsWithDup)
-	* 7.7. [子集 subsets1](#subsets1)
-	* 7.8. [字符串排列 结果无重复 stringpermutation](#stringpermutation)
+	* 7.6. [216. 组合总和 III combinationSum3](#IIIcombinationSum3)
+	* 7.7. [子集  结果无重复 subsetsWithDup](#subsetsWithDup)
+	* 7.8. [子集 subsets1](#subsets1)
+	* 7.9. [字符串排列 结果无重复 stringpermutation](#stringpermutation)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -120,6 +125,64 @@
 <!-- /vscode-markdown-toc --># offer++
 
 ##  1. <a name='CBrushthequestion.'></a>C++ 刷题知识 Brush the question.
+
+### 不常见输入方式 nousuallyinput
+
+输入：   
+a,c,bb   
+f,dddd   
+nowcoder   
+
+```c++
+while (cin>>s){
+    vector<string>a;
+    string tmp;
+    for (int i = 0; i < s.size(); i++) {
+        if (s[i] == ',') {
+            a.push_back(tmp);
+            tmp.clear();
+        }
+        else{
+            tmp += s[i];
+        }
+    }
+    a.push_back(tmp);
+}
+```
+对输入的字符串进行排序后输出
+
+输入   
+a c bb   
+f dddd   
+nowcoder   
+```c++
+#include<vector>
+#include<iostream>
+#include<string>
+#include<algorithm>
+using namespace std;
+int main(){
+    string str;
+    while(getline(cin, str)){
+        //cout<<str;
+        vector<string> ans;
+        string tem;
+        for(int i = 0; i<str.size(); i++){
+            if(str[i] == ' ') {
+                ans.push_back(tem);
+                tem.clear();
+            }
+            else tem += str[i];
+        }
+        ans.push_back(tem);
+        sort(ans.begin(), ans.end());
+        for(int i = 0; i<ans.size()-1; i++) cout<<ans[i]<<' ';
+        cout<<ans[ans.size()-1]<<'\n';
+    }
+    return 0;
+}
+```
+
 ###  1.1. <a name='vector'></a>vector(动态数组)
 vector 是向量类型，它可以容纳许多类型的数据，如若干个整数，所以称其为容器。vector 是C++ STL的一个重要成员，使用它时需要包含头文件：#include<vector>;
 ####  1.1.1. <a name='vectorinit'></a>vector初始化 init
@@ -2526,7 +2589,7 @@ public:
 };
 ```
 
-### 24. 两两交换链表中的节点 swapPairs
+###  5.23. <a name='swapPairs'></a>24. 两两交换链表中的节点 swapPairs
 你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
 
 示例:
@@ -2550,7 +2613,7 @@ public:
 };
 ```
 
-### 26. 删除排序数组中的重复项 removeDuplicates (快慢指针)
+###  5.24. <a name='removeDuplicates'></a>26. 删除排序数组中的重复项 removeDuplicates (快慢指针)
 给定一个排序数组，你需要在 原地 删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
 
 不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。
@@ -2570,7 +2633,7 @@ public:
     }
 };
 ```
-### 27. 移除元素
+###  5.25. <a name='-1'></a>27. 移除元素
 给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。
 
 不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。
@@ -2589,7 +2652,7 @@ public:
 };
 ```
 
-### 86. 分隔链表
+###  5.26. <a name='-1'></a>86. 分隔链表
 给定一个链表和一个特定值 x，对链表进行分隔，使得所有小于 x 的节点都在大于或等于 x 的节点之前。
 你应当保留两个分区中每个节点的初始相对位置。
 
@@ -2617,7 +2680,7 @@ public:
 };
 ```
 
-###  5.23. <a name='maximal-square'></a>221. 最大正方形 maximal-square
+###  5.27. <a name='maximal-square'></a>221. 最大正方形 maximal-square
 在一个由 0 和 1 组成的二维矩阵内，找到只包含 1 的最大正方形，并返回其面积。<https://leetcode-cn.com/problems/maximal-square/>
 ```c++
 class Solution {
@@ -3001,7 +3064,35 @@ public:
 };
 ```
 
-###  7.6. <a name='subsetsWithDup'></a>子集  结果无重复 subsetsWithDup
+###  7.6. <a name='IIIcombinationSum3'></a>216. 组合总和 III combinationSum3
+
+找出所有相加之和为 n 的 k 个数的组合。组合中只允许含有 1 - 9 的正整数，并且每种组合中不存在重复的数字。 
+```c++
+class Solution {
+public:
+    vector<vector<int>> ans;
+    vector<int> tem;
+    int sumt = 0;
+
+    void dfs(int n, int k, int ind){
+        if(9 - ind + 1 < k - tem.size()) return;
+        if(tem.size() == k && sumt == n) {ans.push_back(tem); return;}
+        for(int i = ind; i<=9; i++){
+            tem.push_back(i);
+            sumt += i;
+            dfs(n, k, i + 1);
+            sumt -= i;
+            tem.pop_back();
+        }
+    }
+    vector<vector<int>> combinationSum3(int k, int n) {
+        dfs(n, k, 1);
+        return ans;
+    }
+};
+```
+
+###  7.7. <a name='subsetsWithDup'></a>子集  结果无重复 subsetsWithDup
 
 ```c++
 class Solution_subset2 {
@@ -3025,7 +3116,7 @@ public:
 };
 ```
 
-###  7.7. <a name='subsets1'></a>子集 subsets1
+###  7.8. <a name='subsets1'></a>子集 subsets1
 给定一组不含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。
 ```c++
 void subsets(int start, vector<int> &input) {
@@ -3047,7 +3138,7 @@ int main() {
 	}
 }
 ```
-###  7.8. <a name='stringpermutation'></a>字符串排列 结果无重复 stringpermutation
+###  7.9. <a name='stringpermutation'></a>字符串排列 结果无重复 stringpermutation
 输入一个字符串，打印出该字符串中字符的所有排列。
 你可以以任意顺序返回这个字符串数组，但里面不能有重复元素。   
 输入：s = "abc" 

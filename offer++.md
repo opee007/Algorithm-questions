@@ -645,7 +645,7 @@ public:
             // 两个int相加减会溢出 中间加个长整型常量
             // 少用乘法，用除法可以防止溢出
             int mid = l + 1ll + r >> 1; 
-            if (mid  <= x / mid) l = mid;  
+            if (mid  <= x / mid) l = mid; 
             else r = mid - 1;
         }
         return l;
@@ -2676,6 +2676,130 @@ public:
         p2->next = NULL;
         p1->next = dummy2->next;
         return dummy1->next;
+    }
+};
+```
+
+### 79. 单词搜索 （二维dfs） existpath
+单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。
+示例:
+
+board =   
+[   
+  ['A','B','C','E'],   
+  ['S','F','C','S'],   
+  ['A','D','E','E']   
+]   
+   
+给定 word = "ABCCED", 返回 true   
+给定 word = "SEE", 返回 true   
+给定 word = "ABCB", 返回 false   
+
+```c++
+class Solution {
+public:
+    bool dfs(vector<vector<char>>& board, string &word, int ind, int i, int j){
+        if(i<0 || i>=board.size() || j<0 || j>=board[0].size() || board[i][j] != word[ind]) return false;
+        if(ind == word.size()-1) return true;
+        char tem = board[i][j];
+        board[i][j] = '*';
+        if( dfs(board, word, ind + 1, i-1, j) ||
+            dfs(board, word, ind + 1, i+1, j) ||
+            dfs(board, word, ind + 1, i, j-1) ||
+            dfs(board, word, ind + 1, i, j+1)
+            )
+            return true;
+        board[i][j] = tem;;
+        return false;
+    }
+    bool exist(vector<vector<char>>& board, string word) {
+        if(board.size() == 0) return false;
+        for(int i = 0; i<board.size(); i++){
+            for(int j = 0; j<board[0].size(); j++){
+                if(dfs(board, word, 0, i, j))
+                    return true;
+            }
+        }
+        return false;
+    }
+};
+```
+#### 迷路的机器人
+设想有个机器人坐在一个网格的左上角，网格 r 行 c 列。机器人只能向下或向右移动，但不能走到一些被禁止的网格（有障碍物）。设计一种算法，寻找机器人从左上角移动到右下角的路径。 <https://leetcode-cn.com/problems/robot-in-a-grid-lcci/>
+输入:   
+[   
+  [0,0,0],   
+  [0,1,0],   
+  [0,0,0]   
+]   
+输出: [[0,0],[0,1],[0,2],[1,2],[2,2]]
+```c++
+class Solution {
+public:
+    vector<vector<int>> ans;
+    bool dfs(vector<vector<int>>& a, int i, int j){
+        if(i<0||i>=a.size()||j<0||j>=a[0].size()||a[i][j]==1) return false;
+        ans.push_back({i, j});
+        if(i == a.size()-1 && j == a[0].size()-1) return true;
+        if(dfs(a, i+1, j) || dfs(a, i, j+1)) return true;
+        // 这道题其实也是一道很典型的DFS题目。
+        // 刚开始是用DFS加回溯来做的，然后超时了，但是后来发现这道题目完全没必要回溯，
+        // 因为如果一个坐标返回false，那么就意味着这个坐标是无法到达终点的，那么直接去掉坐标就行了。 
+        a[i][j] = 1;
+        ans.pop_back();
+        return false;
+    }
+    vector<vector<int>> pathWithObstacles(vector<vector<int>>& obstacleGrid) {
+        dfs(obstacleGrid, 0, 0);
+        return ans;
+    }
+};
+```
+### 99. 恢复二叉搜索树
+二叉搜索树中的两个节点被错误地交换。
+
+请在不改变其结构的情况下，恢复这棵树.
+```c++
+class Solution {
+public:
+    vector<TreeNode *> in;
+    void inorder(TreeNode* root){
+        if(!root) return;
+        inorder(root->left);
+        in.push_back(root);
+        inorder(root->right);
+    } 
+    // 利用搜索二叉树中序遍历的性质
+    void recoverTree(TreeNode* root) {
+        TreeNode *p1 = nullptr, *p2 = nullptr;
+        inorder(root);
+        for(int i = 0; i<in.size() - 1; i++){
+            if(in[i]->val>in[i+1]->val){
+                // ***
+                if(!p1) p1 = in[i];
+                p2 = in[i+1];
+            }
+        }
+        if(p1 && p2){
+            int t = p1->val;
+            p1->val = p2->val;
+            p2->val = t;
+        }
+    }
+};
+```
+### 100. 相同的树
+给定两个二叉树，编写一个函数来检验它们是否相同。   
+如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。
+```c++
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        if(!p && !q) return true;
+        if(!p) return false;
+        if(!q) return false;
+        if(p->val != q->val) return false;
+        return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
     }
 };
 ```

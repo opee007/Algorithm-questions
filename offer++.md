@@ -1,17 +1,18 @@
 <!-- vscode-markdown-toc -->
 * 1. [C++ 刷题知识 Brush the question.](#CBrushthequestion.)
-	* 1.1. [vector(动态数组)](#vector)
-		* 1.1.1. [vector初始化 init](#vectorinit)
-		* 1.1.2. [vector 重要操作 method](#vectormethod)
-		* 1.1.3. [vector 读写 readwrite](#vectorreadwrite)
-		* 1.1.4. [vector常用algorithm算法](#vectoralgorithm)
-	* 1.2. [set集合](#set)
-		* 1.2.1. [set重要操作 method](#setmethod)
-	* 1.3. [string 字符串](#string)
-		* 1.3.1. [string method](#stringmethod)
-	* 1.4. [map 映射](#map)
-	* 1.5. [unordered_map——哈希表](#unordered_map)
-	* 1.6. [由数据范围反推算法复杂度以及算法内容  datarange2algorithm](#datarange2algorithm)
+	* 1.1. [不常见输入方式 nousuallyinput](#nousuallyinput)
+	* 1.2. [vector(动态数组)](#vector)
+		* 1.2.1. [vector初始化 init](#vectorinit)
+		* 1.2.2. [vector 重要操作 method](#vectormethod)
+		* 1.2.3. [vector 读写 readwrite](#vectorreadwrite)
+		* 1.2.4. [vector常用algorithm算法](#vectoralgorithm)
+	* 1.3. [set集合](#set)
+		* 1.3.1. [set重要操作 method](#setmethod)
+	* 1.4. [string 字符串](#string)
+		* 1.4.1. [string method](#stringmethod)
+	* 1.5. [map 映射](#map)
+	* 1.6. [unordered_map——哈希表](#unordered_map)
+	* 1.7. [由数据范围反推算法复杂度以及算法内容  datarange2algorithm](#datarange2algorithm)
 * 2. [排序算法总结](#)
 	* 2.1. [冒泡排序 bubbleSort O(n^2) 稳定](#bubbleSortOn2)
 	* 2.2. [快速排序 quickSort O(nlogn)](#quickSortOnlogn)
@@ -22,101 +23,128 @@
 * 3. [二分查找模板 bsTemplate](#bsTemplate)
 	* 3.1. [在排序数组中查找元素的第一个和最后一个位置 searchRange](#searchRange)
 	* 3.2. [x的平方根 sqrtofx](#xsqrtofx)
-* 4. [剑指Offer](#Offer)
-	* 4.1. [找出数组中重复数字 duplicateInArray](#duplicateInArray)
-	* 4.2. [不修改数组找出重复的数字 duplicateInArray2](#duplicateInArray2)
-	* 4.3. [二维数组查找 findNumberIn2DArray](#findNumberIn2DArray)
-	* 4.4. [替换空格为%20  replaceSpaces](#20replaceSpaces)
-	* 4.5. [从尾到头打印链表 printListReversingly](#printListReversingly)
-	* 4.6. [前序和中序遍历重建二叉树 buildTree](#buildTree)
-	* 4.7. [二叉树的下一个结点（给定father结点） inorderSuccessor](#fatherinorderSuccessor)
-	* 4.8. [两个栈实现一个队列 2stack2queue](#2stack2queue)
-	* 4.9. [斐波那契数列 Fibonacci](#Fibonacci)
-	* 4.10. [旋转数组的最小数字（二分查找） minArray](#minArray)
-	* 4.11. [矩阵中的路径（DFS路径） existpath](#DFSexistpath)
-	* 4.12. [机器人的运动范围（bfs搜索） movingCount](#bfsmovingCount)
-	* 4.13. [剪绳子（分段最大乘积） maxProductAfterCutting](#maxProductAfterCutting)
-	* 4.14. [二进制中1的个数（unsigned int n = _n;） NumberOf1](#1unsignedintn_nNumberOf1)
-	* 4.15. [实现数值的整数次方，即pow() Power](#powPower)
-	* 4.16. [在O(1)时间删除链表结点 deleteNode](#O1deleteNode)
-	* 4.17. [删除链表中重复的节点 deleteDuplication](#deleteDuplication)
-	* 4.18. [正则表达式匹配 isMatch](#isMatch)
-	* 4.19. [表示数值的字符串 isNumber](#isNumber)
-	* 4.20. [调整数组顺序使奇数位于偶数前面 reOrderArray](#reOrderArray)
-	* 4.21. [链表中倒数第k个节点 findKthToTail](#kfindKthToTail)
-	* 4.22. [寻找环形链表入口 entryNodeOfLoop](#entryNodeOfLoop)
-	* 4.23. [翻转链表 reverseList](#reverseList)
-		* 4.23.1. [(1)迭代 r1](#1r1)
-		* 4.23.2. [(2) 递归 r2](#2r2)
-	* 4.24. [合并两个排序的链表 merge](#merge)
-	* 4.25. [树的子结构(判断B是不是A的子结构) hasSubtree](#BAhasSubtree)
-	* 4.26. [二叉树的镜像 mirror](#mirror)
-	* 4.27. [判断对称（镜像）的二叉树 isSymmetric](#isSymmetric)
-	* 4.28. [顺时针打印矩阵 printMatrix](#printMatrix)
-	* 4.29. [包含min函数的栈 MinStack](#minMinStack)
-	* 4.30. [栈的压入、弹出序列 isPopOrder](#isPopOrder)
-	* 4.31. [不分行从上往下打印二叉树(层次遍历) printFromTopToBottom1](#printFromTopToBottom1)
-	* 4.32. [分行从上往下打印二叉树 printFromTopToBottom2](#printFromTopToBottom2)
-	* 4.33. [之字形打印二叉树 printFromTopToBottom3](#printFromTopToBottom3)
-	* 4.34. [二叉树中和为某一值的路径(回溯) treePathSum](#treePathSum)
-	* 4.35. [二叉搜索树的后序遍历序列 verifySequenceOfBST](#verifySequenceOfBST)
-	* 4.36. [二叉树中和为某一值的路径 treeFindPath1](#treeFindPath1)
-	* 4.37. [复杂链表的复刻](#-1)
-	* 4.38. [字符串转数字 strToInt](#strToInt)
-	* 4.39. [约瑟夫坏（圆圈中最后剩下的） lastRemaining](#lastRemaining)
-		* 4.39.1. [暴力模拟 l1](#l1)
-		* 4.39.2. [递推 l2](#l2)
-	* 4.40. [扑克牌顺子 isContinuous](#isContinuous)
-	* 4.41. [一排路由器可以覆盖的信号 Router](#Router)
-	* 4.42. [滑动窗口最大值 slide](#slide)
-	* 4.43. [乘积数组 B[i]=A[0]×A[1]…×A[n-1]](#BiA0A1An-1)
-	* 4.44. [分裂二叉树最大乘积 maxProduct](#maxProduct)
-	* 4.45. [二叉树最低公共祖先 lowestCommonAncestor1](#lowestCommonAncestor1)
-	* 4.46. [大数相乘 BigMutiple](#BigMutiple)
-	* 4.47. [大数相加 bigAdd](#bigAdd)
-	* 4.48. [不用加减乘除做加法 bitopAdd](#bitopAdd)
-* 5. [LeetCode](#LeetCode)
-	* 5.1. [1.两数之和 twoSum](#twoSum)
-	* 5.2. [2. 两数相加 addTwoNumbers](#addTwoNumbers)
-	* 5.3. [3. 无重复字符的最长子串 lengthOfLongestSubstring](#lengthOfLongestSubstring)
-	* 5.4. [4. 寻找两个正序数组的中位数 findMedianSortedArrays](#findMedianSortedArrays)
-	* 5.5. [5. 最长回文子串 longestPalindrome](#longestPalindrome)
-	* 5.6. [6. Z 字形变换 zConvert](#ZzConvert)
-	* 5.7. [7. 整数反转 intReverse](#intReverse)
-	* 5.8. [8. 字符串转换整数 (atoi)](#atoi)
-	* 5.9. [9. 回文数 isPalindrome1](#isPalindrome1)
-	* 5.10. [10. 正则表达式匹配 isMatch q](#isMatchq)
-	* 5.11. [11. 成水最多的容器 maxWaterArea](#maxWaterArea)
-	* 5.12. [12. 整数转罗马数字 intToRoman](#intToRoman)
-	* 5.13. [13. 罗马数字转整数 romanToInt](#romanToInt)
-	* 5.14. [14. 最长公共前缀 longestCommonPrefix](#longestCommonPrefix)
-	* 5.15. [15. 三数之和 threeSum](#threeSum)
-	* 5.16. [16. 最接近的三数之和 threeSumClosest](#threeSumClosest)
-	* 5.17. [17. 电话号码的字母组合](#-1)
-	* 5.18. [18. 四数之和](#-1)
-	* 5.19. [19. 删除链表倒数第n个结点](#n)
-	* 5.20. [20. 有效的括号 kuoisValid](#kuoisValid)
-	* 5.21. [21. 合并两个有序链表 mergeTwoLists](#mergeTwoLists)
-	* 5.22. [22. 括号生成 generateParenthesis](#generateParenthesis)
-	* 5.23. [24. 两两交换链表中的节点 swapPairs](#swapPairs)
-	* 5.24. [26. 删除排序数组中的重复项 removeDuplicates (快慢指针)](#removeDuplicates)
-	* 5.25. [27. 移除元素](#-1)
-	* 5.26. [86. 分隔链表](#-1)
-	* 5.27. [221. 最大正方形 maximal-square](#maximal-square)
-* 6. [岛屿问题 land problem](#landproblem)
-	* 6.1. [岛屿数量 numIslands](#numIslands)
-	* 6.2. [岛屿的最大面积 maxAreaOfIsland](#maxAreaOfIsland)
-	* 6.3. [岛屿的周长 islandPerimeter](#islandPerimeter)
-* 7. [子集组合排列问题 sbuset permute prpblem](#sbusetpermuteprpblem)
-	* 7.1. [全排列 permute](#permute)
-	* 7.2. [全排列 结果无重复 permuteUnique](#permuteUnique)
-	* 7.3. [组合 combine77](#combine77)
-	* 7.4. [数组总和  combinationSum](#combinationSum)
-	* 7.5. [数组总和 结果无重复 combinationSum2](#combinationSum2)
-	* 7.6. [216. 组合总和 III combinationSum3](#IIIcombinationSum3)
-	* 7.7. [子集  结果无重复 subsetsWithDup](#subsetsWithDup)
-	* 7.8. [子集 subsets1](#subsets1)
-	* 7.9. [字符串排列 结果无重复 stringpermutation](#stringpermutation)
+* 4. [二叉树前中后遍历（非递归实现） prein](#prein)
+* 5. [剑指Offer](#Offer)
+	* 5.1. [数组中超过一半的数字 majorityElement](#majorityElement)
+	* 5.2. [找出数组中重复数字 duplicateInArray](#duplicateInArray)
+	* 5.3. [不修改数组找出重复的数字 duplicateInArray2](#duplicateInArray2)
+	* 5.4. [二维数组查找 findNumberIn2DArray](#findNumberIn2DArray)
+	* 5.5. [替换空格为%20  replaceSpaces](#20replaceSpaces)
+	* 5.6. [从尾到头打印链表 （逆序打印链表） printListReversingly](#printListReversingly)
+		* 5.6.1. [递归方式](#-1)
+	* 5.7. [二叉树的下一个结点（给定father结点） inorderSuccessor](#fatherinorderSuccessor)
+	* 5.8. [两个栈实现一个队列 2stack2queue](#2stack2queue)
+	* 5.9. [打印从1到最大的n位数 printNumbers 1-n](#1nprintNumbers1-n)
+	* 5.10. [斐波那契数列 Fibonacci](#Fibonacci)
+	* 5.11. [旋转数组的最小数字（二分查找） minArray](#minArray)
+	* 5.12. [矩阵中的路径（DFS路径） existpath](#DFSexistpath)
+	* 5.13. [机器人的运动范围（bfs搜索） movingCount](#bfsmovingCount)
+	* 5.14. [剪绳子（分段最大乘积） maxProductAfterCutting](#maxProductAfterCutting)
+	* 5.15. [二进制中1的个数（unsigned int n = _n;） NumberOf1](#1unsignedintn_nNumberOf1)
+	* 5.16. [实现数值的整数次方，即pow() Power](#powPower)
+	* 5.17. [ 删除链表的节点  deleteNodett](#deleteNodett)
+	* 5.18. [在O(1)时间删除链表结点 deleteNode](#O1deleteNode)
+	* 5.19. [删除链表中重复的节点 deleteDuplication](#deleteDuplication)
+	* 5.20. [正则表达式匹配 isMatch](#isMatch)
+	* 5.21. [表示数值的字符串 isNumber](#isNumber)
+	* 5.22. [调整数组顺序使奇数位于偶数前面 reOrderArray](#reOrderArray)
+		* 5.22.1. [双指针解法2 reOrderArray2](#2reOrderArray2)
+	* 5.23. [链表中倒数第k个节点 findKthToTail](#kfindKthToTail)
+	* 5.24. [寻找环形链表入口 entryNodeOfLoop](#entryNodeOfLoop)
+	* 5.25. [翻转链表 reverseList](#reverseList)
+		* 5.25.1. [(1)迭代 r1](#1r1)
+		* 5.25.2. [(2) 递归 r2](#2r2)
+	* 5.26. [合并两个排序的链表 merge](#merge)
+	* 5.27. [顺时针打印矩阵 printMatrix](#printMatrix)
+	* 5.28. [包含min函数的栈 MinStack](#minMinStack)
+	* 5.29. [栈的压入、弹出序列 isPopOrder](#isPopOrder)
+	* 5.30. [复杂链表的复刻](#-1)
+	* 5.31. [字符串转数字 strToInt](#strToInt)
+	* 5.32. [约瑟夫坏（圆圈中最后剩下的） lastRemaining](#lastRemaining)
+		* 5.32.1. [暴力模拟 l1](#l1)
+		* 5.32.2. [递推 l2](#l2)
+	* 5.33. [扑克牌顺子 isContinuous](#isContinuous)
+	* 5.34. [一排路由器可以覆盖的信号 Router](#Router)
+	* 5.35. [滑动窗口最大值 slide](#slide)
+	* 5.36. [乘积数组 B[i]=A[0]×A[1]…×A[n-1]](#BiA0A1An-1)
+	* 5.37. [分裂二叉树最大乘积 maxProduct](#maxProduct)
+	* 5.38. [大数相乘 BigMutiple](#BigMutiple)
+	* 5.39. [大数相加 bigAdd](#bigAdd)
+	* 5.40. [不用加减乘除做加法 bitopAdd](#bitopAdd)
+* 6. [LeetCode](#LeetCode)
+	* 6.1. [1.两数之和 twoSum](#twoSum)
+	* 6.2. [2. 两数相加 addTwoNumbers](#addTwoNumbers)
+	* 6.3. [3. 无重复字符的最长子串 lengthOfLongestSubstring](#lengthOfLongestSubstring)
+	* 6.4. [4. 寻找两个正序数组的中位数 findMedianSortedArrays](#findMedianSortedArrays)
+	* 6.5. [5. 最长回文子串 longestPalindrome](#longestPalindrome)
+	* 6.6. [6. Z 字形变换 zConvert](#ZzConvert)
+	* 6.7. [7. 整数反转 intReverse](#intReverse)
+	* 6.8. [8. 字符串转换整数 (atoi)](#atoi)
+	* 6.9. [9. 回文数 isPalindrome1](#isPalindrome1)
+	* 6.10. [10. 正则表达式匹配 isMatch q](#isMatchq)
+	* 6.11. [11. 成水最多的容器 maxWaterArea](#maxWaterArea)
+	* 6.12. [12. 整数转罗马数字 intToRoman](#intToRoman)
+	* 6.13. [13. 罗马数字转整数 romanToInt](#romanToInt)
+	* 6.14. [14. 最长公共前缀 longestCommonPrefix](#longestCommonPrefix)
+	* 6.15. [15. 三数之和 threeSum](#threeSum)
+	* 6.16. [16. 最接近的三数之和 threeSumClosest](#threeSumClosest)
+	* 6.17. [17. 电话号码的字母组合](#-1)
+	* 6.18. [18. 四数之和](#-1)
+	* 6.19. [19. 删除链表倒数第n个结点](#n)
+	* 6.20. [20. 有效的括号 kuoisValid](#kuoisValid)
+	* 6.21. [21. 合并两个有序链表 mergeTwoLists](#mergeTwoLists)
+	* 6.22. [22. 括号生成 generateParenthesis](#generateParenthesis)
+	* 6.23. [24. 两两交换链表中的节点 swapPairs](#swapPairs)
+	* 6.24. [26. 删除排序数组中的重复项 removeDuplicates (快慢指针)](#removeDuplicates)
+	* 6.25. [27. 移除元素](#-1)
+	* 6.26. [86. 分隔链表](#-1)
+	* 6.27. [79. 单词搜索 （二维dfs） existpath](#dfsexistpath)
+		* 6.27.1. [迷路的机器人 pathWithObstacles](#pathWithObstacles)
+	* 6.28. [91. 解码方法 1-26 to a-z](#toa-z)
+	* 6.29. [反转链表 reverseList1](#reverseList1)
+	* 6.30. [92. 反转链表 II 反转区间链表 reverseBetween](#IIreverseBetween)
+	* 6.31. [96. 二叉搜索树个数  numbTrees](#numbTrees)
+	* 6.32. [98. 验证二叉搜索树 isValidBST](#isValidBST)
+	* 6.33. [99. 恢复二叉搜索树 recoverTreeB](#recoverTreeB)
+	* 6.34. [100. 相同的树 isSameTree](#isSameTree)
+	* 6.35. [215 topk](#topk)
+	* 6.36. [221. 最大正方形 maximal-square](#maximal-square)
+	* 6.37. [322. 零钱兑换](#-1)
+* 7. [岛屿问题 land problem](#landproblem)
+	* 7.1. [岛屿数量 numIslands](#numIslands)
+	* 7.2. [岛屿的最大面积 maxAreaOfIsland](#maxAreaOfIsland)
+	* 7.3. [岛屿的周长 islandPerimeter](#islandPerimeter)
+* 8. [子集组合排列问题 sbuset permute prpblem](#sbusetpermuteprpblem)
+	* 8.1. [全排列 permute](#permute)
+	* 8.2. [全排列 结果无重复 permuteUnique](#permuteUnique)
+	* 8.3. [组合 combine77](#combine77)
+	* 8.4. [数组总和  combinationSum](#combinationSum)
+	* 8.5. [数组总和 结果无重复 combinationSum2](#combinationSum2)
+	* 8.6. [216. 组合总和 III combinationSum3](#IIIcombinationSum3)
+	* 8.7. [子集  结果无重复 subsetsWithDup](#subsetsWithDup)
+	* 8.8. [子集 subsets1](#subsets1)
+	* 8.9. [字符串排列 结果无重复 stringpermutation](#stringpermutation)
+* 9. [二叉树的题　all_bt](#all_bt)
+	* 9.1. [二叉树的直径 diameterOfBinaryTree](#diameterOfBinaryTree)
+	* 9.2. [验证平衡二叉树 isBalancedtree](#isBalancedtree)
+	* 9.3. [前序和中序遍历重建二叉树 buildTree](#buildTree)
+	* 9.4. [序列化二叉树 serializetree](#serializetree)
+	* 9.5. [判断对称（镜像）的二叉树 isSymmetric](#isSymmetric)
+	* 9.6. [输出二叉树的镜像 mirror](#mirror)
+	* 9.7. [不分行从上往下打印二叉树(层次遍历) printFromTopToBottom1](#printFromTopToBottom1)
+	* 9.8. [分行从上往下打印二叉树 printFromTopToBottom2](#printFromTopToBottom2)
+	* 9.9. [之字形打印二叉树 printFromTopToBottom3](#printFromTopToBottom3)
+	* 9.10. [二叉树最低公共祖先 lowestCommonAncestor1](#lowestCommonAncestor1)
+	* 9.11. [二叉树搜索树最低公共祖先](#-1)
+	* 9.12. [二叉搜索树转换为双向循环链表 treeToDoublyList](#treeToDoublyList)
+	* 9.13. [二叉搜索树的第k大节点 treekthLargest](#ktreekthLargest)
+	* 9.14. [二叉搜索树的后序遍历序列 verifySequenceOfBST](#verifySequenceOfBST)
+	* 9.15. [二叉树中和为某一值的路径(回溯) treePathSum](#treePathSum)
+	* 9.16. [二叉树中和为某一值的路径 treeFindPath1](#treeFindPath1)
+	* 9.17. [合并二叉树 - 相加二叉树 mergeTrees](#-mergeTrees)
+	* 9.18. [二叉树剪枝 (去掉全为0的子树) pruneTree](#0pruneTree)
+	* 9.19. [翻转二叉树 (输出对称二叉树) invertTree1](#invertTree1)
+	* 9.20. [树的子结构(判断B是不是A的子结构) hasSubtree](#BAhasSubtree)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -126,7 +154,7 @@
 
 ##  1. <a name='CBrushthequestion.'></a>C++ 刷题知识 Brush the question.
 
-### 不常见输入方式 nousuallyinput
+###  1.1. <a name='nousuallyinput'></a>不常见输入方式 nousuallyinput
 
 输入：   
 a,c,bb   
@@ -183,9 +211,9 @@ int main(){
 }
 ```
 
-###  1.1. <a name='vector'></a>vector(动态数组)
+###  1.2. <a name='vector'></a>vector(动态数组)
 vector 是向量类型，它可以容纳许多类型的数据，如若干个整数，所以称其为容器。vector 是C++ STL的一个重要成员，使用它时需要包含头文件：#include<vector>;
-####  1.1.1. <a name='vectorinit'></a>vector初始化 init
+####  1.2.1. <a name='vectorinit'></a>vector初始化 init
 ```c++
     (1) vector<int> a(10); //定义了10个整型元素的向量（尖括号中为元素类型名，它可以是任何合法的数据类型），但没有给出初值，其值是不确定的。
    （2）vector<int> a(10,1); //定义了10个整型元素的向量,且给出每个元素的初值为1
@@ -194,7 +222,7 @@ vector 是向量类型，它可以容纳许多类型的数据，如若干个整�
    （5）int b[7]={1,2,3,4,5,9,8};
         vector<int> a(b,b+7); //从数组中获得初值
 ```
-####  1.1.2. <a name='vectormethod'></a>vector 重要操作 method
+####  1.2.2. <a name='vectormethod'></a>vector 重要操作 method
 ```c++
     （1）a.assign(b.begin(), b.begin()+3); //b为向量，将b的0~2个元素构成的向量赋给a
     （2）a.assign(4,2); //是a只含4个元素，且每个元素为2
@@ -217,7 +245,7 @@ vector 是向量类型，它可以容纳许多类型的数据，如若干个整�
     （19）a.swap(b); //b为向量，将a中的元素和b中的元素进行整体性交换
     （20）a==b; //b为向量，向量的比较操作还有!=,>=,<=,>,<
 ```
-####  1.1.3. <a name='vectorreadwrite'></a>vector 读写 readwrite
+####  1.2.3. <a name='vectorreadwrite'></a>vector 读写 readwrite
 ```c++
 // 添加元素
 int a[6]={1,2,3,4,5,6};
@@ -232,7 +260,7 @@ vector<int> b(a,a+4);
 for(vector<int>::iterator it=b.begin();it!=b.end();it++)
     cout<<*it<<" ";
 ```
-####  1.1.4. <a name='vectoralgorithm'></a>vector常用algorithm算法
+####  1.2.4. <a name='vectoralgorithm'></a>vector常用algorithm算法
 ```c++
 #include<algorithm>
 （1）sort(a.begin(),a.end()); //对a中的从a.begin()（包括它）到a.end()（不包括它）的元素进行从小到大排列
@@ -243,12 +271,12 @@ for(vector<int>::iterator it=b.begin();it!=b.end();it++)
     if (t != b.end()) cout << *t;
 ```
 
-###  1.2. <a name='set'></a>set集合
+###  1.3. <a name='set'></a>set集合
 set翻译为集合，是一个内部自动有序且不含重复元素的容器。默认是升序。底层采用红黑树实现。   
 set的定义：set<’typename’> s，降序的定义方式为set<typename,greater<typename>> s。typename可以是任意类型包括STL容器。Set数组的定义方式为，set<typename> s[size].s[0]…s[size-1]都是set类型。迭代器的定义方式set<typename>::iterator it   
 set容器内元素的访问：set只能通过迭代器(iterator)访问。
 
-####  1.2.1. <a name='setmethod'></a>set重要操作 method
+####  1.3.1. <a name='setmethod'></a>set重要操作 method
 set的常见用途：
 set最主要的作用是自动去重并且升序排序，因此碰到需要去重但不方便开数组的
 时候，可以尝试用set解决。
@@ -270,12 +298,12 @@ puts("");
 st.clear();
 cout << st.size() << endl;
 ```
-###  1.3. <a name='string'></a>string 字符串
+###  1.4. <a name='string'></a>string 字符串
 
 定义方式与基本数据类型相同，只需要在string后面跟上变量名称即可。   
 eg. string str;如果需要初始化，可以直接给string类型的变量赋值，string str = “hello”。
 
-####  1.3.1. <a name='stringmethod'></a>string method
+####  1.4.1. <a name='stringmethod'></a>string method
 ```c++
 // 输入输出
 string str ;
@@ -331,7 +359,7 @@ string str1 = "hello world" ;
 结果：hello kangkang
 hello kangkang
 ```
-###  1.4. <a name='map'></a>map 映射
+###  1.5. <a name='map'></a>map 映射
 
 map翻译成映射，map可以将任何基本类型（包括STL容器）映射到任何基本类。（包括STL容器）。
 
@@ -371,12 +399,7 @@ for (map<string, int>::iterator it = mp.begin(); it != mp.end(); it++) {
 
 
 
-
-
-
-
-
-###  1.5. <a name='unordered_map'></a>unordered_map——哈希表
+###  1.6. <a name='unordered_map'></a>unordered_map——哈希表
 unordered_map是C++中的哈希表，可以在任意类型与类型之间做映射。
 
 1. 引用头文件(C++11)：#include <unordered_map>   
@@ -396,7 +419,7 @@ for (unordered_map<string, double>::iterator it = hash.begin(); it != hash.end()
     cout << it->first << ' ' << it->second << endl;
 }
 ```
-###  1.6. <a name='datarange2algorithm'></a>由数据范围反推算法复杂度以及算法内容  datarange2algorithm
+###  1.7. <a name='datarange2algorithm'></a>由数据范围反推算法复杂度以及算法内容  datarange2algorithm
 一般ACM或者笔试题的时间限制是1秒或2秒。
 在这种情况下，C++代码中的操作次数控制在 107107 为最佳。
 
@@ -653,9 +676,105 @@ public:
 };
 ```
 
-##  4. <a name='Offer'></a>剑指Offer
+##  4. <a name='prein'></a>二叉树前中后遍历（非递归实现） prein
 
-###  4.1. <a name='duplicateInArray'></a>找出数组中重复数字 duplicateInArray
+```c++
+// 前序
+vector<int> preorderTraversal(TreeNode* root) {
+    stack<TreeNode*> st;
+    vector<int> v;
+    while (root || st.size()) {
+        while (root) {
+            st.push(root->right);
+            v.push_back(root->val);
+            root = root->left;
+        }
+        root = st.top(); st.pop();
+    }
+    return v;
+}
+```
+```c++
+// leetcode 94 中序
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        stack<TreeNode*> st;
+        vector<int> v;
+        while(root || st.size()){
+            while(root){
+                st.push(root);
+                root = root->left;
+            }
+            root = st.top(); st.pop();
+            v.push_back(root->val);
+            root = root->right;
+        }
+        return v;        
+    }
+};
+```
+```c++
+// 后序
+vector<int> postorderTraversal(TreeNode* root) {
+    stack<TreeNode*> st;
+    vector<int> v;
+    while (root || st.size()) {
+        while (root) {
+            st.push(root->left);
+            v.push_back(root->val);
+            root = root->right;
+        }
+        root = st.top(); st.pop();
+    }
+    reverse(v.begin(), v.end());
+    return v;
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##  5. <a name='Offer'></a>剑指Offer 
+###  5.1. <a name='majorityElement'></a>数组中超过一半的数字 majorityElement
+设置一个计数器count，每遇到一个和当前的数字相同的数字，就让count自增，遇到一个和当前数字不一样的数字，就让count--，当count < 0时，就将cur设置为当前遍历的数字。因为有一个数字出现次数超过数组长度的一半，最后得到的必然是该数字。
+```c++
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int count = 1, cur = nums[0];
+        for(int i = 1; i < nums.size(); i++) {
+            if(cur != nums[i]) {
+                --count;
+                if(count < 0) {
+                    cur = nums[i];
+                    count = 1;
+                }
+            }
+            else ++count;
+        }
+        return cur;
+    }
+};
+```
+
+###  5.2. <a name='duplicateInArray'></a>找出数组中重复数字 duplicateInArray
 
 给定一个长度为 n 的整数数组 nums，数组中所有的数字都在 0∼n−1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。<>
 
@@ -683,7 +802,7 @@ public:
 };
 ```
 
-###  4.2. <a name='duplicateInArray2'></a>不修改数组找出重复的数字 duplicateInArray2
+###  5.3. <a name='duplicateInArray2'></a>不修改数组找出重复的数字 duplicateInArray2
 
 给定一个长度为 n+1 的数组nums，数组中所有的数均在 1∼n 的范围内，其中 n≥1。请找出数组中任意一个重复的数，但不能修改输入的数组。<https://www.acwing.com/problem/content/description/15/>
 
@@ -704,7 +823,7 @@ public:
 };
 ```
 
-###  4.3. <a name='findNumberIn2DArray'></a>二维数组查找 findNumberIn2DArray
+###  5.4. <a name='findNumberIn2DArray'></a>二维数组查找 findNumberIn2DArray
 
 在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
 
@@ -726,7 +845,7 @@ public:
 };
 ```
 
-###  4.4. <a name='20replaceSpaces'></a>替换空格为%20  replaceSpaces
+###  5.5. <a name='20replaceSpaces'></a>替换空格为%20  replaceSpaces
 
 请实现一个函数，把字符串中的每个空格替换成"%20"。
 
@@ -757,7 +876,7 @@ public:
 };
 ```
 
-###  4.5. <a name='printListReversingly'></a>从尾到头打印链表 printListReversingly
+###  5.6. <a name='printListReversingly'></a>从尾到头打印链表 （逆序打印链表） printListReversingly
 
 输入一个链表的头结点，按照 从尾到头 的顺序返回节点的值。返回的结果用数组存储。
 
@@ -774,33 +893,21 @@ public:
     }
 };
 ```
-
-###  4.6. <a name='buildTree'></a>前序和中序遍历重建二叉树 buildTree
-
-输入一棵二叉树前序遍历和中序遍历的结果，请重建该二叉树。
-
+####  5.6.1. <a name='-1'></a>递归方式
 ```c++
 class Solution {
 public:
-    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        return dfs(preorder, inorder, 0, preorder.size()-1, 0, inorder.size()-1);
-    }
-
-    TreeNode* dfs(vector<int>& preorder, vector<int>& inorder, int ps, int pend, int is, int iend){
-        if(ps > pend) return NULL;
-        TreeNode* root = new TreeNode(preorder[ps]);
-        int l = is;
-        while(inorder[l] != preorder[ps]) l++;
-        int left=l-is;   //左子树的长度
-        int right=iend-l;  //右子树长度
-        root->left = dfs(preorder, inorder, ps + 1, ps + left, is, l - 1);
-        root->right = dfs(preorder, inorder, ps + 1 + left, pend, l+1, iend);
-        return root;
+    vector<int> ans;
+    vector<int> reversePrint(ListNode* head) {
+        if(!head) return ans;
+        reversePrint(head->next);
+        ans.push_back(head->val);
+        return ans;
     }
 };
 ```
 
-###  4.7. <a name='fatherinorderSuccessor'></a>二叉树的下一个结点（给定father结点） inorderSuccessor
+###  5.7. <a name='fatherinorderSuccessor'></a>二叉树的下一个结点（给定father结点） inorderSuccessor
 
 给定一棵二叉树的其中一个节点，请找出中序遍历序列的下一个节点。（给定father结点）
 
@@ -821,7 +928,7 @@ public:
 };
 ```
 
-###  4.8. <a name='2stack2queue'></a>两个栈实现一个队列 2stack2queue
+###  5.8. <a name='2stack2queue'></a>两个栈实现一个队列 2stack2queue
 
 ```c++
 class CQueue {
@@ -849,8 +956,22 @@ public:
     }
 };
 ```
+###  5.9. <a name='1nprintNumbers1-n'></a>打印从1到最大的n位数 printNumbers 1-n 
+```c++
+class Solution {
+public:
+    vector<int> printNumbers(int n) {
+        vector<int> ans;
+        for (int i =1; i<pow(10,n); i++){
+            ans.push_back(i);
+        }
+        return ans;
+    }
+};
+```
 
-###  4.9. <a name='Fibonacci'></a>斐波那契数列 Fibonacci
+
+###  5.10. <a name='Fibonacci'></a>斐波那契数列 Fibonacci
 
 假定从0开始，第0项为0。(n<=39)
 
@@ -870,7 +991,7 @@ public:
 };
 ```
 
-###  4.10. <a name='minArray'></a>旋转数组的最小数字（二分查找） minArray
+###  5.11. <a name='minArray'></a>旋转数组的最小数字（二分查找） minArray
 
 把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个升序（非降序）的数组的一个旋转，输出旋转数组的最小元素。
 <https://www.acwing.com/solution/content/727/>
@@ -894,7 +1015,7 @@ public:
 };
 ```
 
-###  4.11. <a name='DFSexistpath'></a>矩阵中的路径（DFS路径） existpath
+###  5.12. <a name='DFSexistpath'></a>矩阵中的路径（DFS路径） existpath
 
 请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。
 [["a","b","c","e"],
@@ -934,7 +1055,7 @@ public:
 };
 ```
 
-###  4.12. <a name='bfsmovingCount'></a>机器人的运动范围（bfs搜索） movingCount
+###  5.13. <a name='bfsmovingCount'></a>机器人的运动范围（bfs搜索） movingCount
 
 地上有一个m行n列的方格，从坐标 [0,0] 到坐标 [m-1,n-1] 。一个机器人从坐标 [0, 0] 的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格 [35, 37] ，因为3+5+3+7=18。但它不能进入方格 [35, 38]，因为3+5+3+8=19。请问该机器人能够到达多少个格子？
 
@@ -980,7 +1101,7 @@ public:
 };
 ```
 
-###  4.13. <a name='maxProductAfterCutting'></a>剪绳子（分段最大乘积） maxProductAfterCutting
+###  5.14. <a name='maxProductAfterCutting'></a>剪绳子（分段最大乘积） maxProductAfterCutting
 
 给你一根长度为 n 绳子，请把绳子剪成 m 段（m、n 都是整数，2≤n≤58 并且 m≥2）。每段的绳子的长度记为k[0]、k[1]、……、k[m]。k[0]k[1] … k[m] 可能的最大乘积是多少？例如当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到最大的乘积18。
 
@@ -996,7 +1117,7 @@ public:
 };
 ```
 
-###  4.14. <a name='1unsignedintn_nNumberOf1'></a>二进制中1的个数（unsigned int n = _n;） NumberOf1
+###  5.15. <a name='1unsignedintn_nNumberOf1'></a>二进制中1的个数（unsigned int n = _n;） NumberOf1
 
 输入一个32位整数，输出该数二进制表示中1的个数。
 注意：负数在计算机中用其绝对值的补码来表示。
@@ -1010,7 +1131,7 @@ public:
         // 如果是负数，右移高位补１，则死循环，而无符号整数在高位补０。
         unsigned int n = _n;
         while(n){
-            ans += (n & 1) != 0;
+            ans += (n & 1) != 0; 
             n >>= 1;
         }
         return ans;
@@ -1018,7 +1139,7 @@ public:
 };
 ```
 
-###  4.15. <a name='powPower'></a>实现数值的整数次方，即pow() Power
+###  5.16. <a name='powPower'></a>实现数值的整数次方，即pow() Power
 
 实现函数double Power(double base, int exponent)，求base的 exponent次方。不得使用库函数，同时不需要考虑大数问题。
 
@@ -1038,8 +1159,29 @@ public:
     }
 };
 ```
-
-###  4.16. <a name='O1deleteNode'></a>在O(1)时间删除链表结点 deleteNode
+###  5.17. <a name='deleteNodett'></a> 删除链表的节点  deleteNodett
+```c++
+class Solution {
+public:
+    ListNode* deleteNode(ListNode* head, int val) {
+        ListNode*pre, *p;
+        if(head->val == val) {head = head->next; return head;}
+        pre = head; p = head->next;
+        while(p){
+            if(p->val == val){
+                pre->next = p->next;
+                p=p->next;
+            }
+            else{
+                pre = p;
+                p = p->next;
+            }
+        }
+        return head;
+    }
+};
+```
+###  5.18. <a name='O1deleteNode'></a>在O(1)时间删除链表结点 deleteNode
 
 给定单向链表的一个节点指针，定义一个函数在O(1)时间删除该结点。假设链表一定存在，并且该节点一定不是尾节点。
 
@@ -1055,7 +1197,7 @@ public:
 };
 ```
 
-###  4.17. <a name='deleteDuplication'></a>删除链表中重复的节点 deleteDuplication
+###  5.19. <a name='deleteDuplication'></a>删除链表中重复的节点 deleteDuplication
 
 在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留。(一个都不留)
 输入：1->2->3->3->4->4->5
@@ -1082,7 +1224,7 @@ public:
 };
 ```
 
-###  4.18. <a name='isMatch'></a>正则表达式匹配 isMatch
+###  5.20. <a name='isMatch'></a>正则表达式匹配 isMatch
 
 请实现一个函数用来匹配包括'.'和'*'的正则表达式。模式中的字符'.'表示任意一个字符，而'*'表示它前面的字符可以出现任意次（含0次）。在本题中，匹配是指字符串的所有字符匹配整个模式。
 例如，字符串"aaa"与模式"a.a"和"ab*ac*a"匹配，但是与"aa.a"和"ab*a"均不匹配。
@@ -1111,7 +1253,7 @@ public:
 };
 ```
 
-###  4.19. <a name='isNumber'></a>表示数值的字符串 isNumber
+###  5.21. <a name='isNumber'></a>表示数值的字符串 isNumber
 
 请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。
 例如，字符串"+100","5e2","-123","3.1416"和"-1E-16"都表示数值。但是"12e","1a3.14","1.2.3","+-5"和"12e+4.3"都不是。
@@ -1172,7 +1314,7 @@ class Solution(object):
             return False
 ```
 
-###  4.20. <a name='reOrderArray'></a>调整数组顺序使奇数位于偶数前面 reOrderArray
+###  5.22. <a name='reOrderArray'></a>调整数组顺序使奇数位于偶数前面 reOrderArray
 
 输入一个整数数组，实现一个函数来调整该数组中数字的顺序。使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分。
 样例
@@ -1194,8 +1336,19 @@ public:
     }
 };
 ```
-
-###  4.21. <a name='kfindKthToTail'></a>链表中倒数第k个节点 findKthToTail
+####  5.22.1. <a name='2reOrderArray2'></a>双指针解法2 reOrderArray2
+```c++
+class Solution {
+public:
+    vector<int> exchange(vector<int>& nums) {
+        for(int i = 0,j=0;j<nums.size();j++){
+            if(nums[j]%2!=0) swap(nums[i],nums[j]),i++;
+        }
+        return nums;
+    }
+};
+```
+###  5.23. <a name='kfindKthToTail'></a>链表中倒数第k个节点 findKthToTail
 
 输入一个链表，输出该链表中倒数第k个结点。
 
@@ -1224,7 +1377,7 @@ public:
 };
 ```
 
-###  4.22. <a name='entryNodeOfLoop'></a>寻找环形链表入口 entryNodeOfLoop
+###  5.24. <a name='entryNodeOfLoop'></a>寻找环形链表入口 entryNodeOfLoop
 
 ```c++
 /*
@@ -1250,9 +1403,9 @@ public:
 };
 ```
 
-###  4.23. <a name='reverseList'></a>翻转链表 reverseList
+###  5.25. <a name='reverseList'></a>翻转链表 reverseList
 
-####  4.23.1. <a name='1r1'></a>(1)迭代 r1
+####  5.25.1. <a name='1r1'></a>(1)迭代 r1
 ```c++
 class Solution {
 public:
@@ -1270,7 +1423,7 @@ public:
 };
 ```
 
-####  4.23.2. <a name='2r2'></a>(2) 递归 r2
+####  5.25.2. <a name='2r2'></a>(2) 递归 r2
 
 ```c++
 class Solution {
@@ -1287,7 +1440,7 @@ public:
 };
 ```
 
-###  4.24. <a name='merge'></a>合并两个排序的链表 merge
+###  5.26. <a name='merge'></a>合并两个排序的链表 merge
 
 输入两个递增排序的链表，合并这两个链表并使新链表中的结点仍然是按照递增排序的。
 
@@ -1314,66 +1467,8 @@ public:
 };
 ```
 
-###  4.25. <a name='BAhasSubtree'></a>树的子结构(判断B是不是A的子结构) hasSubtree
 
-输入两棵二叉树A，B，判断B是不是A的子结构。我们规定空树不是任何树的子结构。
-
-```c++
-class Solution {
-public:
-    bool hasSubtree(TreeNode* pRoot1, TreeNode* pRoot2) {
-        if (!pRoot1 || !pRoot2) return false;
-        if (isSame(pRoot1, pRoot2)) return true;
-        return hasSubtree(pRoot1->left, pRoot2) || hasSubtree(pRoot1->right, pRoot2);
-    }
-
-    bool isSame(TreeNode* pRoot1, TreeNode* pRoot2) {
-        if (!pRoot2) return true;
-        if (!pRoot1 || pRoot1->val != pRoot2->val) return false;
-        return isSame(pRoot1->left, pRoot2->left) && isSame(pRoot1->right, pRoot2->right);
-    }
-};
-```
-
-###  4.26. <a name='mirror'></a>二叉树的镜像 mirror
-
-```c++
-class Solution {
-public:
-    void mirror(TreeNode* root) {
-        if(!root) return;
-        TreeNode *t = root->left;
-        root->left = root->right;
-        root->right = t;
-        mirror(root->left);
-        mirror(root->right);
-    }
-};
-```
-
-###  4.27. <a name='isSymmetric'></a>判断对称（镜像）的二叉树 isSymmetric
-
-请实现一个函数，用来判断一棵二叉树是不是对称的。
-如果一棵二叉树和它的镜像一样，那么它是对称的。
-
-```c++
-class Solution {
-public:
-    bool isSymmetric(TreeNode* root) {
-        if(!root) return true;
-        return dfs(root->left, root->right);
-    }
-    bool dfs(TreeNode *q, TreeNode *p){
-        // 搜索到没有最底部
-        if(!q && !p) return true;
-        if(!q || !p) return false;
-        if(q->val != p->val) return false;
-        return dfs(q->left, p->right) && dfs(q->right, p->left);
-    }
-};
-```
-
-###  4.28. <a name='printMatrix'></a>顺时针打印矩阵 printMatrix
+###  5.27. <a name='printMatrix'></a>顺时针打印矩阵 printMatrix
 
 ```c++
 /*
@@ -1410,7 +1505,7 @@ public:
 };
 ```
 
-###  4.29. <a name='minMinStack'></a>包含min函数的栈 MinStack
+###  5.28. <a name='minMinStack'></a>包含min函数的栈 MinStack
 
 设计一个支持push，pop，top等操作并且可以在O(1)时间内检索出最小元素的堆栈。\
 push(x)–将元素x插入栈中\
@@ -1447,7 +1542,7 @@ public:
 };
 ```
 
-###  4.30. <a name='isPopOrder'></a>栈的压入、弹出序列 isPopOrder
+###  5.29. <a name='isPopOrder'></a>栈的压入、弹出序列 isPopOrder
 
 输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。假设压入栈的所有数字均不相等。
 例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。\
@@ -1473,186 +1568,10 @@ public:
 };
 ```
 
-###  4.31. <a name='printFromTopToBottom1'></a>不分行从上往下打印二叉树(层次遍历) printFromTopToBottom1
 
-从上往下打印出二叉树的每个结点，同一层的结点按照从左到右的顺序打印。
 
-```c++
-class Solution {
-public:
-    vector<int> printFromTopToBottom(TreeNode* root) {
-        vector<int> ans;
-        queue<TreeNode*> q;
-        if(!root) return ans;
-        q.push(root);
-        while(!q.empty()){
-            if(q.front()->left) q.push(q.front()->left);
-            if(q.front()->right) q.push(q.front()->right);
-            ans.push_back(q.front()->val);
-            q.pop();
-        }
-        return ans;
-    }
-};
-```
 
-###  4.32. <a name='printFromTopToBottom2'></a>分行从上往下打印二叉树 printFromTopToBottom2
-
-从上到下按层打印二叉树，同一层的结点按从左到右的顺序打印，每一层打印到一行。
-
-```c++
-class Solution {
-public:
-    vector<vector<int>> printFromTopToBottom(TreeNode* root) {
-        vector<vector<int>> ans;
-        if(!root) return ans;
-        queue <TreeNode*> q;
-        q.push(root);
-        while(!q.empty()){
-            int q_long = q.size();
-            vector<int> temp;
-            while(q_long--){
-                if(q.front()->left) q.push(q.front()->left);
-                if(q.front()->right) q.push(q.front()->right);
-                temp.push_back(q.front()->val);
-                q.pop();
-            }
-            ans.push_back(temp);
-        }
-        return ans;
-    }
-};
-```
-
-###  4.33. <a name='printFromTopToBottom3'></a>之字形打印二叉树 printFromTopToBottom3
-
-请实现一个函数按照之字形顺序从上向下打印二叉树。\
-即第一行按照从左到右的顺序打印，第二层按照从右到左的顺序打印，第三行再按照从左到右的顺序打印，其他行以此类推。
-
-```c++
-class Solution {
-public:
-    vector<vector<int>> printFromTopToBottom(TreeNode* root) {
-        vector<vector<int>> ans;
-        if(!root) return ans;
-        // 主要认识双端队列
-        // 单端：queue  双端：deque
-        deque <TreeNode*> q;
-        q.push_back(root);
-        int lr = -1;
-        while(!q.empty()){
-            int q_long = q.size();
-            vector<int> temp;
-            lr *= -1;
-            while(q_long--){
-                if(lr == 1){
-                    if(q.front()->left) q.push_back(q.front()->left);
-                    if(q.front()->right) q.push_back(q.front()->right);
-                    temp.push_back(q.front()->val);
-                    q.pop_front();
-                }
-                else{
-                    if(q.back()->right) q.push_front(q.back()->right);
-                    if(q.back()->left) q.push_front(q.back()->left);
-                    temp.push_back(q.back()->val);
-                    q.pop_back();
-                }
-            }
-            ans.push_back(temp);
-        }
-        return ans;
-    }
-};
-```
-
-###  4.34. <a name='treePathSum'></a>二叉树中和为某一值的路径(回溯) treePathSum
-
-输入一棵二叉树和一个整数，打印出二叉树中节点值的和为输入整数的所有路径。从树的根节点开始往下一直到叶节点所经过的节点形成一条路径。
-
-```c++
-class Solution {
-private:
-    vector<vector<int>> ans;
-    vector<int> tem;
-    int cur_sum = 0;
-    void dfs(TreeNode* root, int sum){
-        if(!root) return;
-        tem.push_back(root->val);
-        if(root->val == sum && !root->left && !root->right) {ans.push_back(tem);}
-        dfs(root->left, sum-root->val);
-        dfs(root->right, sum-root->val);
-
-        tem.pop_back();
-    }
-public:
-    vector<vector<int>> pathSum(TreeNode* root, int sum) {
-        dfs(root, sum);
-        return ans;
-    }
-};
-```
-
-###  4.35. <a name='verifySequenceOfBST'></a>二叉搜索树的后序遍历序列 verifySequenceOfBST
-
-输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。
-如果是则返回true，否则返回false。\
-假设输入的数组的任意两个数字都互不相同。
-
-```c++
-class Solution {
-public:
-    bool verifySequenceOfBST(vector<int> sequence) {
-        return verify(sequence, 0, sequence.size()-1);
-    }
-    bool verify(vector<int>& sequence, int s, int e){
-        if(s >= e) return true;
-        // e是根节点，判断根节点把数组分成左右两部分．
-        int t = sequence[e];
-        int i = s;
-        while(sequence[i] < t) i++;
-        int j = i;
-        while(sequence[i] > t) i++;
-        if(i!= e) return false;
-        return verify(sequence, s, j-1) && verify(sequence, j, e-1);
-    }
-};
-```
-
-###  4.36. <a name='treeFindPath1'></a>二叉树中和为某一值的路径 treeFindPath1
-
-输入一棵二叉树和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。
-
-```c++
-class Solution {
-public:
-    vector<vector<int>> ans;
-    vector<vector<int>> findPath(TreeNode* root, int sum) {
-        vector<int> temp;
-        if(!root) return ans;
-        findone(root, sum, temp);
-        // 若不要求从根节点开始找，就加上这两行；
-        // findPath(root->left, sum);
-        // findPath(root->left, sum);
-        return ans;
-    }
-    void findone(TreeNode* root, int sum, vector<int>&temp){
-        if(!root) return;
-        if(sum-root->val == 0 && !root->left && !root->right) {
-            temp.push_back(root->val);
-            ans.push_back(temp);
-        }
-        else{
-            sum -= root->val;
-            temp.push_back(root->val);
-            findone(root->left, sum, temp);
-            findone(root->right, sum, temp);
-        }
-        temp.pop_back();
-    }
-};
-```
-
-###  4.37. <a name='-1'></a>复杂链表的复刻
+###  5.30. <a name='-1'></a>复杂链表的复刻
 
 请实现一个函数可以复制一个复杂链表。
 在复杂链表中，每个结点除了有一个指针指向下一个结点外，还有一个额外的指针指向链表中的任意结点或者null。
@@ -1669,7 +1588,7 @@ public:
 
 ```
 
-###  4.38. <a name='strToInt'></a>字符串转数字 strToInt
+###  5.31. <a name='strToInt'></a>字符串转数字 strToInt
 
 忽略所有行首空格，找到第一个非空格字符，可以是 ‘+/−’ 表示是正数或者负数，紧随其后找到最长的一串连续数字，将其解析成一个整数；
 整数后可能有任意非数字字符，请将其忽略；
@@ -1703,9 +1622,9 @@ public:
 };
 ```
 
-###  4.39. <a name='lastRemaining'></a>约瑟夫坏（圆圈中最后剩下的） lastRemaining
+###  5.32. <a name='lastRemaining'></a>约瑟夫坏（圆圈中最后剩下的） lastRemaining
 
-####  4.39.1. <a name='l1'></a>暴力模拟 l1
+####  5.32.1. <a name='l1'></a>暴力模拟 l1
 ```c++
 class Solution {
 public:
@@ -1727,7 +1646,7 @@ public:
     }
 };
 ```
-####  4.39.2. <a name='l2'></a>递推 l2
+####  5.32.2. <a name='l2'></a>递推 l2
 
 ```c++
 class Solution {
@@ -1740,7 +1659,7 @@ public:
     }
 };
 ```
-###  4.40. <a name='isContinuous'></a>扑克牌顺子 isContinuous
+###  5.33. <a name='isContinuous'></a>扑克牌顺子 isContinuous
 
 ```c++
 class Solution {
@@ -1762,7 +1681,7 @@ public:
 };
 ```
 
-###  4.41. <a name='Router'></a>一排路由器可以覆盖的信号 Router
+###  5.34. <a name='Router'></a>一排路由器可以覆盖的信号 Router
 一条直线上等距离放置了n台路由器。路由器自左向右从1到n编号。第i台路由器到第j台路由器的距离为| i-j |。
 每台路由器都有自己的信号强度，第i台路由器的信号强度为ai。所有与第i台路由器距离不超过ai的路由器可以收到第i台路由器的信号
 （注意，每台路由器都能收到自己的信号）。问一共有多少台路由器可以收到至少k台不同路由器的信号。<https://www.nowcoder.com/profile/1334434/codeBookDetail?submissionId=86144859>
@@ -1793,7 +1712,7 @@ int main() {
     return 0;
 }
 ```
-###  4.42. <a name='slide'></a>滑动窗口最大值 slide
+###  5.35. <a name='slide'></a>滑动窗口最大值 slide
 给定一个数组和滑动窗口的大小，请找出所有滑动窗口里的最大值。
 例如，如果输入数组[2, 3, 4, 2, 6, 2, 5, 1]及滑动窗口的大小3, 那么一共存在6个滑动窗口，它们的最大值分别为[4, 4, 6, 6, 6, 5]。
 
@@ -1841,7 +1760,7 @@ public:
     }
 };
 ```
-###  4.43. <a name='BiA0A1An-1'></a>乘积数组 B[i]=A[0]×A[1]…×A[n-1]
+###  5.36. <a name='BiA0A1An-1'></a>乘积数组 B[i]=A[0]×A[1]…×A[n-1]
 ```c++
 class Solution {
 public:
@@ -1864,7 +1783,7 @@ public:
     }
 };
 ``` 
-###  4.44. <a name='maxProduct'></a>分裂二叉树最大乘积 maxProduct
+###  5.37. <a name='maxProduct'></a>分裂二叉树最大乘积 maxProduct
 给你一棵二叉树，它的根为 root 。请你删除 1 条边，使二叉树分裂成两棵子树，且它们子树和的乘积尽可能大。   
 由于答案可能会很大，请你将结果对 10 ^ 9 + 7 取模后再返回。
 
@@ -1890,23 +1809,8 @@ public:
     }
 };
 ```
-###  4.45. <a name='lowestCommonAncestor1'></a>二叉树最低公共祖先 lowestCommonAncestor1
 
-```c++
-class Solution {
-public:
-    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        if (!root) return NULL;
-        if (root == p || root == q) return root;
-        auto left = lowestCommonAncestor(root->left, p, q);
-        auto right = lowestCommonAncestor(root->right, p, q);
-        if (left && right) return root;
-        if (left) return left;
-        return right;
-    }
-};
-```
-###  4.46. <a name='BigMutiple'></a>大数相乘 BigMutiple
+###  5.38. <a name='BigMutiple'></a>大数相乘 BigMutiple
 
 ```c++
 string BigMutiple(string num1, string num2) {
@@ -1953,7 +1857,7 @@ int main() {
     return 0;
 }
 ```
-###  4.47. <a name='bigAdd'></a>大数相加 bigAdd
+###  5.39. <a name='bigAdd'></a>大数相加 bigAdd
 
 ```c++
 string add(const string& a, const string& b) {
@@ -1990,7 +1894,7 @@ int main() {
     return 0;
 }
 ```
-###  4.48. <a name='bitopAdd'></a>不用加减乘除做加法 bitopAdd
+###  5.40. <a name='bitopAdd'></a>不用加减乘除做加法 bitopAdd
 A + B 分为2个部分，A^B是不进位加法，(A&B) << 1是进位，二者相加就起到了相同的作用。
 因为A + B = A^B + ((A&B) << 1)，所以说 还是会用到加号+，对此我们的解决方案是 使用一个while()循环，
 不断迭代赋值，将 异或的结果和进位的结果分别变成a和b，因为b不断左移，所以总有一天会变成0，这时候while就跳出来。
@@ -2037,9 +1941,9 @@ public:
 
 
 
-##  5. <a name='LeetCode'></a>LeetCode
+##  6. <a name='LeetCode'></a>LeetCode
  
-###  5.1. <a name='twoSum'></a>1.两数之和 twoSum
+###  6.1. <a name='twoSum'></a>1.两数之和 twoSum
 
 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。题目[website](https://leetcode-cn.com/problems/two-sum/)
 ```c++
@@ -2056,7 +1960,7 @@ public:
 };
 ```
 
-###  5.2. <a name='addTwoNumbers'></a>2. 两数相加 addTwoNumbers
+###  6.2. <a name='addTwoNumbers'></a>2. 两数相加 addTwoNumbers
 给出两个非空的链表用来表示两个非负的整数。其中，它们各自的位数是按照逆序的方式存储的，并且它们的每个节点只能存储一位数字。[website](https://leetcode-cn.com/problems/add-two-numbers/)
 ```c++
 class Solution {
@@ -2078,7 +1982,7 @@ public:
     }
 };
 ```
-###  5.3. <a name='lengthOfLongestSubstring'></a>3. 无重复字符的最长子串 lengthOfLongestSubstring
+###  6.3. <a name='lengthOfLongestSubstring'></a>3. 无重复字符的最长子串 lengthOfLongestSubstring
 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。[website](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/)
 ```c++
 class Solution {
@@ -2098,7 +2002,7 @@ public:
     }
 };
 ```
-###  5.4. <a name='findMedianSortedArrays'></a>4. 寻找两个正序数组的中位数 findMedianSortedArrays
+###  6.4. <a name='findMedianSortedArrays'></a>4. 寻找两个正序数组的中位数 findMedianSortedArrays
 给定两个大小为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。
 请你找出这两个正序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。[website](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/)
 ```c++
@@ -2130,7 +2034,7 @@ public:
     }
 };
 ```
-###  5.5. <a name='longestPalindrome'></a>5. 最长回文子串 longestPalindrome
+###  6.5. <a name='longestPalindrome'></a>5. 最长回文子串 longestPalindrome
 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。[website](https://leetcode-cn.com/problems/longest-palindromic-substring/)
 ```c++
 class Solution {
@@ -2158,7 +2062,7 @@ public:
     }
 };
 ```
-###  5.6. <a name='ZzConvert'></a>6. Z 字形变换 zConvert
+###  6.6. <a name='ZzConvert'></a>6. Z 字形变换 zConvert
 将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。[website](https://leetcode-cn.com/problems/zigzag-conversion/)
 L   C   I   R
 E T O E S I I G
@@ -2187,7 +2091,7 @@ public:
     }
 };
 ```
-###  5.7. <a name='intReverse'></a>7. 整数反转 intReverse
+###  6.7. <a name='intReverse'></a>7. 整数反转 intReverse
 给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。其数值范围为 [−231,  231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。[website](https://leetcode-cn.com/problems/reverse-integer/)
 ```c++
 \\转换为字符串（to_string->atoi）或者：
@@ -2205,7 +2109,7 @@ public:
     }
 };
 ```
-###  5.8. <a name='atoi'></a>8. 字符串转换整数 (atoi)
+###  6.8. <a name='atoi'></a>8. 字符串转换整数 (atoi)
 请你来实现一个 atoi 函数，使其能将字符串转换成整数。该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止.[website](https://leetcode-cn.com/problems/string-to-integer-atoi/)
 ```c++
 class Solution {
@@ -2230,7 +2134,7 @@ public:
     }
 };
 ```
-###  5.9. <a name='isPalindrome1'></a>9. 回文数 isPalindrome1
+###  6.9. <a name='isPalindrome1'></a>9. 回文数 isPalindrome1
 判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。[website](https://leetcode-cn.com/problems/palindrome-number/)
 ```c++
 class Solution {
@@ -2244,7 +2148,7 @@ public:
     }
 };
 ```
-###  5.10. <a name='isMatchq'></a>10. 正则表达式匹配 isMatch q
+###  6.10. <a name='isMatchq'></a>10. 正则表达式匹配 isMatch q
 给你一个字符串 s 和一个字符规律 p，请你来实现一个支持 '.' 和 '*' 的正则表达式匹配。
 ```c++
 class Solution {
@@ -2270,7 +2174,7 @@ public:
 };
 ```
 
-###  5.11. <a name='maxWaterArea'></a>11. 成水最多的容器 maxWaterArea
+###  6.11. <a name='maxWaterArea'></a>11. 成水最多的容器 maxWaterArea
 给你 n 个非负整数 a1，a2，...，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。
 ```c++
 class Solution {
@@ -2287,7 +2191,7 @@ public:
 };
 ```
 
-###  5.12. <a name='intToRoman'></a>12. 整数转罗马数字 intToRoman
+###  6.12. <a name='intToRoman'></a>12. 整数转罗马数字 intToRoman
 ```c++
 class Solution {
 public:
@@ -2307,7 +2211,7 @@ public:
 };
 ```
 
-###  5.13. <a name='romanToInt'></a>13. 罗马数字转整数 romanToInt
+###  6.13. <a name='romanToInt'></a>13. 罗马数字转整数 romanToInt
 <https://leetcode-cn.com/problems/roman-to-integer/>
 ```c++
 class Solution {
@@ -2336,7 +2240,7 @@ public:
     }
 };
 ```
-###  5.14. <a name='longestCommonPrefix'></a>14. 最长公共前缀 longestCommonPrefix
+###  6.14. <a name='longestCommonPrefix'></a>14. 最长公共前缀 longestCommonPrefix
 编写一个函数来查找字符串数组中的最长公共前缀。
 如果不存在公共前缀，返回空字符串 ""。
 
@@ -2359,7 +2263,7 @@ public:
 };
 
 ```
-###  5.15. <a name='threeSum'></a>15. 三数之和 threeSum
+###  6.15. <a name='threeSum'></a>15. 三数之和 threeSum
 给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。
 注意：答案中不可以包含重复的三元组。
 
@@ -2392,7 +2296,7 @@ public:
 };
 
 ```
-###  5.16. <a name='threeSumClosest'></a>16. 最接近的三数之和 threeSumClosest
+###  6.16. <a name='threeSumClosest'></a>16. 最接近的三数之和 threeSumClosest
 
 给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的三个整数，使得它们的和与 target 最接近。返回这三个数的和。假定每组输入只存在唯一答案。
 
@@ -2422,7 +2326,7 @@ public:
 };
 ```
 
-###  5.17. <a name='-1'></a>17. 电话号码的字母组合
+###  6.17. <a name='-1'></a>17. 电话号码的字母组合
 给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。
 给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。<https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/>
 ```c++
@@ -2450,44 +2354,44 @@ public:
     }
 };
 ```
-###  5.18. <a name='-1'></a>18. 四数之和
+###  6.18. <a name='-1'></a>18. 四数之和
 给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。
 
 注意：答案中不可以包含重复的四元组。
 ```c++
 class Solution{
-	public: 
-	vector<vector<int>> fourSum(vector<int>& nums, int target) {
+    public:
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
         sort(nums.begin(),nums.end());
         vector<vector<int> > res;
         if(nums.size() < 4)
         return res;
         int a, b, c, d;
         for(a = 0;a < nums.size(); a++){
-        	if(a > 0 && nums[a] == nums[a-1]) continue;      //确保nums[a] 改变了
-        	for(b = a + 1; b < nums.size(); b++){
-        		if(b > a+1 && nums[b] == nums[b-1])continue;   //确保nums[b] 改变了
-        		c = b + 1, d = nums.size() - 1;
-        		while(c < d){
-        			if(nums[a] + nums[b] + nums[c] + nums[d] < target)
-        			    c++;
-        			else if(nums[a]+nums[b]+nums[c]+nums[d]>target)
-        			    d--;
-        			else{
-        				res.push_back({nums[a],nums[b],nums[c],nums[d]});
+            if(a > 0 && nums[a] == nums[a-1]) continue;      //确保nums[a] 改变了
+            for(b = a + 1; b < nums.size(); b++){
+                if(b > a+1 && nums[b] == nums[b-1])continue;   //确保nums[b] 改变了
+                c = b + 1, d = nums.size() - 1;
+                while(c < d){
+                    if(nums[a] + nums[b] + nums[c] + nums[d] < target)
+                        c++;
+                    else if(nums[a]+nums[b]+nums[c]+nums[d]>target)
+                        d--;
+                    else{
+                        res.push_back({nums[a],nums[b],nums[c],nums[d]});
                         while(c < d && nums[c + 1] == nums[c]) c++;    //确保nums[c] 改变了
-        				while(c < d && nums[d - 1] == nums[d]) d--;      //确保nums[d] 改变了
-        				c++;
-        				d--;
-					}
-				}
-			}
-		}
-		return res;
+                        while(c < d && nums[d - 1] == nums[d]) d--;      //确保nums[d] 改变了
+                        c++;
+                        d--;
+                    }
+                }
+            }
+        }
+        return res;
     }
 };
 ```
-###  5.19. <a name='n'></a>19. 删除链表倒数第n个结点
+###  6.19. <a name='n'></a>19. 删除链表倒数第n个结点
 ```c++
 class Solution {
 public:
@@ -2505,7 +2409,7 @@ public:
 };
 ```
 
-###  5.20. <a name='kuoisValid'></a>20. 有效的括号 kuoisValid
+###  6.20. <a name='kuoisValid'></a>20. 有效的括号 kuoisValid
 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
 
 有效字符串需满足：
@@ -2533,7 +2437,7 @@ public:
     }
 };
 ```
-###  5.21. <a name='mergeTwoLists'></a>21. 合并两个有序链表 mergeTwoLists
+###  6.21. <a name='mergeTwoLists'></a>21. 合并两个有序链表 mergeTwoLists
 ```c++
 class Solution {
 public:
@@ -2559,7 +2463,7 @@ public:
 };
 ```
 
-###  5.22. <a name='generateParenthesis'></a>22. 括号生成 generateParenthesis
+###  6.22. <a name='generateParenthesis'></a>22. 括号生成 generateParenthesis
 数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。
 ```c++
 class Solution {
@@ -2589,7 +2493,7 @@ public:
 };
 ```
 
-###  5.23. <a name='swapPairs'></a>24. 两两交换链表中的节点 swapPairs
+###  6.23. <a name='swapPairs'></a>24. 两两交换链表中的节点 swapPairs
 你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
 
 示例:
@@ -2613,7 +2517,7 @@ public:
 };
 ```
 
-###  5.24. <a name='removeDuplicates'></a>26. 删除排序数组中的重复项 removeDuplicates (快慢指针)
+###  6.24. <a name='removeDuplicates'></a>26. 删除排序数组中的重复项 removeDuplicates (快慢指针)
 给定一个排序数组，你需要在 原地 删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
 
 不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。
@@ -2633,7 +2537,7 @@ public:
     }
 };
 ```
-###  5.25. <a name='-1'></a>27. 移除元素
+###  6.25. <a name='-1'></a>27. 移除元素
 给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。
 
 不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。
@@ -2652,7 +2556,7 @@ public:
 };
 ```
 
-###  5.26. <a name='-1'></a>86. 分隔链表
+###  6.26. <a name='-1'></a>86. 分隔链表
 给定一个链表和一个特定值 x，对链表进行分隔，使得所有小于 x 的节点都在大于或等于 x 的节点之前。
 你应当保留两个分区中每个节点的初始相对位置。
 
@@ -2680,7 +2584,7 @@ public:
 };
 ```
 
-### 79. 单词搜索 （二维dfs） existpath
+###  6.27. <a name='dfsexistpath'></a>79. 单词搜索 （二维dfs） existpath
 单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。
 示例:
 
@@ -2724,7 +2628,7 @@ public:
     }
 };
 ```
-#### 迷路的机器人
+####  6.27.1. <a name='pathWithObstacles'></a>迷路的机器人 pathWithObstacles
 设想有个机器人坐在一个网格的左上角，网格 r 行 c 列。机器人只能向下或向右移动，但不能走到一些被禁止的网格（有障碍物）。设计一种算法，寻找机器人从左上角移动到右下角的路径。 <https://leetcode-cn.com/problems/robot-in-a-grid-lcci/>
 输入:   
 [   
@@ -2755,7 +2659,142 @@ public:
     }
 };
 ```
-### 99. 恢复二叉搜索树
+###  6.28. <a name='toa-z'></a>91. 解码方法 1-26 to a-z
+给定一个只包含数字的非空字符串，请计算解码方法的总数。
+输入: "226"   
+输出: 3   
+解释: 它可以解码为 "BZ" (2 26), "VF" (22 6), 或者 "BBF" (2 2 6) 。
+```c++
+class Solution {
+public:
+    int numDecodings(string s) {
+        int pre1 = 1, pre2 = 1;
+        if(s[0] == '0') return 0;
+        int p;
+        for(int i = 0; i<s.size(); i++){
+            p = 0;
+            string tem; 
+            if(i>0){
+                tem += s[i-1];
+                tem += s[i];
+            }
+            if(tem>="10" && tem<="26")
+                p += pre1;
+            if(s[i] != '0')
+                p += pre2;
+            pre1 = pre2; pre2 = p;
+        }
+        return p;
+    }
+};
+```
+###  6.29. <a name='reverseList1'></a>反转链表 reverseList1
+
+```c++
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) { 
+        ListNode *p = head, *q = NULL;
+        while(p){
+            ListNode *temp = p->next;
+            p->next = q;
+            q = p;
+            p = temp;
+        }
+        return q;
+    }
+};
+```
+
+###  6.30. <a name='IIreverseBetween'></a>92. 反转链表 II 反转区间链表 reverseBetween
+反转从位置 m 到 n 的链表。请使用一趟扫描完成反转。
+```c++
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int m, int n) {
+        if(n == 1 || !head) return head; // 特殊情况处理（当然不写也行，写是为了找找感觉）
+
+        ListNode *prev = NULL, *curr = head; // 定义prev和curr指针，用于翻转链表
+        while(m > 1)
+        {
+            prev = curr;
+            curr = curr -> next; // 将prev与curr定位到需要翻转的初始位置
+            m --;
+            n --; 
+        }
+        ListNode *before = prev, *after = curr; // 定义prev前面一位和curr后面一位的指针，方便翻转完链表后重新连起来
+        while(n > 0)
+        {
+            // 翻转链表四步大法
+            ListNode* nextptr = curr -> next;
+            curr -> next = prev;
+            prev = curr;
+            curr = nextptr;
+            n --;
+        }
+        if(before) before -> next = prev; // 将链表重新连起来
+        else head = prev; // 将链表重新连起来
+        after -> next = curr; // 将链表重新连起来
+        return head;
+    }
+};
+```
+
+###  6.31. <a name='numbTrees'></a>96. 二叉搜索树个数  numbTrees
+给定一个整数 n，求以 1 ... n 为节点组成的二叉搜索树有多少种？
+```c++
+class Solution {
+public:
+    int numTrees(int n) {
+        vector<int> dp(n+1, 0); dp[0] = 1; dp[1] = 1;
+        for(int i = 2; i<=n; i++){
+            // j为当前选中节点， 左边为j-1个，右边为i-j个。
+            for(int j = 1; j <= i; j++)
+                dp[i] += dp[j - 1] * dp[i - j];
+        }
+        return dp[n];
+    }
+};
+```
+
+
+
+###  6.32. <a name='isValidBST'></a>98. 验证二叉搜索树 isValidBST
+
+给定一个二叉树，判断其是否是一个有效的二叉搜索树。
+
+假设一个二叉搜索树具有如下特征：   
+
+节点的左子树只包含小于当前节点的数。   
+节点的右子树只包含大于当前节点的数。   
+所有左子树和右子树自身必须也是二叉搜索树。   
+```c++
+class Solution {
+public:
+    vector<int> ans;
+    void inorder(TreeNode *root){
+        if(!root) return;
+        inorder(root->left);
+        ans.push_back(root->val);
+        inorder(root->right);
+    }
+    bool isValidBST(TreeNode* root) {
+        inorder(root);
+        for(int i = 1; i<ans.size(); i++){
+            if(ans[i] <= ans[i-1]) return false;
+        } 
+        return true;
+    }
+};
+```
+
+###  6.33. <a name='recoverTreeB'></a>99. 恢复二叉搜索树 recoverTreeB
 二叉搜索树中的两个节点被错误地交换。
 
 请在不改变其结构的情况下，恢复这棵树.
@@ -2788,7 +2827,7 @@ public:
     }
 };
 ```
-### 100. 相同的树
+###  6.34. <a name='isSameTree'></a>100. 相同的树 isSameTree
 给定两个二叉树，编写一个函数来检验它们是否相同。   
 如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。
 ```c++
@@ -2803,8 +2842,39 @@ public:
     }
 };
 ```
+###  6.35. <a name='topk'></a>215 topk
 
-###  5.27. <a name='maximal-square'></a>221. 最大正方形 maximal-square
+```c++
+class Solution {
+public:
+    void quickSort(vector<int> &a, int l, int r, int k, int &ans){
+        // if (l >= r) return;
+
+        int i = l, j = r, tmp = a[l];
+
+        while (i < j){
+            while (i < j && a[j] >= tmp) j--;
+            if (i < j) a[i++] = a[j];
+            while (i < j && a[i] <= tmp) i++;
+            if (i < j) a[j--] = a[i];
+        }
+        a[i] = tmp;
+        if(i==a.size()-k) {ans = a[i]; return;}
+        
+        if(i > a.size()-k)
+            quickSort(a, l, i - 1, k, ans);
+        else
+            quickSort(a, i + 1, r, k, ans);
+    }
+
+    int findKthLargest(vector<int>& nums, int k) {
+        int ans = 0;
+        quickSort(nums, 0, nums.size()-1, k, ans);
+        return ans;
+    }
+};
+```
+###  6.36. <a name='maximal-square'></a>221. 最大正方形 maximal-square
 在一个由 0 和 1 组成的二维矩阵内，找到只包含 1 的最大正方形，并返回其面积。<https://leetcode-cn.com/problems/maximal-square/>
 ```c++
 class Solution {
@@ -2829,6 +2899,25 @@ public:
     }
 };
 ```
+###  6.37. <a name='-1'></a>322. 零钱兑换
+给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1。
+```c++
+class Solution {
+public:
+    const int MAXN = 1e8;
+    int coinChange(vector<int>& coins, int amount) {
+        vector<int> dp(amount+1, MAXN);
+        dp[0] = 0;
+        for(int i = 0; i<=amount; i++){
+            for(auto c : coins){
+                if(i-c < 0) continue;
+                dp[i] = min(dp[i], dp[i-c] + 1);
+            }
+        }
+        return dp[amount] == MAXN ? -1 : dp[amount];
+    }
+};
+```
 
 
 
@@ -2923,12 +3012,9 @@ public:
 
 
 
+##  7. <a name='landproblem'></a>岛屿问题 land problem
 
-
-
-##  6. <a name='landproblem'></a>岛屿问题 land problem
-
-###  6.1. <a name='numIslands'></a>岛屿数量 numIslands
+###  7.1. <a name='numIslands'></a>岛屿数量 numIslands
 给你一个由 '1'（陆地）和 '0'（水）组成的的二维网格，请你计算网格中岛屿的数量。
 岛屿总是被水包围，并且每座岛屿只能由水平方向或竖直方向上相邻的陆地连接形成。
 此外，你可以假设该网格的四条边均被水包围。
@@ -2963,7 +3049,7 @@ public:
 };
 ```
 
-###  6.2. <a name='maxAreaOfIsland'></a>岛屿的最大面积 maxAreaOfIsland
+###  7.2. <a name='maxAreaOfIsland'></a>岛屿的最大面积 maxAreaOfIsland
 给定一个包含了一些 0 和 1 的非空二维数组 grid 。
 一个 岛屿 是由一些相邻的 1 (代表土地) 构成的组合，这里的「相邻」要求两个 1 必须在水平或者竖直方向上相邻。你可以假设 grid 的四个边缘都被 0（代表水）包围着。
 找到给定的二维数组中最大的岛屿面积。(如果没有岛屿，则返回面积为 0 。)
@@ -2994,7 +3080,7 @@ public:
 };
 ```
 
-###  6.3. <a name='islandPerimeter'></a>岛屿的周长 islandPerimeter
+###  7.3. <a name='islandPerimeter'></a>岛屿的周长 islandPerimeter
 给定一个包含 0 和 1 的二维网格地图，其中 1 表示陆地 0 表示水域。
 网格中的格子水平和垂直方向相连（对角线方向不相连）。整个网格被水完全包围，但其中恰好有一个岛屿（或者说，一个或多个表示陆地的格子相连组成的岛屿）。
 岛屿中没有“湖”（“湖” 指水域在岛屿内部且不和岛屿周围的水相连）。格子是边长为 1 的正方形。网格为长方形，且宽度和高度均不超过 100 。计算这个岛屿的周长。
@@ -3022,7 +3108,7 @@ public:
 ```
 
 
-##  7. <a name='sbusetpermuteprpblem'></a>子集组合排列问题 sbuset permute prpblem
+##  8. <a name='sbusetpermuteprpblem'></a>子集组合排列问题 sbuset permute prpblem
 //递归思想：   
 //①画出递归树，找到状态变量(回溯函数的参数)，这一步非常重要※   
 //②根据题意，确立结束条件   
@@ -3030,7 +3116,7 @@ public:
 //④判断是否需要剪枝   
 //⑤作出选择，递归调用，进入下一层   
 //⑥撤销选择   
-###  7.1. <a name='permute'></a>全排列 permute
+###  8.1. <a name='permute'></a>全排列 permute
 给定一个 没有重复 数字的序列，返回其所有可能的全排列。
 
 ```c++
@@ -3061,7 +3147,7 @@ public:
     }
 };
 ```
-###  7.2. <a name='permuteUnique'></a>全排列 结果无重复 permuteUnique
+###  8.2. <a name='permuteUnique'></a>全排列 结果无重复 permuteUnique
 给定一个可包含重复数字的序列，返回所有不重复的全排列。
 ```c++
 class Solution {
@@ -3096,7 +3182,7 @@ public:
 };
 ```
 
-###  7.3. <a name='combine77'></a>组合 combine77
+###  8.3. <a name='combine77'></a>组合 combine77
 给定两个整数 n 和 k，返回 1 ... n 中所有可能的 k 个数的组合。
 输入: n = 4, k = 2
 输出:
@@ -3132,7 +3218,7 @@ public:
 };
 ```
 
-###  7.4. <a name='combinationSum'></a>数组总和  combinationSum
+###  8.4. <a name='combinationSum'></a>数组总和  combinationSum
 给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。candidates 中的数字可以无限制重复被选取。
 ```c++
 class Solution {
@@ -3161,7 +3247,7 @@ public:
 };
 ```
 
-###  7.5. <a name='combinationSum2'></a>数组总和 结果无重复 combinationSum2
+###  8.5. <a name='combinationSum2'></a>数组总和 结果无重复 combinationSum2
 给定一个数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。candidates 中的每个数字在每个组合中只能使用一次。
 ```c++
 class Solution {
@@ -3188,7 +3274,7 @@ public:
 };
 ```
 
-###  7.6. <a name='IIIcombinationSum3'></a>216. 组合总和 III combinationSum3
+###  8.6. <a name='IIIcombinationSum3'></a>216. 组合总和 III combinationSum3
 
 找出所有相加之和为 n 的 k 个数的组合。组合中只允许含有 1 - 9 的正整数，并且每种组合中不存在重复的数字。 
 ```c++
@@ -3216,7 +3302,7 @@ public:
 };
 ```
 
-###  7.7. <a name='subsetsWithDup'></a>子集  结果无重复 subsetsWithDup
+###  8.7. <a name='subsetsWithDup'></a>子集  结果无重复 subsetsWithDup
 
 ```c++
 class Solution_subset2 {
@@ -3240,7 +3326,7 @@ public:
 };
 ```
 
-###  7.8. <a name='subsets1'></a>子集 subsets1
+###  8.8. <a name='subsets1'></a>子集 subsets1
 给定一组不含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。
 ```c++
 void subsets(int start, vector<int> &input) {
@@ -3262,7 +3348,7 @@ int main() {
 	}
 }
 ```
-###  7.9. <a name='stringpermutation'></a>字符串排列 结果无重复 stringpermutation
+###  8.9. <a name='stringpermutation'></a>字符串排列 结果无重复 stringpermutation
 输入一个字符串，打印出该字符串中字符的所有排列。
 你可以以任意顺序返回这个字符串数组，但里面不能有重复元素。   
 输入：s = "abc" 
@@ -3294,6 +3380,586 @@ public:
         sort(s.begin(), s.end());
         dfs(vis, s);
         return ans;
+    }
+};
+```
+
+##  9. <a name='all_bt'></a>二叉树的题　all_bt
+
+###  9.1. <a name='diameterOfBinaryTree'></a>二叉树的直径 diameterOfBinaryTree
+给定一棵二叉树，你需要计算它的直径长度。一棵二叉树的直径长度是任意两个结点路径长度中的最大值。这条路径可能穿过也可能不穿过根结点。
+```c++
+class Solution {
+    int ans;
+    // 最长的直径肯定是以某个结点为根节点的子树的左右子树高度之和。只需要深搜遍历即可。
+    int depth(TreeNode* root){
+        if (root == NULL) {
+            return 0;
+        }
+        int L = depth(root->left);
+        int R = depth(root->right);
+        ans = max(ans, L + R + 1); // 计算d_node即L+R+1 并更新ans
+        return max(L, R) + 1; // 返回该节点为根的子树的深度
+    }
+public:
+    int diameterOfBinaryTree(TreeNode* root) {
+        ans = 1;
+        depth(root);
+        return ans - 1;
+    }
+};
+```
+
+###  9.2. <a name='isBalancedtree'></a>验证平衡二叉树 isBalancedtree
+输入一棵二叉树的根节点，判断该树是不是平衡二叉树。如果某二叉树中任意节点的左右子树的深度相差不超过1，那么它就是一棵平衡二叉树。
+```c++
+class Solution {
+public:
+    bool isBalanced(TreeNode* root) {
+        if(!root) return true;
+        if(abs(get_depth(root->left) - get_depth(root->right))>1) return false;
+        return isBalanced(root->left) && isBalanced(root->right);
+    }
+
+    int get_depth(TreeNode *root){
+        if(!root) return 0;
+        return max(get_depth(root->left), get_depth(root->right))+1;
+    }
+};
+```
+
+###  9.3. <a name='buildTree'></a>前序和中序遍历重建二叉树 buildTree
+
+输入一棵二叉树前序遍历和中序遍历的结果，请重建该二叉树。
+
+```c++
+class Solution {
+public:
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        return dfs(preorder, inorder, 0, preorder.size()-1, 0, inorder.size()-1);
+    }
+
+    TreeNode* dfs(vector<int>& preorder, vector<int>& inorder, int ps, int pend, int is, int iend){
+        if(ps > pend) return NULL;
+        TreeNode* root = new TreeNode(preorder[ps]);
+        int l = is;
+        while(inorder[l] != preorder[ps]) l++;
+        int left=l-is;   //左子树的长度
+        int right=iend-l;  //右子树长度
+        root->left = dfs(preorder, inorder, ps + 1, ps + left, is, l - 1);
+        root->right = dfs(preorder, inorder, ps + 1 + left, pend, l+1, iend);
+        return root;
+    }
+};
+```
+
+###  9.4. <a name='serializetree'></a>序列化二叉树 serializetree
+请实现两个函数，分别用来序列化和反序列化二叉树。
+示例:
+你可以将以下二叉树：
+
+    1
+   / \
+  2   3
+     / \
+    4   5
+
+序列化为 "[1,2,3,null,null,4,5]"
+```c++
+class Codec {
+public:
+
+    // Encodes a tree to a single string.
+    string serialize(TreeNode* root) {
+        string ans;
+        dfs_serialize(root , ans);
+        // cout<<ans;
+        return ans;
+    }
+    void dfs_serialize(TreeNode *root, string& ans){
+        if(!root) {
+            ans += "null ";
+            return;
+        }
+        ans += to_string(root->val);
+        ans += " ";
+        dfs_serialize(root->left, ans);
+        dfs_serialize(root->right, ans);
+        return;
+    }s
+
+    // Decodes your encoded data to tree.
+    TreeNode* deserialize(string data) {
+        int cur = 0;
+        auto root = dfs_deserialize(data , cur);
+        return root;
+    }
+
+    TreeNode* dfs_deserialize(string& data, int& cur){
+        if(cur>=data.size()) return NULL;
+        if(data[cur] == 'n'){
+            cur += 5;
+            return NULL;
+        }
+        int temp = 0, flag = 1;
+        if(data[cur] == '-'){
+            flag = -1;
+            cur++;
+        }
+        while(data[cur] !=' '){
+            temp *= 10;
+            temp += (int)(data[cur]-'0');
+            cur++;
+        }
+        cur++;
+        TreeNode *root = new TreeNode(flag*temp);
+        root->left = dfs_deserialize(data, cur);
+        root->right = dfs_deserialize(data, cur);
+        return root;
+    }
+};
+```
+
+###  9.5. <a name='isSymmetric'></a>判断对称（镜像）的二叉树 isSymmetric
+
+请实现一个函数，用来判断一棵二叉树是不是对称的。
+如果一棵二叉树和它的镜像一样，那么它是对称的。
+
+```c++
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+        if(!root) return true;
+        return dfs(root->left, root->right);
+    }
+    bool dfs(TreeNode *q, TreeNode *p){
+        // 搜索到没有最底部
+        if(!q && !p) return true;
+        if(!q || !p) return false;
+        if(q->val != p->val) return false;
+        return dfs(q->left, p->right) && dfs(q->right, p->left);
+    }
+};
+```
+
+###  9.6. <a name='mirror'></a>输出二叉树的镜像 mirror
+
+```c++
+// 后序无返回值
+class Solution {
+public:
+    void mirror(TreeNode* root) {
+        if(!root) return;
+        TreeNode *t = root->left;
+        root->left = root->right;
+        root->right = t;
+        mirror(root->left);
+        mirror(root->right);
+    }
+};
+// 前序有返回值
+class Solution {
+public:
+    TreeNode* mirrorTree(TreeNode* root) {
+        if(!root) return NULL;
+        mirrorTree(root->left);
+        mirrorTree(root->right);
+        TreeNode *t = root->left;
+        root->left = root->right;
+        root->right = t;
+        return root;
+    }
+};
+```
+
+###  9.7. <a name='printFromTopToBottom1'></a>不分行从上往下打印二叉树(层次遍历) printFromTopToBottom1
+
+从上往下打印出二叉树的每个结点，同一层的结点按照从左到右的顺序打印。
+
+```c++
+class Solution {
+public:
+    vector<int> printFromTopToBottom(TreeNode* root) {
+        vector<int> ans;
+        queue<TreeNode*> q;
+        if(!root) return ans;
+        q.push(root);
+        while(!q.empty()){
+            if(q.front()->left) q.push(q.front()->left);
+            if(q.front()->right) q.push(q.front()->right);
+            ans.push_back(q.front()->val);
+            q.pop();
+        }
+        return ans;
+    }
+};
+```
+
+###  9.8. <a name='printFromTopToBottom2'></a>分行从上往下打印二叉树 printFromTopToBottom2
+
+从上到下按层打印二叉树，同一层的结点按从左到右的顺序打印，每一层打印到一行。
+
+```c++
+class Solution {
+public:
+    vector<vector<int>> printFromTopToBottom(TreeNode* root) {
+        vector<vector<int>> ans;
+        if(!root) return ans;
+        queue <TreeNode*> q;
+        q.push(root);
+        while(!q.empty()){
+            int q_long = q.size();
+            vector<int> temp;
+            while(q_long--){
+                if(q.front()->left) q.push(q.front()->left);
+                if(q.front()->right) q.push(q.front()->right);
+                temp.push_back(q.front()->val);
+                q.pop();
+            }
+            ans.push_back(temp);
+        }
+        return ans;
+    }
+};
+```
+
+###  9.9. <a name='printFromTopToBottom3'></a>之字形打印二叉树 printFromTopToBottom3
+
+请实现一个函数按照之字形顺序从上向下打印二叉树。\
+即第一行按照从左到右的顺序打印，第二层按照从右到左的顺序打印，第三行再按照从左到右的顺序打印，其他行以此类推。
+
+```c++
+class Solution {
+public:
+    vector<vector<int>> printFromTopToBottom(TreeNode* root) {
+        vector<vector<int>> ans;
+        if(!root) return ans;
+        // 主要认识双端队列
+        // 单端：queue  双端：deque
+        deque <TreeNode*> q;
+        q.push_back(root);
+        int lr = -1;
+        while(!q.empty()){
+            int q_long = q.size();
+            vector<int> temp;
+            lr *= -1;
+            while(q_long--){
+                if(lr == 1){
+                    if(q.front()->left) q.push_back(q.front()->left);
+                    if(q.front()->right) q.push_back(q.front()->right);
+                    temp.push_back(q.front()->val);
+                    q.pop_front();
+                }
+                else{
+                    if(q.back()->right) q.push_front(q.back()->right);
+                    if(q.back()->left) q.push_front(q.back()->left);
+                    temp.push_back(q.back()->val);
+                    q.pop_back();
+                }
+            }
+            ans.push_back(temp);
+        }
+        return ans;
+    }
+};
+```
+
+###  9.10. <a name='lowestCommonAncestor1'></a>二叉树最低公共祖先 lowestCommonAncestor1
+
+```c++
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if (!root) return NULL;
+        if (root == p || root == q) return root;
+        auto left = lowestCommonAncestor(root->left, p, q);
+        auto right = lowestCommonAncestor(root->right, p, q);
+        if (left && right) return root;
+        if (left) return left;
+        return right;
+    }
+};
+```
+
+###  9.11. <a name='-1'></a>二叉树搜索树最低公共祖先
+```c++
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if((root -> val - p->val)*(root -> val - q ->val) <= 0 ){
+            return root;
+        }
+        if(root -> val > p -> val){
+            return lowestCommonAncestor(root -> left, p, q);
+        }
+        if(root -> val < p -> val){
+            return lowestCommonAncestor(root -> right, p, q);
+        }
+        return NULL;
+    }
+};
+```
+ 
+###  9.12. <a name='treeToDoublyList'></a>二叉搜索树转换为双向循环链表 treeToDoublyList
+输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的循环双向链表。要求不能创建任何新的节点，只能调整树中节点指针的指向．
+```cpp
+class Solution {
+public:
+    Node* treeToDoublyList(Node* root) {
+        if(!root) return nullptr;
+        Node* head = nullptr, *pre = nullptr;
+        helper(root, head, pre);
+        head->left = pre;
+        pre->right = head;
+        return head;
+    }
+    void helper(Node* root, Node*& head, Node*& pre) {
+        if(!root)  return;
+        helper(root->left, head, pre);
+        if(!head) {
+            head =   root;   // 找到head
+            pre = root;    // 对pre进行初始化
+        } else {
+            pre->right = root;
+            root->left = pre;
+            pre = root;
+        }
+        helper(root->right, head, pre);
+    }
+};
+
+```
+
+###  9.13. <a name='ktreekthLargest'></a>二叉搜索树的第k大节点 treekthLargest
+```c++ 
+class Solution {
+public:
+    int cou = 0;
+    int ans;
+    int kthLargest(TreeNode* root, int k) {
+        inorder(root, k);
+        return ans;
+    }
+    void inorder(TreeNode * root, int k){
+        if(!root) return;
+        inorder(root->right, k);
+        cou++;
+        if(cou == k) {ans = root->val; return;}
+        inorder(root->left, k);
+    }
+};
+```
+
+
+###  9.14. <a name='verifySequenceOfBST'></a>二叉搜索树的后序遍历序列 verifySequenceOfBST
+
+输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。
+如果是则返回true，否则返回false。\
+假设输入的数组的任意两个数字都互不相同。
+
+```c++
+class Solution {
+public:
+    bool verifySequenceOfBST(vector<int> sequence) {
+        return verify(sequence, 0, sequence.size()-1);
+    }
+    bool verify(vector<int>& sequence, int s, int e){
+        if(s >= e) return true;
+        // e是根节点，判断根节点把数组分成左右两部分．
+        int t = sequence[e];
+        int i = s;
+        while(sequence[i] < t) i++;
+        int j = i;
+        while(sequence[i] > t) i++;
+        if(i!= e) return false;
+        return verify(sequence, s, j-1) && verify(sequence, j, e-1);
+    }
+};
+```
+
+###  9.15. <a name='treePathSum'></a>二叉树中和为某一值的路径(回溯) treePathSum
+
+输入一棵二叉树和一个整数，打印出二叉树中节点值的和为输入整数的所有路径。从树的根节点开始往下一直到叶节点所经过的节点形成一条路径。
+
+```c++
+class Solution {
+private:
+    vector<vector<int>> ans;
+    vector<int> tem;
+    int cur_sum = 0;
+    void dfs(TreeNode* root, int sum){
+        if(!root) return;
+        tem.push_back(root->val);
+        if(root->val == sum && !root->left && !root->right) {ans.push_back(tem);}
+        dfs(root->left, sum-root->val);
+        dfs(root->right, sum-root->val);
+
+        tem.pop_back();
+    }
+public:
+    vector<vector<int>> pathSum(TreeNode* root, int sum) {
+        dfs(root, sum);
+        return ans;
+    }
+};
+```
+
+###  9.16. <a name='treeFindPath1'></a>二叉树中和为某一值的路径 treeFindPath1
+
+输入一棵二叉树和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。
+
+```c++
+class Solution {
+public:
+    vector<vector<int>> ans;
+    vector<vector<int>> findPath(TreeNode* root, int sum) {
+        vector<int> temp;
+        if(!root) return ans;
+        findone(root, sum, temp);
+        // 若不要求从根节点开始找，就加上这两行；
+        // findPath(root->left, sum);
+        // findPath(root->left, sum);
+        return ans;
+    }
+    void findone(TreeNode* root, int sum, vector<int>&temp){
+        if(!root) return;
+        if(sum-root->val == 0 && !root->left && !root->right) {
+            temp.push_back(root->val);
+            ans.push_back(temp);
+        }
+        else{
+            sum -= root->val;
+            temp.push_back(root->val);
+            findone(root->left, sum, temp);
+            findone(root->right, sum, temp);
+        }
+        temp.pop_back();
+    }
+};
+```
+
+###  9.17. <a name='-mergeTrees'></a>合并二叉树 - 相加二叉树 mergeTrees
+给定两个二叉树，想象当你将它们中的一个覆盖到另一个上时，两个二叉树的一些节点便会重叠。\
+你需要将他们合并为一个新的二叉树。合并的规则是如果两个节点重叠，那么将他们的值相加作为节点合并后的新值，否则不为 NULL 的节点将直接作为新二叉树的节点。
+```c++
+class Solution {
+public:
+    TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2) {
+        if(!t1&&!t2) return NULL;
+        TreeNode* root = new TreeNode(0);
+        if(!t1){
+            return t2;
+        }
+        else if(!t2){
+            return t1;
+        }
+        else{
+            root->val = t1->val+t2->val;
+        }
+
+        root->left = mergeTrees(t1->left,t2->left);
+        root->right = mergeTrees(t1->right,t2->right);
+        return root;
+    }
+
+};
+```
+###  9.18. <a name='0pruneTree'></a>二叉树剪枝 (去掉全为0的子树) pruneTree
+
+给定二叉树根结点 root ，此外树的每个结点的值要么是 0，要么是 1。
+
+返回移除了所有不包含 1 的子树的原二叉树。
+```c++
+// 后续遍历
+class Solution {
+public:
+    TreeNode* pruneTree(TreeNode* root) {
+        if(!root) return NULL;
+        root->left = pruneTree(root->left);
+        root->right = pruneTree(root->right);
+        if(root->val == 0 && !root->left && ! root->right) return NULL;
+        return root;
+    }
+};  
+// 前序判断
+class Solution {
+public:
+    TreeNode* pruneTree(TreeNode* root) {
+        if(!root) return NULL;
+        if(has1(root))return NULL;
+        root->left = pruneTree(root->left);
+        root->right = pruneTree(root->right);
+        return root;
+    }
+    bool has1(TreeNode *root){
+        if(!root) return true;
+        if(root->val == 1) return false;
+        return has1(root->left) &&　has1(root->right);
+    }
+};
+```
+
+###  9.19. <a name='invertTree1'></a>翻转二叉树 (输出对称二叉树) invertTree1
+翻转一棵二叉树。
+
+```c++
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if(!root) return NULL;
+        TreeNode *tem = NULL;
+        tem = root->left;
+        root->left = root->right;
+        root->right = tem;
+        invertTree(root->left);
+        invertTree(root->right);
+        
+        return root;
+    }
+};
+```
+
+###  9.20. <a name='BAhasSubtree'></a>树的子结构(判断B是不是A的子结构) hasSubtree
+
+输入两棵二叉树A，B，判断B是不是A的子结构。我们规定空树不是任何树的子结构。
+
+```c++
+class Solution {
+public:
+    bool hasSubtree(TreeNode* pRoot1, TreeNode* pRoot2) {
+        if (!pRoot1 || !pRoot2) return false;
+        if (isSame(pRoot1, pRoot2)) return true;
+        return hasSubtree(pRoot1->left, pRoot2) || hasSubtree(pRoot1->right, pRoot2);
+    }
+
+    bool isSame(TreeNode* pRoot1, TreeNode* pRoot2) {
+        if (!pRoot2) return true;
+        if (!pRoot1 || pRoot1->val != pRoot2->val) return false;
+        return isSame(pRoot1->left, pRoot2->left) && isSame(pRoot1->right, pRoot2->right);
+    }
+};
+```
+
+### 构造最大二叉树
+给定一个不含重复元素的整数数组。一个以此数组构建的最大二叉树定义如下：
+
+二叉树的根是数组中的最大元素。
+左子树是通过数组中最大值左边部分构造出的最大二叉树。
+右子树是通过数组中最大值右边部分构造出的最大二叉树。
+```c++
+class Solution {
+public:
+    TreeNode* constructMaximumBinaryTree(vector<int>& nums) {
+        return dfs(nums, 0, nums.size()-1);
+    }
+    TreeNode *dfs(vector<int>& nums, int l, int r){
+        if(l>r) return NULL;
+        int max_ind = l;
+        for(int i = l; i<=r; i++) if(nums[i]>nums[max_ind]) max_ind = i;
+        TreeNode *root = new TreeNode(nums[max_ind]);
+        root->left = dfs(nums, l, max_ind-1);
+        root->right = dfs(nums, max_ind+1, r);
+        return root;
     }
 };
 ```

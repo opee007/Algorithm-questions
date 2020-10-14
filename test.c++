@@ -5,15 +5,23 @@
 #include <limits.h>
 #include <algorithm>
 #include <time.h>
+#include<windows.h>
 using namespace std;
 
-
+struct TreeNode {
+      int val;
+      TreeNode *left;
+      TreeNode *right;
+      TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
 
 int main(){
-    time_t start, stop;
-    start = time(NULL);
+    while(true){
+        for(int i = 1; i<101; i++){
+            printf("%d", i);
+        }
+    Sleep(3);
+    }
     
-    stop = time(NULL);
-    printf("Use Time:%ld\n",(stop-start));
     return 0;
 }

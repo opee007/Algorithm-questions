@@ -103,13 +103,9 @@
 	* 6.28. [91. 解码方法 1-26 to a-z](#toa-z)
 	* 6.29. [反转链表 reverseList1](#reverseList1)
 	* 6.30. [92. 反转链表 II 反转区间链表 reverseBetween](#IIreverseBetween)
-	* 6.31. [96. 二叉搜索树个数  numbTrees](#numbTrees)
-	* 6.32. [98. 验证二叉搜索树 isValidBST](#isValidBST)
-	* 6.33. [99. 恢复二叉搜索树 recoverTreeB](#recoverTreeB)
-	* 6.34. [100. 相同的树 isSameTree](#isSameTree)
-	* 6.35. [215 topk](#topk)
-	* 6.36. [221. 最大正方形 maximal-square](#maximal-square)
-	* 6.37. [322. 零钱兑换](#-1)
+	* 6.31. [215 topk](#topk)
+	* 6.32. [221. 最大正方形 maximal-square](#maximal-square)
+	* 6.33. [322. 零钱兑换](#-1)
 * 7. [岛屿问题 land problem](#landproblem)
 	* 7.1. [岛屿数量 numIslands](#numIslands)
 	* 7.2. [岛屿的最大面积 maxAreaOfIsland](#maxAreaOfIsland)
@@ -145,6 +141,17 @@
 	* 9.18. [二叉树剪枝 (去掉全为0的子树) pruneTree](#0pruneTree)
 	* 9.19. [翻转二叉树 (输出对称二叉树) invertTree1](#invertTree1)
 	* 9.20. [树的子结构(判断B是不是A的子结构) hasSubtree](#BAhasSubtree)
+	* 9.21. [构造最大二叉树](#-1)
+	* 9.22. [96. 二叉搜索树个数  numbTrees](#numbTrees)
+	* 9.23. [98. 验证二叉搜索树 isValidBST](#isValidBST)
+	* 9.24. [99. 恢复二叉搜索树 recoverTreeB](#recoverTreeB)
+	* 9.25. [100. 相同的树 isSameTree](#isSameTree)
+	* 9.26. [单值二叉树 isUnivalTree](#isUnivalTree)
+	* 9.27. [修剪二叉搜索树 trimBST](#trimBST)
+	* 9.28. [翻转等价二叉树 (判断经过左右互换变为同一棵树) flipEquiv](#flipEquiv)
+* 10. [动态规划 dynamic programming](#dynamicprogramming)
+	* 10.1. [最长上升子序列](#-1)
+	* 10.2. [最长公共子序列](#-1)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -2746,103 +2753,7 @@ public:
 };
 ```
 
-###  6.31. <a name='numbTrees'></a>96. 二叉搜索树个数  numbTrees
-给定一个整数 n，求以 1 ... n 为节点组成的二叉搜索树有多少种？
-```c++
-class Solution {
-public:
-    int numTrees(int n) {
-        vector<int> dp(n+1, 0); dp[0] = 1; dp[1] = 1;
-        for(int i = 2; i<=n; i++){
-            // j为当前选中节点， 左边为j-1个，右边为i-j个。
-            for(int j = 1; j <= i; j++)
-                dp[i] += dp[j - 1] * dp[i - j];
-        }
-        return dp[n];
-    }
-};
-```
-
-
-
-###  6.32. <a name='isValidBST'></a>98. 验证二叉搜索树 isValidBST
-
-给定一个二叉树，判断其是否是一个有效的二叉搜索树。
-
-假设一个二叉搜索树具有如下特征：   
-
-节点的左子树只包含小于当前节点的数。   
-节点的右子树只包含大于当前节点的数。   
-所有左子树和右子树自身必须也是二叉搜索树。   
-```c++
-class Solution {
-public:
-    vector<int> ans;
-    void inorder(TreeNode *root){
-        if(!root) return;
-        inorder(root->left);
-        ans.push_back(root->val);
-        inorder(root->right);
-    }
-    bool isValidBST(TreeNode* root) {
-        inorder(root);
-        for(int i = 1; i<ans.size(); i++){
-            if(ans[i] <= ans[i-1]) return false;
-        } 
-        return true;
-    }
-};
-```
-
-###  6.33. <a name='recoverTreeB'></a>99. 恢复二叉搜索树 recoverTreeB
-二叉搜索树中的两个节点被错误地交换。
-
-请在不改变其结构的情况下，恢复这棵树.
-```c++
-class Solution {
-public:
-    vector<TreeNode *> in;
-    void inorder(TreeNode* root){
-        if(!root) return;
-        inorder(root->left);
-        in.push_back(root);
-        inorder(root->right);
-    } 
-    // 利用搜索二叉树中序遍历的性质
-    void recoverTree(TreeNode* root) {
-        TreeNode *p1 = nullptr, *p2 = nullptr;
-        inorder(root);
-        for(int i = 0; i<in.size() - 1; i++){
-            if(in[i]->val>in[i+1]->val){
-                // ***
-                if(!p1) p1 = in[i];
-                p2 = in[i+1];
-            }
-        }
-        if(p1 && p2){
-            int t = p1->val;
-            p1->val = p2->val;
-            p2->val = t;
-        }
-    }
-};
-```
-###  6.34. <a name='isSameTree'></a>100. 相同的树 isSameTree
-给定两个二叉树，编写一个函数来检验它们是否相同。   
-如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。
-```c++
-class Solution {
-public:
-    bool isSameTree(TreeNode* p, TreeNode* q) {
-        if(!p && !q) return true;
-        if(!p) return false;
-        if(!q) return false;
-        if(p->val != q->val) return false;
-        return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
-    }
-};
-```
-###  6.35. <a name='topk'></a>215 topk
+###  6.31. <a name='topk'></a>215 topk
 
 ```c++
 class Solution {
@@ -2874,7 +2785,7 @@ public:
     }
 };
 ```
-###  6.36. <a name='maximal-square'></a>221. 最大正方形 maximal-square
+###  6.32. <a name='maximal-square'></a>221. 最大正方形 maximal-square
 在一个由 0 和 1 组成的二维矩阵内，找到只包含 1 的最大正方形，并返回其面积。<https://leetcode-cn.com/problems/maximal-square/>
 ```c++
 class Solution {
@@ -2899,7 +2810,7 @@ public:
     }
 };
 ```
-###  6.37. <a name='-1'></a>322. 零钱兑换
+###  6.33. <a name='-1'></a>322. 零钱兑换
 给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1。
 ```c++
 class Solution {
@@ -3940,7 +3851,7 @@ public:
 };
 ```
 
-### 构造最大二叉树
+###  9.21. <a name='-1'></a>构造最大二叉树
 给定一个不含重复元素的整数数组。一个以此数组构建的最大二叉树定义如下：
 
 二叉树的根是数组中的最大元素。
@@ -3963,3 +3874,263 @@ public:
     }
 };
 ```
+
+###  9.22. <a name='numbTrees'></a>96. 二叉搜索树个数  numbTrees
+给定一个整数 n，求以 1 ... n 为节点组成的二叉搜索树有多少种？
+```c++
+class Solution {
+public:
+    int numTrees(int n) {
+        vector<int> dp(n+1, 0); dp[0] = 1; dp[1] = 1;
+        for(int i = 2; i<=n; i++){
+            // j为当前选中节点， 左边为j-1个，右边为i-j个。
+            for(int j = 1; j <= i; j++)
+                dp[i] += dp[j - 1] * dp[i - j];
+        }
+        return dp[n];
+    }
+};
+```
+
+
+
+###  9.23. <a name='isValidBST'></a>98. 验证二叉搜索树 isValidBST
+
+给定一个二叉树，判断其是否是一个有效的二叉搜索树。
+
+假设一个二叉搜索树具有如下特征：   
+
+节点的左子树只包含小于当前节点的数。   
+节点的右子树只包含大于当前节点的数。   
+所有左子树和右子树自身必须也是二叉搜索树。   
+```c++
+class Solution {
+public:
+    vector<int> ans;
+    void inorder(TreeNode *root){
+        if(!root) return;
+        inorder(root->left);
+        ans.push_back(root->val);
+        inorder(root->right);
+    }
+    bool isValidBST(TreeNode* root) {
+        inorder(root);
+        for(int i = 1; i<ans.size(); i++){
+            if(ans[i] <= ans[i-1]) return false;
+        } 
+        return true;
+    }
+};
+```
+
+###  9.24. <a name='recoverTreeB'></a>99. 恢复二叉搜索树 recoverTreeB
+二叉搜索树中的两个节点被错误地交换。
+
+请在不改变其结构的情况下，恢复这棵树.
+```c++
+class Solution {
+public:
+    vector<TreeNode *> in;
+    void inorder(TreeNode* root){
+        if(!root) return;
+        inorder(root->left);
+        in.push_back(root);
+        inorder(root->right);
+    } 
+    // 利用搜索二叉树中序遍历的性质
+    void recoverTree(TreeNode* root) {
+        TreeNode *p1 = nullptr, *p2 = nullptr;
+        inorder(root);
+        for(int i = 0; i<in.size() - 1; i++){
+            if(in[i]->val>in[i+1]->val){
+                // ***
+                if(!p1) p1 = in[i];
+                p2 = in[i+1];
+            }
+        }
+        if(p1 && p2){
+            int t = p1->val;
+            p1->val = p2->val;
+            p2->val = t;
+        }
+    }
+};
+```
+###  9.25. <a name='isSameTree'></a>100. 相同的树 isSameTree
+给定两个二叉树，编写一个函数来检验它们是否相同。   
+如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。
+```c++
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        if(!p && !q) return true;
+        if(!p) return false;
+        if(!q) return false;
+        if(p->val != q->val) return false;
+        return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+    }
+};
+```
+ 
+###  9.26. <a name='isUnivalTree'></a>单值二叉树 isUnivalTree
+如果二叉树每个节点都具有相同的值，那么该二叉树就是单值二叉树。\
+只有给定的树是单值二叉树时，才返回 true；否则返回 false。
+```c++
+class Solution {
+public:
+    bool isUnivalTree(TreeNode* root) {
+        if(!root) return true;
+        if(root->left && root->val != root->left->val) return false;
+        if(root->right && root->val != root->right->val) return false; 
+        return isUnivalTree(root->left) && isUnivalTree(root->right);
+    }
+};
+```
+
+###  9.27. <a name='trimBST'></a>修剪二叉搜索树 trimBST
+给定一个二叉搜索树，同时给定最小边界L 和最大边界 R。通过修剪二叉搜索树，使得所有节点的值在[L, R]中 (R>=L) 。你可能需要改变树的根节点，所以结果应当返回修剪好的二叉搜索树的新的根节点。
+<https://leetcode-cn.com/problems/trim-a-binary-search-tree/>
+```c++
+class Solution {
+public:
+    TreeNode* trimBST(TreeNode* root, int &L, int &R) {
+        if (root == nullptr) return nullptr;
+        if (root->val < L) return trimBST(root->right, L, R);
+        if (root->val > R) return trimBST(root->left, L, R);
+       
+        root->left = trimBST(root->left, L, R);
+        root->right = trimBST(root->right, L, R);
+        return root;
+    }
+};
+```
+
+###  9.28. <a name='flipEquiv'></a>翻转等价二叉树 (判断经过左右互换变为同一棵树) flipEquiv
+我们可以为二叉树 T 定义一个翻转操作，如下所示：选择任意节点，然后交换它的左子树和右子树。\
+只要经过一定次数的翻转操作后，能使 X 等于 Y，我们就称二叉树 X 翻转等价于二叉树 Y。
+```c++
+class Solution {
+public:
+    bool flipEquiv(TreeNode* root1, TreeNode* root2) {
+        if (root1 == root2) return true;
+        if (!root1 || !root2 || root1->val != root2->val) return false;
+        return flipEquiv(root1->left, root2->left) && flipEquiv(root1->right, root2->right) ||
+                flipEquiv(root1->left, root2->right) && flipEquiv(root1->right, root2->left);
+    }
+};
+```
+
+###　二叉树的坡度（所有节点左右子树的差的和） findTilt
+给定一个二叉树，计算整个树的坡度。\
+一个树的节点的坡度定义即为，该节点左子树的结点之和和右子树结点之和的差的绝对值。空结点的的坡度是0。\
+整个树的坡度就是其所有节点的坡度之和。
+```c++
+class Solution {
+public:
+    int ans = 0;
+    int findTilt(TreeNode* root) {
+        helper(root);
+        return ans;
+    }
+    int helper(TreeNode *root){
+        if(!root) return 0;
+        int l = helper(root->left);
+        int r = helper(root->right);
+        ans += abs(l - r);
+        return l+r+root->val;
+    }
+};
+```
+### 填充二叉树的右侧节点指针 (层次遍历变形) connecttreenode
+给定一个完美二叉树，其所有叶子节点都在同一层，每个父节点都有两个子节点。}
+填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL。
+<https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/>
+```c++
+class Solution {
+public:
+    Node* connect(Node* root) {
+        if (root == NULL) return NULL;
+        queue<Node*> Q;
+        Q.push(root);
+        while (!Q.empty()) {
+            int size = Q.size();
+            for(int i = 0; i < size; i++) {
+                Node* node = Q.front();
+                Q.pop();
+                // 不是当前层最后一个
+                if (i < size - 1) node->next = Q.front();
+                if (node->left) Q.push(node->left);
+                if (node->right) Q.push(node->right);
+            }
+        }
+        return root;
+    }
+};
+```
+
+
+
+
+
+
+##  10. <a name='dynamicprogramming'></a>动态规划 dynamic programming
+
+###  10.1. <a name='-1'></a>最长上升子序列 lengthOfLIS
+
+```c++
+class Solution 
+{
+public:
+    int bs(vector<int> &dp, int target, int l, int r){
+        while(l < r){
+            int mid = (l + r) >> 1;
+            if(dp[mid] >= target) r = mid;
+            else l = mid + 1;
+        }
+        return r;
+    }
+    int lengthOfLIS(vector<int>& nums) {
+        if(nums.size()==0) return 0;
+        vector<int> dp;
+        dp.push_back(nums[0]);
+        for(int i =1; i<nums.size(); ++i){
+            if(nums[i]>dp[dp.size()-1])
+                dp.push_back(nums[i]);
+            else{
+                dp[bs(dp, nums[i], 0, dp.size()-1)] = nums[i];
+            }
+        }
+        return dp.size();
+    }
+};
+```
+
+###  10.2. <a name='-1'></a>最长公共子序列 
+给定两个长度分别为N和M的字符串A和B，求既是A的子序列又是B的子序列的字符串长度最长是多少。 \
+输入样例：
+4 5
+acbd
+abedc
+```c++
+#include <iostream>
+using namespace std;
+const int N = 1010;
+int n, m;
+char a[N], b[N];
+int f[N][N];
+int main() {
+  cin >> n >> m >> a + 1 >> b + 1;
+  for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= m; j++) {
+      if (a[i] == b[j]) {
+        f[i][j] = f[i - 1][j - 1] + 1;
+      } else {
+        f[i][j] = max(f[i - 1][j], f[i][j - 1]);
+      }
+    }
+  }
+  cout << f[n][m] << '\n';
+  return 0;
+}
+```
+

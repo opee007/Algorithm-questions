@@ -149,9 +149,11 @@
 	* 9.26. [单值二叉树 isUnivalTree](#isUnivalTree)
 	* 9.27. [修剪二叉搜索树 trimBST](#trimBST)
 	* 9.28. [翻转等价二叉树 (判断经过左右互换变为同一棵树) flipEquiv](#flipEquiv)
+	* 9.29. [填充二叉树的右侧节点指针 (层次遍历变形) connecttreenode](#connecttreenode)
 * 10. [动态规划 dynamic programming](#dynamicprogramming)
-	* 10.1. [最长上升子序列](#-1)
-	* 10.2. [最长公共子序列](#-1)
+	* 10.1. [最长上升子序列 lengthOfLIS](#lengthOfLIS)
+	* 10.2. [最长公共子序列  longestCommonSubsequence](#longestCommonSubsequence)
+	* 10.3. [三角形最小路径和 sanjiaominimumTotal](#sanjiaominimumTotal)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -4041,7 +4043,7 @@ public:
     }
 };
 ```
-### 填充二叉树的右侧节点指针 (层次遍历变形) connecttreenode
+###  9.29. <a name='connecttreenode'></a>填充二叉树的右侧节点指针 (层次遍历变形) connecttreenode
 给定一个完美二叉树，其所有叶子节点都在同一层，每个父节点都有两个子节点。}
 填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL。
 <https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/>
@@ -4075,7 +4077,7 @@ public:
 
 ##  10. <a name='dynamicprogramming'></a>动态规划 dynamic programming
 
-###  10.1. <a name='-1'></a>最长上升子序列 lengthOfLIS
+###  10.1. <a name='lengthOfLIS'></a>最长上升子序列 lengthOfLIS
 
 ```c++
 class Solution 
@@ -4105,8 +4107,8 @@ public:
 };
 ```
 
-###  10.2. <a name='-1'></a>最长公共子序列 
-给定两个长度分别为N和M的字符串A和B，求既是A的子序列又是B的子序列的字符串长度最长是多少。 \
+###  10.2. <a name='longestCommonSubsequence'></a>最长公共子序列  longestCommonSubsequence
+给定两个长度分别为N和M的字符串A和B，求既是A的子序列又是B的子序列的字符串长度最长是多少。 <https://leetcode-cn.com/problems/longest-common-subsequence/submissions/>\
 输入样例：
 4 5
 acbd
@@ -4131,6 +4133,73 @@ int main() {
   }
   cout << f[n][m] << '\n';
   return 0;
-}
+}、
+
+
+class Solution {
+public:
+    int longestCommonSubsequence(string text1, string text2) {
+        int n = text1.size(), m = text2.size();
+        vector<vector<int>> dp(n+1, vector<int>(m+1, 0));
+        for(int i = 1; i<=n; i++){
+            for(int j = 1; j<=m; j++){
+                if(text1[i-1] == text2[j-1]) dp[i][j] = dp[i-1][j-1] + 1;
+                else dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
+            }
+        }
+        return dp[n][m];
+    }
+};
 ```
 
+###  10.3. <a name='sanjiaominimumTotal'></a>三角形最小路径和 sanjiaominimumTotal
+给定一个三角形，找出自顶向下的最小路径和。每一步只能移动到下一行中相邻的结点上。
+相邻的结点 在这里指的是 下标 与 上一层结点下标 相同或者等于 上一层结点下标 + 1 的两个结点。
+
+例如，给定三角形：
+
+[
+     [2],   
+    [3,4],   
+   [6,5,7],   
+  [4,1,8,3]   
+]
+
+```c++
+class Solution {
+public:
+    //不改变原数组， 额外n个空间
+    int minimumTotal(vector<vector<int>>& triangle) {
+        int n = triangle.size();
+        vector<int> dp(n);
+        dp[0] = triangle[0][0];
+        for(int i = 1; i < n; i++){
+            // 每一行最右侧的元素
+            dp[i] = dp[i - 1] + triangle[i][i];
+            for(int j = i-1; j > 0; j--)
+                dp[j] = min(dp[j - 1], dp[j]) + triangle[i][j];
+            // 每一行最左侧的元素
+            dp[0] = dp[0] + triangle[i][0];
+        }
+        return *min_element(dp.begin(), dp.end());
+    }
+};
+
+class Solution {
+public:
+    //  原地操作
+    int minimumTotal(vector<vector<int>>& triangle) {
+        int n = triangle.size();
+        for (int i = 1; i < n; ++i) {
+            // 每一行最左侧的元素
+            triangle[i][0] = triangle[i - 1][0] + triangle[i][0];
+            for (int j = 1; j < i; ++j)
+                triangle[i][j] = min(triangle[i - 1][j - 1], triangle[i - 1][j]) + triangle[i][j];
+            // 每一行最右侧的元素
+            triangle[i][i] = triangle[i - 1][i - 1] + triangle[i][i];
+        }
+        return *min_element(triangle[n - 1].begin(), triangle[n - 1].end());
+    }
+};
+
+```

@@ -3349,20 +3349,23 @@ public:
 ```c++
 class Solution {
 public:
-    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        return dfs(preorder, inorder, 0, preorder.size()-1, 0, inorder.size()-1);
-    }
-
-    TreeNode* dfs(vector<int>& preorder, vector<int>& inorder, int ps, int pend, int is, int iend){
-        if(ps > pend) return NULL;
-        TreeNode* root = new TreeNode(preorder[ps]);
-        int l = is;
-        while(inorder[l] != preorder[ps]) l++;
-        int left=l-is;   //左子树的长度
-        int right=iend-l;  //右子树长度
-        root->left = dfs(preorder, inorder, ps + 1, ps + left, is, l - 1);
-        root->right = dfs(preorder, inorder, ps + 1 + left, pend, l+1, iend);
+    unordered_map<int, int> mp;
+    
+    TreeNode* dfs(vector<int>& preorder, vector<int>& inorder, int pl, int pr, int il, int ir) {
+        if(pl>pr) return NULL;
+        int k = mp[preorder[pl]] - il;
+        TreeNode* root=new TreeNode(preorder[pl]);
+        root->left = dfs(preorder, inorder, pl+1, pl+k, il, il+k-1);
+        root->right = dfs(preorder, inorder, pl + k + 1, pr, il + k + 1, ir); 
         return root;
+    }
+    
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        
+        for(int i = 0; i<preorder.size(); i++){
+            mp[inorder[i]] = i;
+        }
+        return dfs(preorder, inorder, 0, preorder.size()-1, 0, inorder.size()-1);
     }
 };
 ```

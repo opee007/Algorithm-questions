@@ -4207,3 +4207,31 @@ public:
 };
 
 ```
+
+### 按照频率将数组升序排序 frequencySort
+``` c++
+#include<unordered_map>
+#include<iostream>
+#include<algorithm>
+#include<vector>
+
+using namespace std;
+vector<int> frequencySort(vector<int>& nums) {
+    unordered_map<int ,int> mp;
+    for(auto x: nums) mp[x]++;
+    // lambda 表达式 [&]获取外部作用域中所有变量，并作为引用在函数体中使用
+    sort(nums.begin(), nums.end(), [&](int a, int b){
+        if(mp[a] != mp[b]) return mp[a]<mp[b];
+        return a>b;
+    });
+    return nums;
+}
+
+
+int main(){
+    vector<int> c = {1, 1, 1,2,3,3};
+    frequencySort(c);
+    for(int i = 0; i<c.size(); i++) cout<<c[i]<<' ';
+    return 0;
+}
+```

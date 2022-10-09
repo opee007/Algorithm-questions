@@ -86,7 +86,7 @@
 	* 6.12. [12. 整数转罗马数字 intToRoman](#intToRoman)
 	* 6.13. [13. 罗马数字转整数 romanToInt](#romanToInt)
 	* 6.14. [14. 最长公共前缀 longestCommonPrefix](#longestCommonPrefix)
-	* 6.15. [15. 三数之和 threeSum](#threeSum)
+	* 6.15. [15. 三数之和 等于0 threeSum](#threeSum)
 	* 6.16. [16. 最接近的三数之和 threeSumClosest](#threeSumClosest)
 	* 6.17. [17. 电话号码的字母组合](#-1)
 	* 6.18. [18. 四数之和](#-1)
@@ -94,18 +94,24 @@
 	* 6.20. [20. 有效的括号 kuoisValid](#kuoisValid)
 	* 6.21. [21. 合并两个有序链表 mergeTwoLists](#mergeTwoLists)
 	* 6.22. [22. 括号生成 generateParenthesis](#generateParenthesis)
-	* 6.23. [24. 两两交换链表中的节点 swapPairs](#swapPairs)
-	* 6.24. [26. 删除排序数组中的重复项 removeDuplicates (快慢指针)](#removeDuplicates)
-	* 6.25. [27. 移除元素](#-1)
-	* 6.26. [86. 分隔链表](#-1)
-	* 6.27. [79. 单词搜索 （二维dfs） existpath](#dfsexistpath)
-		* 6.27.1. [迷路的机器人 pathWithObstacles](#pathWithObstacles)
-	* 6.28. [91. 解码方法 1-26 to a-z](#toa-z)
-	* 6.29. [反转链表 reverseList1](#reverseList1)
-	* 6.30. [92. 反转链表 II 反转区间链表 reverseBetween](#IIreverseBetween)
-	* 6.31. [215 topk](#topk)
-	* 6.32. [221. 最大正方形 maximal-square](#maximal-square)
-	* 6.33. [322. 零钱兑换](#-1)
+	* 6.23. [合并k个升序链表 mergeklist](#kmergeklist)
+	* 6.24. [24. 两两交换链表中的节点 swapPairs](#swapPairs)
+	* 6.25. [每 K 个一组，翻转链表 reverseKGroup](#KreverseKGroup)
+	* 6.26. [26. 删除排序数组中的重复项 removeDuplicates (快慢指针)](#removeDuplicates)
+	* 6.27. [27. 移除数组指定值元素 removeElement](#removeElement)
+	* 6.28. [找出字符串中第一个匹配项的下标 strStr](#strStr)
+	* 6.29. [两数相除，不用除法 divide-two-integers](#divide-two-integers)
+	* 6.30. [串联所有单词的子串 findallSubstring](#findallSubstring)
+	* 6.31. [下一个排列 nextPermutation](#nextPermutation)
+	* 6.32. [86. 分隔链表](#-1)
+	* 6.33. [79. 单词搜索 （二维dfs） existpath](#dfsexistpath)
+		* 6.33.1. [迷路的机器人 pathWithObstacles](#pathWithObstacles)
+	* 6.34. [91. 解码方法 1-26 to a-z](#toa-z)
+	* 6.35. [反转链表 reverseList1](#reverseList1)
+	* 6.36. [92. 反转链表 II 反转区间链表 reverseBetween](#IIreverseBetween)
+	* 6.37. [215 topk](#topk)
+	* 6.38. [221. 最大正方形 maximal-square](#maximal-square)
+	* 6.39. [322. 零钱兑换](#-1)
 * 7. [岛屿问题 land problem](#landproblem)
 	* 7.1. [岛屿数量 numIslands](#numIslands)
 	* 7.2. [岛屿的最大面积 maxAreaOfIsland](#maxAreaOfIsland)
@@ -154,6 +160,7 @@
 	* 10.1. [最长上升子序列 lengthOfLIS](#lengthOfLIS)
 	* 10.2. [最长公共子序列  longestCommonSubsequence](#longestCommonSubsequence)
 	* 10.3. [三角形最小路径和 sanjiaominimumTotal](#sanjiaominimumTotal)
+	* 10.4. [按照频率将数组升序排序 frequencySort](#frequencySort)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -2273,7 +2280,9 @@ public:
 };
 
 ```
-###  6.15. <a name='threeSum'></a>15. 三数之和 threeSum
+
+
+###  6.15. <a name='threeSum'></a>15. 三数之和 等于0 threeSum
 给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。
 注意：答案中不可以包含重复的三元组。
 
@@ -2284,6 +2293,7 @@ public:
         vector<vector<int>> ans;
         if(nums.size()<3) return ans;
         sort(nums.begin(), nums.end());
+        // for循环+双指针
         for(int i = 0; i<nums.size(); i++){
             // 与前一个数字相同的话，去重。
             if(i>0 && nums[i]==nums[i-1]) continue;
@@ -2502,8 +2512,10 @@ public:
     }
 };
 ```
+###  6.23. <a name='kmergeklist'></a>合并k个升序链表 mergeklist
+[连接](https://leetcode.cn/problems/merge-k-sorted-lists/)
 
-###  6.23. <a name='swapPairs'></a>24. 两两交换链表中的节点 swapPairs
+###  6.24. <a name='swapPairs'></a>24. 两两交换链表中的节点 swapPairs
 你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
 
 示例:
@@ -2526,28 +2538,56 @@ public:
     }
 };
 ```
+###  6.25. <a name='KreverseKGroup'></a>每 K 个一组，翻转链表 reverseKGroup
+给你链表的头节点 head ，每 k 个节点一组进行翻转，请你返回修改后的链表。
 
-###  6.24. <a name='removeDuplicates'></a>26. 删除排序数组中的重复项 removeDuplicates (快慢指针)
+k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。
+```c++
+ListNode* reverseKGroup(ListNode* head, int k) {
+    ListNode *dummy=new ListNode(0);
+    dummy->next = head;
+    ListNode *p = dummy;
+    while(head){
+        int i=0;
+        ListNode *start = head, *end = head;
+        while(i < k-1){
+            if(end==nullptr) break;
+            end = end->next;
+            i++;
+        }
+        if(end==nullptr) break;
+        ListNode * t1 = end->next;
+        p->next = end;
+        ListNode *t2 = t1, *t3;
+        while(start != t1){
+            t3 = start->next;
+            start->next = t2;
+            t2 = start;
+            start = t3;
+        }
+        p=head;
+        head=t1;
+    }
+    return dummy->next;
+}
+```
+###  6.26. <a name='removeDuplicates'></a>26. 删除排序数组中的重复项 removeDuplicates (快慢指针)
 给定一个排序数组，你需要在 原地 删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
 
 不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。
 ```c++
-class Solution {
-public:
-    int removeDuplicates(vector<int>& nums) {
-        if(nums.size() == 0) return 0;
-        int left = 0, right;
-        for(right  = 0; right < nums.size(); right++){
-            if(nums[left] != nums[right]){
-                left++;
-                nums[left] = nums[right];
-            }
+int removeDuplicates(vector<int>& nums) {
+    int left = 0;
+    for(int right = 0; right < nums.size(); right++){
+        if(nums[right] != nums[left]){
+            left++;
+            nums[left] = nums[right];
         }
-        return left + 1;
     }
-};
+    return left+1;
+}
 ```
-###  6.25. <a name='-1'></a>27. 移除元素
+###  6.27. <a name='removeElement'></a>27. 移除数组指定值元素 removeElement
 给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。
 
 不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。
@@ -2565,8 +2605,65 @@ public:
     }
 };
 ```
+###  6.28. <a name='strStr'></a>找出字符串中第一个匹配项的下标 strStr
+给你两个字符串 haystack 和 needle ，请你在 haystack 字符串中找出 needle 字符串的第一个匹配项的下标（下标从 0 开始）。如果 needle 不是 haystack 的一部分，则返回  -1 。
 
-###  6.26. <a name='-1'></a>86. 分隔链表
+[链接](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string)
+```c++
+int strStr(string haystack, string needle) {
+    if(haystack.find(needle) != string::npos)
+        return haystack.find(needle);
+    else
+        return -1;
+}
+```
+
+###  6.29. <a name='divide-two-integers'></a>两数相除，不用除法 divide-two-integers
+给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。
+
+返回被除数 dividend 除以除数 divisor 得到的商。
+
+[链接](https://leetcode.cn/problems/divide-two-integers/)
+
+###  6.30. <a name='findallSubstring'></a>串联所有单词的子串 findallSubstring
+
+给定一个字符串 s 和一个字符串数组 words。 words 中所有字符串 长度相同。s 中的 串联子串 是指一个包含  words 中所有字符串以任意顺序排列连接起来的子串。
+
+例如，如果 words = ["ab","cd","ef"]， 那么 "abcdef"， "abefcd"，"cdabef"， "cdefab"，"efabcd"， 和 "efcdab" 都是串联子串。 "acdbef" 不是串联子串，因为他不是任何 words 排列的连接。
+返回所有串联字串在 s 中的开始索引。你可以以 任意顺序 返回答案。
+
+(链接)[https://leetcode.cn/problems/substring-with-concatenation-of-all-words/]
+
+###  6.31. <a name='nextPermutation'></a>下一个排列 nextPermutation
+整数数组的一个 排列  就是将其所有成员以序列或线性顺序排列。
+
+例如，arr = [1,2,3] ，以下这些都可以视作 arr 的排列：[1,2,3]、[1,3,2]、[3,1,2]、[2,3,1] 。
+整数数组的 下一个排列 是指其整数的下一个字典序更大的排列。
+
+```c++
+void nextPermutation(vector<int>& nums) {
+        int i = nums.size() - 2;
+        while (i >= 0 && nums[i] >= nums[i + 1]) {
+            i--;
+        }
+        if (i >= 0) {
+            int j = nums.size() - 1;
+            while (j >= 0 && nums[i] >= nums[j]) {
+                j--;
+            }
+            swap(nums[i], nums[j]);
+        }
+        reverse(nums.begin() + i + 1, nums.end());
+    }
+```
+
+
+
+
+
+
+
+###  6.32. <a name='-1'></a>86. 分隔链表
 给定一个链表和一个特定值 x，对链表进行分隔，使得所有小于 x 的节点都在大于或等于 x 的节点之前。
 你应当保留两个分区中每个节点的初始相对位置。
 
@@ -2594,7 +2691,7 @@ public:
 };
 ```
 
-###  6.27. <a name='dfsexistpath'></a>79. 单词搜索 （二维dfs） existpath
+###  6.33. <a name='dfsexistpath'></a>79. 单词搜索 （二维dfs） existpath
 单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。
 示例:
 
@@ -2638,7 +2735,7 @@ public:
     }
 };
 ```
-####  6.27.1. <a name='pathWithObstacles'></a>迷路的机器人 pathWithObstacles
+####  6.33.1. <a name='pathWithObstacles'></a>迷路的机器人 pathWithObstacles
 设想有个机器人坐在一个网格的左上角，网格 r 行 c 列。机器人只能向下或向右移动，但不能走到一些被禁止的网格（有障碍物）。设计一种算法，寻找机器人从左上角移动到右下角的路径。 <https://leetcode-cn.com/problems/robot-in-a-grid-lcci/>
 输入:   
 [   
@@ -2669,7 +2766,7 @@ public:
     }
 };
 ```
-###  6.28. <a name='toa-z'></a>91. 解码方法 1-26 to a-z
+###  6.34. <a name='toa-z'></a>91. 解码方法 1-26 to a-z
 给定一个只包含数字的非空字符串，请计算解码方法的总数。
 输入: "226"   
 输出: 3   
@@ -2698,7 +2795,7 @@ public:
     }
 };
 ```
-###  6.29. <a name='reverseList1'></a>反转链表 reverseList1
+###  6.35. <a name='reverseList1'></a>反转链表 reverseList1
 
 ```c++
  * struct ListNode {
@@ -2722,7 +2819,7 @@ public:
 };
 ```
 
-###  6.30. <a name='IIreverseBetween'></a>92. 反转链表 II 反转区间链表 reverseBetween
+###  6.36. <a name='IIreverseBetween'></a>92. 反转链表 II 反转区间链表 reverseBetween
 反转从位置 m 到 n 的链表。请使用一趟扫描完成反转。
 ```c++
 class Solution {
@@ -2756,7 +2853,7 @@ public:
 };
 ```
 
-###  6.31. <a name='topk'></a>215 topk
+###  6.37. <a name='topk'></a>215 topk
 
 ```c++
 class Solution {
@@ -2788,7 +2885,7 @@ public:
     }
 };
 ```
-###  6.32. <a name='maximal-square'></a>221. 最大正方形 maximal-square
+###  6.38. <a name='maximal-square'></a>221. 最大正方形 maximal-square
 在一个由 0 和 1 组成的二维矩阵内，找到只包含 1 的最大正方形，并返回其面积。<https://leetcode-cn.com/problems/maximal-square/>
 ```c++
 class Solution {
@@ -2813,7 +2910,7 @@ public:
     }
 };
 ```
-###  6.33. <a name='-1'></a>322. 零钱兑换
+###  6.39. <a name='-1'></a>322. 零钱兑换
 给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1。
 ```c++
 class Solution {
@@ -4208,7 +4305,7 @@ public:
 
 ```
 
-### 按照频率将数组升序排序 frequencySort
+###  10.4. <a name='frequencySort'></a>按照频率将数组升序排序 frequencySort
 ``` c++
 #include<unordered_map>
 #include<iostream>

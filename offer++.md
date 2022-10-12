@@ -44,26 +44,29 @@
 	* 3.32. [32. 最长有效括号长度 longestValidParentheses](#longestValidParentheses)
 	* 3.33. [33. 查找旋转排序数组中某一值 search221011](#search221011)
 	* 3.34. [35. 搜索插入位置](#-1)
-	* 3.35. [42. 接雨水 trap](#trap)
-	* 3.36. [86. 分隔链表](#-1)
-	* 3.37. [79. 单词搜索 （二维dfs） existpath](#dfsexistpath)
-	* 3.38. [迷路的机器人 pathWithObstacles](#pathWithObstacles)
-	* 3.39. [91. 解码方法 1-26 to a-z](#toa-z)
-	* 3.40. [反转链表 reverseList1](#reverseList1)
-	* 3.41. [92. 反转链表 II 反转区间链表 reverseBetween](#IIreverseBetween)
-	* 3.42. [215 topk](#topk)
-	* 3.43. [221. 最大正方形 maximal-square](#maximal-square)
-	* 3.44. [322. 零钱兑换](#-1)
+	* 3.35. [lc41. 缺失的第一个正数](#lc41.)
+	* 3.36. [42. 接雨水 trap](#trap)
+	* 3.37. [45. lc 46最少次数跳到数组最后 minjump](#lc46minjump)
+	* 3.38. [lc48 旋转二维数组](#lc48)
+	* 3.39. [86. 分隔链表](#-1)
+	* 3.40. [79. 单词搜索 （二维dfs） existpath](#dfsexistpath)
+	* 3.41. [迷路的机器人 pathWithObstacles](#pathWithObstacles)
+	* 3.42. [91. 解码方法 1-26 to a-z](#toa-z)
+	* 3.43. [反转链表 reverseList1](#reverseList1)
+	* 3.44. [92. 反转链表 II 反转区间链表 reverseBetween](#IIreverseBetween)
+	* 3.45. [215 topk](#topk)
+	* 3.46. [221. 最大正方形 maximal-square](#maximal-square)
+	* 3.47. [322. 零钱兑换](#-1)
 * 4. [岛屿问题 land problem](#landproblem)
 	* 4.1. [岛屿数量 numIslands](#numIslands)
 	* 4.2. [岛屿的最大面积 maxAreaOfIsland](#maxAreaOfIsland)
 	* 4.3. [岛屿的周长 islandPerimeter](#islandPerimeter)
 * 5. [子集组合排列问题 sbuset permute prpblem](#sbusetpermuteprpblem)
 	* 5.1. [全排列 permute](#permute)
-	* 5.2. [全排列 结果无重复 permuteUnique](#permuteUnique)
+	* 5.2. [lc47 全排列 包含重复数字 permuteUnique](#lc47permuteUnique)
 	* 5.3. [组合 combine77](#combine77)
-	* 5.4. [数组总和  combinationSum](#combinationSum)
-	* 5.5. [数组总和 结果无重复 combinationSum2](#combinationSum2)
+	* 5.4. [lc39 数组总和  combinationSum](#lc39combinationSum)
+	* 5.5. [lc40 数组总和 数字只能使用一次 combinationSum2](#lc40combinationSum2)
 	* 5.6. [216. 组合总和 III combinationSum3](#IIIcombinationSum3)
 	* 5.7. [子集  结果无重复 subsetsWithDup](#subsetsWithDup)
 	* 5.8. [子集 subsets1](#subsets1)
@@ -143,7 +146,7 @@
 	* 7.35. [滑动窗口最大值 slide](#slide)
 	* 7.36. [乘积数组 B[i]=A[0]×A[1]…×A[n-1]](#BiA0A1An-1)
 	* 7.37. [分裂二叉树最大乘积 maxProduct](#maxProduct)
-	* 7.38. [大数相乘 BigMutiple](#BigMutiple)
+	* 7.38. [lc43 大数相乘 BigMutiple](#lc43BigMutiple)
 	* 7.39. [大数相加 bigAdd](#bigAdd)
 	* 7.40. [不用加减乘除做加法 bitopAdd](#bitopAdd)
 * 8. [动态规划 dynamic programming](#dynamicprogramming)
@@ -1209,8 +1212,72 @@ int search(vector<int>& nums, int target) {
 ```
 
 ###  3.34. <a name='-1'></a>35. 搜索插入位置
+给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。   
+输入: nums = [1,3,5,6], target = 7   
+输出: 4
+```c
+int searchInsert(vector<int>& nums, int target) {
+    int l = 0, r = nums.size()-1;
+    if(nums[0]>target) return 0;
+    // 找到小于target的最右边
+    while (l < r){
+        int mid = (l+r+1) >> 1;
+        if (nums[mid] < target) l = mid;  
+        else r = mid - 1;
+    }
+    if(nums[l]==target) return l;
+    return l+1;
+}
+```
+###  3.35. <a name='lc41.'></a>lc41. 缺失的第一个正数
+给定一个未排序的整数数组 nums ，请你找出其中没有出现的最小的正整数。(只使用常数级别额外空间)
+```c
+// 解法1： 用数组下标模拟哈希地址
+int firstMissingPositive(vector<int>& nums) {
+    int n = nums.size();
+    // 没有出现的最小正整数一定在[1, n+1]
+    // 将小于等于0的置为n+1
+    for (int i = 0; i<n; i++) {
+        if (nums[i] <= 0) nums[i] = n + 1;
+    }
 
-###  3.35. <a name='trap'></a>42. 接雨水 trap
+    for (int i = 0; i < n; ++i) {
+        // 出现过的正数位置都置为负数
+        int num = abs(nums[i]);
+        if (num <= n) {
+            nums[num - 1] = -abs(nums[num - 1]);
+        }
+    }
+    for (int i = 0; i < n; ++i) {
+        // 第一个大于0的位置为结果
+        if (nums[i] > 0) {
+            return i + 1;
+        }
+    }
+    return n + 1;
+}
+
+// 解法2：置换
+int firstMissingPositive(vector<int>& nums) {
+    int n = nums.size();
+    for (int i = 0; i < n; ++i) {
+        // 将[1, n] 之间的数换到下标位置
+        while (nums[i] > 0 && nums[i] <= n && nums[nums[i] - 1] != nums[i]) {
+            swap(nums[nums[i] - 1], nums[i]);
+        }
+    }
+    for (int i = 0; i < n; ++i) {
+        if (nums[i] != i + 1) {
+            // 第一个对不上的就是结果
+            return i + 1;
+        }
+    }
+    return n + 1;
+}
+
+```
+
+###  3.36. <a name='trap'></a>42. 接雨水 trap
 [链接](https://leetcode.cn/problems/trapping-rain-water/)
 ```c++
 int trap(vector<int>& height) {
@@ -1232,10 +1299,50 @@ int trap(vector<int>& height) {
     return res;
 }
 ```
+###  3.37. <a name='lc46minjump'></a>45. lc 46最少次数跳到数组最后 minjump
+给你一个非负整数数组 nums ，你最初位于数组的第一个位置。
 
+数组中的每个元素代表你在该位置可以跳跃的最大长度。
 
+你的目标是使用最少的跳跃次数到达数组的最后一个位置。
 
-###  3.36. <a name='-1'></a>86. 分隔链表
+```c
+int jump(vector<int>& nums) {
+    int ans = 0;
+    // 贪心算法，每次选择一个区间[s, e]]找能跳的最远处，从剩下的区间中再跳，结尾大于等于size()时跳出
+    int s = 0, e = 1;
+    while(e < nums.size()){
+        int m = 0;
+        for(int i = s; i < e; i++){
+            m = max(m, i + nums[i]);
+        }
+        s = e;
+        e = m+1;
+        ans++;
+    }
+    return ans;
+}
+```
+
+###  3.38. <a name='lc48'></a>lc48 旋转二维数组
+
+给定一个 n × n 的二维矩阵 matrix 表示一个图像。请你将图像顺时针旋转 90 度。
+
+你必须在 原地 旋转图像，这意味着你需要直接修改输入的二维矩阵。请不要 使用另一个矩阵来旋转图像。
+
+```python
+def rotate(self, matrix: List[List[int]]) -> None:
+    n = len(matrix[0])        
+    # transpose matrix
+    for i in range(n):
+        for j in range(i, n):
+            matrix[j][i], matrix[i][j] = matrix[i][j], matrix[j][i] 
+    for i in range(n):
+        matrix[i].reverse()
+    return matrix
+```
+
+###  3.39. <a name='-1'></a>86. 分隔链表
 给定一个链表和一个特定值 x，对链表进行分隔，使得所有小于 x 的节点都在大于或等于 x 的节点之前。
 你应当保留两个分区中每个节点的初始相对位置。
 
@@ -1263,7 +1370,7 @@ public:
 };
 ```
 
-###  3.37. <a name='dfsexistpath'></a>79. 单词搜索 （二维dfs） existpath
+###  3.40. <a name='dfsexistpath'></a>79. 单词搜索 （二维dfs） existpath
 单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。
 示例:
 
@@ -1307,7 +1414,7 @@ public:
     }
 };
 ```
-###  3.38. <a name='pathWithObstacles'></a>迷路的机器人 pathWithObstacles
+###  3.41. <a name='pathWithObstacles'></a>迷路的机器人 pathWithObstacles
 设想有个机器人坐在一个网格的左上角，网格 r 行 c 列。机器人只能向下或向右移动，但不能走到一些被禁止的网格（有障碍物）。设计一种算法，寻找机器人从左上角移动到右下角的路径。 <https://leetcode-cn.com/problems/robot-in-a-grid-lcci/>
 输入:   
 [   
@@ -1338,7 +1445,7 @@ public:
     }
 };
 ```
-###  3.39. <a name='toa-z'></a>91. 解码方法 1-26 to a-z
+###  3.42. <a name='toa-z'></a>91. 解码方法 1-26 to a-z
 给定一个只包含数字的非空字符串，请计算解码方法的总数。
 输入: "226"   
 输出: 3   
@@ -1367,7 +1474,7 @@ public:
     }
 };
 ```
-###  3.40. <a name='reverseList1'></a>反转链表 reverseList1
+###  3.43. <a name='reverseList1'></a>反转链表 reverseList1
 
 ```c++
  * struct ListNode {
@@ -1391,7 +1498,7 @@ public:
 };
 ```
 
-###  3.41. <a name='IIreverseBetween'></a>92. 反转链表 II 反转区间链表 reverseBetween
+###  3.44. <a name='IIreverseBetween'></a>92. 反转链表 II 反转区间链表 reverseBetween
 反转从位置 m 到 n 的链表。请使用一趟扫描完成反转。
 ```c++
 class Solution {
@@ -1425,7 +1532,7 @@ public:
 };
 ```
 
-###  3.42. <a name='topk'></a>215 topk
+###  3.45. <a name='topk'></a>215 topk
 
 ```c++
 class Solution {
@@ -1457,7 +1564,7 @@ public:
     }
 };
 ```
-###  3.43. <a name='maximal-square'></a>221. 最大正方形 maximal-square
+###  3.46. <a name='maximal-square'></a>221. 最大正方形 maximal-square
 在一个由 0 和 1 组成的二维矩阵内，找到只包含 1 的最大正方形，并返回其面积。<https://leetcode-cn.com/problems/maximal-square/>
 ```c++
 class Solution {
@@ -1482,7 +1589,7 @@ public:
     }
 };
 ```
-###  3.44. <a name='-1'></a>322. 零钱兑换
+###  3.47. <a name='-1'></a>322. 零钱兑换
 给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1。
 ```c++
 class Solution {
@@ -1730,7 +1837,7 @@ public:
     }
 };
 ```
-###  5.2. <a name='permuteUnique'></a>全排列 结果无重复 permuteUnique
+###  5.2. <a name='lc47permuteUnique'></a>lc47 全排列 包含重复数字 permuteUnique
 给定一个可包含重复数字的序列，返回所有不重复的全排列。
 ```c++
 class Solution {
@@ -1757,6 +1864,8 @@ public:
 
     vector<vector<int>> permuteUnique(vector<int>& nums) {
         vector<bool> vis(nums.size(), false);
+        vector<vector<int>> ans;
+        vector<int> path;
         // 先排序
         sort(nums.begin(), nums.end());
         dfs(nums, vis);
@@ -1801,7 +1910,7 @@ public:
 };
 ```
 
-###  5.4. <a name='combinationSum'></a>数组总和  combinationSum
+###  5.4. <a name='lc39combinationSum'></a>lc39 数组总和  combinationSum
 给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。candidates 中的数字可以无限制重复被选取。
 ```c++
 class Solution {
@@ -1830,7 +1939,7 @@ public:
 };
 ```
 
-###  5.5. <a name='combinationSum2'></a>数组总和 结果无重复 combinationSum2
+###  5.5. <a name='lc40combinationSum2'></a>lc40 数组总和 数字只能使用一次 combinationSum2
 给定一个数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。candidates 中的每个数字在每个组合中只能使用一次。
 ```c++
 class Solution {
@@ -3867,7 +3976,7 @@ public:
 };
 ```
 
-###  7.38. <a name='BigMutiple'></a>大数相乘 BigMutiple
+###  7.38. <a name='lc43BigMutiple'></a>lc43 大数相乘 BigMutiple
 
 ```c++
 string BigMutiple(string num1, string num2) {
@@ -3875,7 +3984,7 @@ string BigMutiple(string num1, string num2) {
     //两个数的位数
     int m = num1.size(), n = num2.size();
     //一个i位数乘以一个j位数，结果至少是i+j-1位数
-    vector<long long> tmp(m + n - 1);
+    vector<int> tmp(m + n - 1);
     //每一位进行笛卡尔乘法
     for (int i = 0; i < m; i++) {
         int a = num1[i] - '0';
@@ -3898,10 +4007,10 @@ string BigMutiple(string num1, string num2) {
         tmp.insert(tmp.begin(), t);
     }
     //将结果存入到返回值中
-    for (auto a : tmp) {
-        res = res + to_string(a);
+    for (auto c : tmp) {
+        res = res + to_string(c);
     }
-    if (res.size() > 0 && res[0] == '0')return "0";
+    if (res.size() > 0 && res[0] == '0') return "0";
     return res;
 }
 

@@ -8,7 +8,7 @@
 	* 1.6. [堆排序 heapSort O(nlogn)](#heapSortOnlogn)
 * 2. [二分查找模板 bsTemplate](#bsTemplate)
 	* 2.1. [lc34 在排序数组中查找元素的第一个和最后一个位置 searchRange](#lc34searchRange)
-	* 2.2. [x的平方根 sqrtofx](#xsqrtofx)
+	* 2.2. [lc69 x的平方根 sqrtofx](#lc69xsqrtofx)
 * 3. [LeetCode](#LeetCode)
 	* 3.1. [1.两数之和 twoSum](#twoSum)
 	* 3.2. [2. 两数相加 addTwoNumbers](#addTwoNumbers)
@@ -18,7 +18,7 @@
 	* 3.6. [6. Z 字形变换 zConvert](#ZzConvert)
 	* 3.7. [7. 整数反转 intReverse](#intReverse)
 	* 3.8. [8. 字符串转换整数 (atoi)](#atoi)
-	* 3.9. [9. 回文数 isPalindrome1](#isPalindrome1)
+	* 3.9. [9. 是否为回文整数 isPalindrome1](#isPalindrome1)
 	* 3.10. [10. 正则表达式匹配 isMatch q](#isMatchq)
 	* 3.11. [11. 成水最多的容器 maxWaterArea](#maxWaterArea)
 	* 3.12. [12. 整数转罗马数字 intToRoman](#intToRoman)
@@ -47,16 +47,29 @@
 	* 3.35. [lc41. 缺失的第一个正数](#lc41.)
 	* 3.36. [42. 接雨水 trap](#trap)
 	* 3.37. [45. lc 46最少次数跳到数组最后 minjump](#lc46minjump)
-	* 3.38. [lc48 旋转二维数组](#lc48)
-	* 3.39. [86. 分隔链表](#-1)
-	* 3.40. [79. 单词搜索 （二维dfs） existpath](#dfsexistpath)
-	* 3.41. [迷路的机器人 pathWithObstacles](#pathWithObstacles)
-	* 3.42. [91. 解码方法 1-26 to a-z](#toa-z)
-	* 3.43. [反转链表 reverseList1](#reverseList1)
-	* 3.44. [92. 反转链表 II 反转区间链表 reverseBetween](#IIreverseBetween)
-	* 3.45. [215 topk](#topk)
-	* 3.46. [221. 最大正方形 maximal-square](#maximal-square)
-	* 3.47. [322. 零钱兑换](#-1)
+	* 3.38. [lc48 旋转二维数组90° rotatemat](#lc4890rotatemat)
+	* 3.39. [lc49 相同字母组成的单词分组 groupAnagrams](#lc49groupAnagrams)
+	* 3.40. [lc53 最大连续子数组和 maxSubArray](#lc53maxSubArray)
+	* 3.41. [lc55 能否跳跃到最后位置](#lc55)
+	* 3.42. [lc56 合并数组有重合的区间 mergeqj](#lc56mergeqj)
+	* 3.43. [lc58 字符串中最后一个单词的长度 lengthOfLastWord](#lc58lengthOfLastWord)
+	* 3.44. [lc62 矩阵左上到右下的路径条数 muniquePaths](#lc62muniquePaths)
+	* 3.45. [lc63 矩阵左上到右下的路径条数(有障碍物) uniquePathsWithObstacles](#lc63uniquePathsWithObstacles)
+	* 3.46. [lc64 矩阵左上到右下 最小路径和 mminPathSum](#lc64mminPathSum)
+	* 3.47. [lc66 数组表示的数字加一 vplusOne](#lc66vplusOne)
+	* 3.48. [lc67 字符转表示的二进制求和](#lc67)
+	* 3.49. [lc71 简化unix路径 simplifyPath](#lc71unixsimplifyPath)
+	* 3.50. [lc72 两个单词最短编辑距离 sminDistance](#lc72sminDistance)
+	* 3.51. [lc75 矩阵中有0的行列都置为0 msetZeroes](#lc7500msetZeroes)
+	* 3.52. [86. 左右分隔链表 partitionlist](#partitionlist)
+	* 3.53. [79. 单词搜索 （二维dfs） existpath](#dfsexistpath)
+	* 3.54. [矩阵左上到右下的路径明细(有障碍物) pathWithObstacles](#pathWithObstacles)
+	* 3.55. [91. 解码方法 1-26 to a-z](#toa-z)
+	* 3.56. [反转链表 reverseList1](#reverseList1)
+	* 3.57. [92. 反转链表 II 反转区间链表 reverseBetween](#IIreverseBetween)
+	* 3.58. [215 topk](#topk)
+	* 3.59. [221. 最大正方形 maximal-square](#maximal-square)
+	* 3.60. [322. 零钱兑换](#-1)
 * 4. [岛屿问题 land problem](#landproblem)
 	* 4.1. [岛屿数量 numIslands](#numIslands)
 	* 4.2. [岛屿的最大面积 maxAreaOfIsland](#maxAreaOfIsland)
@@ -113,13 +126,13 @@
 	* 7.7. [二叉树的下一个结点（给定father结点） inorderSuccessor](#fatherinorderSuccessor)
 	* 7.8. [两个栈实现一个队列 2stack2queue](#2stack2queue)
 	* 7.9. [打印从1到最大的n位数 printNumbers 1-n](#1nprintNumbers1-n)
-	* 7.10. [斐波那契数列 Fibonacci](#Fibonacci)
+	* 7.10. [lc70 斐波那契数列 （爬楼梯） Fibonacci](#lc70Fibonacci)
 	* 7.11. [旋转数组的最小数字（二分查找） minArray](#minArray)
-	* 7.12. [矩阵中的路径（DFS路径） existpath](#DFSexistpath)
+	* 7.12. [矩阵中包含字符串的路径 existpath](#existpath)
 	* 7.13. [机器人的运动范围（bfs搜索） movingCount](#bfsmovingCount)
 	* 7.14. [剪绳子（分段最大乘积） maxProductAfterCutting](#maxProductAfterCutting)
 	* 7.15. [二进制中1的个数（unsigned int n = _n;） NumberOf1](#1unsignedintn_nNumberOf1)
-	* 7.16. [实现数值的整数次方，即pow() Power](#powPower)
+	* 7.16. [lc50 实现数值的整数次方，即pow() Power](#lc50powPower)
 	* 7.17. [ 删除链表的节点  deleteNodett](#deleteNodett)
 	* 7.18. [在O(1)时间删除链表结点 deleteNode](#O1deleteNode)
 	* 7.19. [删除链表中重复的节点 deleteDuplication](#deleteDuplication)
@@ -127,28 +140,27 @@
 	* 7.21. [表示数值的字符串 isNumber](#isNumber)
 	* 7.22. [调整数组顺序使奇数位于偶数前面 reOrderArray](#reOrderArray)
 		* 7.22.1. [双指针解法2 reOrderArray2](#2reOrderArray2)
-	* 7.23. [链表中倒数第k个节点 findKthToTail](#kfindKthToTail)
-	* 7.24. [寻找环形链表入口 entryNodeOfLoop](#entryNodeOfLoop)
-	* 7.25. [翻转链表 reverseList](#reverseList)
-		* 7.25.1. [(1)迭代 r1](#1r1)
-		* 7.25.2. [(2) 递归 r2](#2r2)
-	* 7.26. [合并两个排序的链表 merge](#merge)
-	* 7.27. [顺时针打印矩阵 printMatrix](#printMatrix)
-	* 7.28. [包含min函数的栈 MinStack](#minMinStack)
-	* 7.29. [栈的压入、弹出序列 isPopOrder](#isPopOrder)
-	* 7.30. [复杂链表的复刻](#-1)
-	* 7.31. [字符串转数字 strToInt](#strToInt)
-	* 7.32. [约瑟夫坏（圆圈中最后剩下的） lastRemaining](#lastRemaining)
-		* 7.32.1. [暴力模拟 l1](#l1)
-		* 7.32.2. [递推 l2](#l2)
-	* 7.33. [扑克牌顺子 isContinuous](#isContinuous)
-	* 7.34. [一排路由器可以覆盖的信号 Router](#Router)
-	* 7.35. [滑动窗口最大值 slide](#slide)
-	* 7.36. [乘积数组 B[i]=A[0]×A[1]…×A[n-1]](#BiA0A1An-1)
-	* 7.37. [分裂二叉树最大乘积 maxProduct](#maxProduct)
-	* 7.38. [lc43 大数相乘 BigMutiple](#lc43BigMutiple)
-	* 7.39. [大数相加 bigAdd](#bigAdd)
-	* 7.40. [不用加减乘除做加法 bitopAdd](#bitopAdd)
+	* 7.23. [寻找环形链表入口 entryNodeOfLoop](#entryNodeOfLoop)
+	* 7.24. [翻转链表 reverseList](#reverseList)
+		* 7.24.1. [(1)迭代 r1](#1r1)
+		* 7.24.2. [(2) 递归 r2](#2r2)
+	* 7.25. [合并两个排序的链表 merge](#merge)
+	* 7.26. [lc54 顺时针打印矩阵 printMatrix](#lc54printMatrix)
+	* 7.27. [包含min函数的栈 MinStack](#minMinStack)
+	* 7.28. [栈的压入、弹出序列 isPopOrder](#isPopOrder)
+	* 7.29. [复杂链表的复刻](#-1)
+	* 7.30. [字符串转数字 strToInt](#strToInt)
+	* 7.31. [约瑟夫坏（圆圈中最后剩下的） lastRemaining](#lastRemaining)
+		* 7.31.1. [暴力模拟 l1](#l1)
+		* 7.31.2. [递推 l2](#l2)
+	* 7.32. [扑克牌顺子 isContinuous](#isContinuous)
+	* 7.33. [一排路由器可以覆盖的信号 Router](#Router)
+	* 7.34. [滑动窗口最大值 slide](#slide)
+	* 7.35. [乘积数组 B[i]=A[0]×A[1]…×A[n-1]](#BiA0A1An-1)
+	* 7.36. [分裂二叉树最大乘积 maxProduct](#maxProduct)
+	* 7.37. [lc43 大数相乘 BigMutiple](#lc43BigMutiple)
+	* 7.38. [大数相加 bigAdd](#bigAdd)
+	* 7.39. [不用加减乘除做加法 bitopAdd](#bitopAdd)
 * 8. [动态规划 dynamic programming](#dynamicprogramming)
 	* 8.1. [最长上升子序列 lengthOfLIS](#lengthOfLIS)
 	* 8.2. [最长公共子序列  longestCommonSubsequence](#longestCommonSubsequence)
@@ -386,7 +398,7 @@ public:
 };
 
 ```
-###  2.2. <a name='xsqrtofx'></a>x的平方根 sqrtofx
+###  2.2. <a name='lc69xsqrtofx'></a>lc69 x的平方根 sqrtofx
 快速求sqrt(x)
 ```c++
 class Solution {
@@ -641,20 +653,37 @@ public:
     }
 };
 ```
-###  3.9. <a name='isPalindrome1'></a>9. 回文数 isPalindrome1
+###  3.9. <a name='isPalindrome1'></a>9. 是否为回文整数 isPalindrome1
 判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。[website](https://leetcode-cn.com/problems/palindrome-number/)
 ```c++
-class Solution {
-public:
-    bool isPalindrome(int x) {
-        string s1 = to_string(x);
-        // string s2 = to_string(x);
-        // reverse(s1.begin(), s1.end());
-        string s2 = string(s1.rbegin(), s1.rend());
-        return s1 == s2;
+// o(n) 额外空间
+bool isPalindrome(int x) {
+    string s1 = to_string(x);
+    // string s2 = to_string(x);
+    // reverse(s1.begin(), s1.end());
+    string s2 = string(s1.rbegin(), s1.rend());
+    return s1 == s2;
+}
+
+// O(1)额外空间
+bool isPalindrome(int x) {
+    if(x == 0) return true;
+    if(x < 0 || x%10==0) return false;
+
+    // 将x的后半部分逆序赋值给y
+    int y = 0;
+    // y的位数大于或等于x是跳出
+    while(x > y){
+        y *= 10;
+        y += (x % 10);
+        x /= 10;
     }
-};
+    // 原x为奇数位的话，y会多一位。
+    cout<<x<<y;
+    return x == (y/10) || x == y;
+}
 ```
+
 ###  3.10. <a name='isMatchq'></a>10. 正则表达式匹配 isMatch q
 给你一个字符串 s 和一个字符规律 p，请你来实现一个支持 '.' 和 '*' 的正则表达式匹配。
 ```c++
@@ -1324,25 +1353,331 @@ int jump(vector<int>& nums) {
 }
 ```
 
-###  3.38. <a name='lc48'></a>lc48 旋转二维数组
+###  3.38. <a name='lc4890rotatemat'></a>lc48 旋转二维数组90° rotatemat
 
 给定一个 n × n 的二维矩阵 matrix 表示一个图像。请你将图像顺时针旋转 90 度。
 
 你必须在 原地 旋转图像，这意味着你需要直接修改输入的二维矩阵。请不要 使用另一个矩阵来旋转图像。
 
-```python
-def rotate(self, matrix: List[List[int]]) -> None:
-    n = len(matrix[0])        
-    # transpose matrix
-    for i in range(n):
-        for j in range(i, n):
-            matrix[j][i], matrix[i][j] = matrix[i][j], matrix[j][i] 
-    for i in range(n):
-        matrix[i].reverse()
-    return matrix
+```c
+void rotate(vector<vector<int>>& matrix) {
+    int n = matrix.size();
+    for(int i = 0; i<n/2; i++){
+        for(int j = 0; j<n; j++) swap(matrix[i][j], matrix[n-i-1][j]);
+    }
+    for(int i = 0; i<n; i++){
+        for(int j = 0; j<i; j++) swap(matrix[i][j], matrix[j][i]);
+    }
+}
 ```
 
-###  3.39. <a name='-1'></a>86. 分隔链表
+###  3.39. <a name='lc49groupAnagrams'></a>lc49 相同字母组成的单词分组 groupAnagrams
+给你一个字符串数组，请你将 字母异位词 组合在一起。可以按任意顺序返回结果列表。
+
+字母异位词 是由重新排列源单词的字母得到的一个新单词，所有源单词中的字母通常恰好只用一次。   
+
+输入: strs = ["eat", "tea", "tan", "ate", "nat", "bat"]   
+输出: [["bat"],["nat","tan"],["ate","eat","tea"]]
+
+```c
+vector<vector<string>> groupAnagrams(vector<string>& strs) {
+    vector<vector<string>> ans;
+    unordered_map<string, vector<string>> mp;
+    for(auto str: strs){
+        string key = str;
+        // 排序后作为map的
+        sort(key.begin(), key.end());
+        mp[key].push_back(str);
+    }
+    for(auto i=mp.begin(); i!=mp.end(); i++) ans.push_back(i->second);
+    return ans;
+}
+```
+###  3.40. <a name='lc53maxSubArray'></a>lc53 最大连续子数组和 maxSubArray
+给你一个整数数组 nums ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
+
+输入：nums = [-2,1,-3,4,-1,2,1,-5,4]   
+输出：6   
+解释：连续子数组 [4,-1,2,1] 的和最大，为 6 。   
+```
+int maxSubArray(vector<int>& nums) {
+    if(nums.size()==1) return nums[0];
+    int ans = nums[0];
+    for(int i = 1; i<nums.size(); i++){
+        nums[i] = max(nums[i], nums[i-1]+nums[i]);
+        ans = max(nums[i], ans);
+    }
+    return ans;
+}
+```
+
+###  3.41. <a name='lc55'></a>lc55 能否跳跃到最后位置
+给定一个非负整数数组 nums ，你最初位于数组的 第一个下标 。
+
+数组中的每个元素代表你在该位置可以跳跃的最大长度。判断你是否能够到达最后一个下标。
+
+```c
+bool canJump(vector<int>& nums) {
+    int n = nums.size();
+    int k = 0;
+    for(int i = 0; i<nums.size(); i++){
+        if(i>k) return false;
+        k = max(k, i+nums[i]);
+    }
+    return true;
+}
+```
+
+###  3.42. <a name='lc56mergeqj'></a>lc56 合并数组有重合的区间 mergeqj
+以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] = [starti, endi] 。请你合并所有重叠的区间，并返回 一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间 。
+```c
+vector<vector<int>> merge(vector<vector<int>>& intervals) {
+    if(intervals.size() == 0) return {};
+    vector<vector<int>> ans;
+    sort(intervals.begin(), intervals.end());
+    // 初始化第一个区间
+    ans.push_back(intervals[0]);
+    for(int i = 1; i<intervals.size(); i++){
+        // 当前右边界小于等于左边界的话可以合并
+        if(ans.back()[1]>=intervals[i][0]) ans.back()[1] = max(ans.back()[1], intervals[i][1]);
+        else ans.push_back(intervals[i]);
+    }
+    return ans;
+}
+```
+
+###  3.43. <a name='lc58lengthOfLastWord'></a>lc58 字符串中最后一个单词的长度 lengthOfLastWord
+输入：s = "   fly me   to   the moon  "  输出：4从左上到右下   
+解释：最后一个单词是“moon”，长度为4。
+```c
+int lengthOfLastWord(string s) {
+    int l, r=s.size()-1;
+    while(r>=0 && s[r]==' ') r--;
+    l=r;
+    while(l>=0 && s[l]!=' ') l--;
+    return r-l;
+}
+```
+###  3.44. <a name='lc62muniquePaths'></a>lc62 矩阵左上到右下的路径条数 muniquePaths
+一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为 “Start” ）。
+机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为 “Finish” ）。
+
+问总共有多少条不同的路径？
+```c
+int uniquePaths(int m, int n) {
+    vector<vector<int>> tem(m, vector<int>(n, 1));
+    for(int i = 1; i<m; i++)
+        for(int j = 1; j<n; j++)
+            tem[i][j] = tem[i-1][j]+tem[i][j-1];
+    return tem[m-1][n-1];
+}
+```
+
+###  3.45. <a name='lc63uniquePathsWithObstacles'></a>lc63 矩阵左上到右下的路径条数(有障碍物) uniquePathsWithObstacles
+现在考虑网格中有障碍物。那么从左上角到右下角将会有多少条不同的路径？
+
+网格中的障碍物和空位置分别用 1 和 0 来表示。
+```c
+int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+    int m = obstacleGrid.size(), n = obstacleGrid[0].size();
+    if(obstacleGrid[0][0] ==1 || obstacleGrid[m-1][n-1]==1) return 0;
+    
+    obstacleGrid[0][0] = 1;
+    for(int i = 0; i<m; i++){
+        for(int j = 0; j<n; j++){
+
+            if(i==0 && j==0) continue;
+            if(obstacleGrid[i][j] == 1){
+                obstacleGrid[i][j] = 0;
+                continue;
+            }
+            if(i>0)  obstacleGrid[i][j] += obstacleGrid[i-1][j];
+            if(j>0)  obstacleGrid[i][j] += obstacleGrid[i][j-1];
+            
+        }
+    }
+    return obstacleGrid[m-1][n-1];
+}
+```
+
+###  3.46. <a name='lc64mminPathSum'></a>lc64 矩阵左上到右下 最小路径和 mminPathSum
+给定一个包含非负整数的 m x n 网格 grid ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。
+```c
+int minPathSum(vector<vector<int>>& grid) {
+    int m = grid.size(), n = grid[0].size();
+
+    for(int i = 1; i<m; i++) grid[i][0] += grid[i-1][0];
+    for(int i = 1; i<n; i++) grid[0][i] += grid[0][i-1];
+    for (int i = 1; i<m; i++)
+        for(int j = 1; j<n; j++)
+            grid[i][j] += min(grid[i-1][j], grid[i][j-1]); 
+    return grid[m-1][n-1];
+}
+```
+
+###  3.47. <a name='lc66vplusOne'></a>lc66 数组表示的数字加一 vplusOne
+输入：digits = [1,2,3]   
+输出：[1,2,4]   
+解释：输入数组表示数字 123。   
+```c    
+vector<int> plusOne(vector<int>& digits) {
+    int t = 1;
+    for(int i = digits.size()-1; i >= 0; i--){
+        digits[i] += t;
+        if(digits[i] > 9){
+            digits[i] %= 10;
+            t = 1;
+        }
+        else {
+            t = 0;
+            return digits;
+        }
+    }
+    if(t ==1) digits.insert(digits.begin(), 1);
+    return digits;
+}
+```
+
+###  3.48. <a name='lc67'></a>lc67 字符转表示的二进制求和
+输入:a = "11", b = "1"
+输出："100"
+```c
+string addBinary(string a, string b) {
+    string ans;
+    reverse(a.begin(), a.end());
+    reverse(b.begin(), b.end());
+
+    int n = max(a.size(), b.size()), c = 0;
+    for (size_t i = 0; i < n; ++i) {
+        if(i < a.size()) c += (a[i] - '0');
+        if(i < b.size()) c += (b[i] - '0');
+
+        if(c % 2 == 1) ans.push_back('1'); 
+        else ans.push_back('0');
+        c /= 2;
+    }
+
+    if (c) ans.push_back('1');
+    reverse(ans.begin(), ans.end());
+    return ans;
+}
+```
+
+###  3.49. <a name='lc71unixsimplifyPath'></a>lc71 简化unix路径 simplifyPath
+在 Unix 风格的文件系统中，一个点（.）表示当前目录本身；此外，两个点 （..） 表示将目录切换到上一级（指向父目录）；两者都可以是复杂相对路径的组成部分。任意多个连续的斜杠（即，'//'）都被视为单个斜杠 '/' 。 对于此问题，任何其他格式的点（例如，'...'）均被视为文件/目录名称。
+```python
+def simplifyPath(self, path: str) -> str:
+    stack = []
+    for i in path.split('/'):
+        if i == '' or i == '.' or (i=='..' and not stack):
+            continue
+        if i == '..':
+            stack.pop()
+        else:
+            stack.append(i)
+    return '/'+'/'.join(stack)
+```
+
+###  3.50. <a name='lc72sminDistance'></a>lc72 两个单词最短编辑距离 sminDistance
+给你两个单词 word1 和 word2， 请返回将 word1 转换成 word2 所使用的最少操作数  。
+
+你可以对一个单词进行如下三种操作：
+1 插入一个字符
+2 删除一个字符
+3 替换一个字符
+```c
+int minDistance(string a, string b) {
+    a = ' ' + a;
+    b = ' ' + b;
+    int n = a.size(), m = b.size();
+    vector<vector<int>> dp(n, vector<int>(m, 0));
+    for(int i = 0; i < n; i++) dp[i][0] = i;
+    for(int i = 0; i < m; i++) dp[0][i] = i;
+
+    // dp[i][j] 保存a单词前i个和b单词前j个的最短距离
+    for(int i = 1; i < n; i++){
+        for(int j = 1; j < m; j++){
+            // i, j相同，不用操作，等于前一状态。
+            if(a[i] == b[j]) dp[i][j] = dp[i-1][j-1];
+            else{
+                // 模拟修改，添加，删除a最后一个字符的状态。
+                dp[i][j] = min(dp[i-1][j-1], min(dp[i-1][j], dp[i][j-1])) + 1;
+            }
+        }
+    }
+    return dp[n-1][m-1];
+}
+```
+
+###  3.51. <a name='lc7500msetZeroes'></a>lc75 矩阵中有0的行列都置为0 msetZeroes
+给定一个 m x n 的矩阵，如果一个元素为 0 ，则将其所在行和列的所有元素都设为 0 。请使用 原地 算法。
+```c 
+// 1. O(1)空间复杂度
+void setZeroes(vector<vector<int>>& matrix) {
+    int m = matrix.size();
+    if(m==0) return;
+    int n = matrix[0].size();
+    if(n==0) return;
+    // 用第一行和第一列存储行列中有没有0的状态。O(1) 空间复杂度
+    // 先统计第一行和第一列有没有0，标记状态。
+    bool first_col = false, first_row = false;
+    for(int i = 0; i<m; i++) if(matrix[i][0] == 0) first_col = true;
+    for(int i = 0; i<n; i++) if(matrix[0][i] == 0) first_row = true;
+
+    for(int i = 1; i<m; i++){
+        for(int j = 1; j<n; j++){
+            if(matrix[i][j] == 0){
+                matrix[i][0] = 0;
+                matrix[0][j] = 0;
+            }
+        }
+    }
+
+    for(int i = 1; i<m; i++){
+        for(int j = 1; j<n; j++){
+            if(matrix[i][0] == 0 || matrix[0][j] == 0) matrix[i][j] = 0;
+        }
+    }
+
+    // 处理第一行和第一列
+    if(first_col){
+        for(int i = 0; i<m; i++) matrix[i][0] = 0;
+    }
+
+    if(first_row){
+        for(int i = 0; i<n; i++) matrix[0][i] = 0;
+    }
+}
+
+// 2. O(m+n)空间复杂度
+void setZeroes(vector<vector<int>>& matrix) {
+    unordered_set<int> h, l;
+    // 将有0的行列索引存入set中
+    for(int i = 0; i<matrix.size(); i++){
+        for(int j = 0; j<matrix[0].size(); j++){
+            if(matrix[i][j] == 0) {
+                h.insert(i);
+                l.insert(j);
+            }
+        }
+    }
+    for(int i = 0; i<matrix.size(); i++){
+        for(int j = 0; j<matrix[0].size(); j++){
+            if(h.count(i) || l.count(j)) matrix[i][j] = 0;
+        }
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+###  3.52. <a name='partitionlist'></a>86. 左右分隔链表 partitionlist
 给定一个链表和一个特定值 x，对链表进行分隔，使得所有小于 x 的节点都在大于或等于 x 的节点之前。
 你应当保留两个分区中每个节点的初始相对位置。
 
@@ -1370,7 +1705,7 @@ public:
 };
 ```
 
-###  3.40. <a name='dfsexistpath'></a>79. 单词搜索 （二维dfs） existpath
+###  3.53. <a name='dfsexistpath'></a>79. 单词搜索 （二维dfs） existpath
 单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。
 示例:
 
@@ -1414,8 +1749,9 @@ public:
     }
 };
 ```
-###  3.41. <a name='pathWithObstacles'></a>迷路的机器人 pathWithObstacles
-设想有个机器人坐在一个网格的左上角，网格 r 行 c 列。机器人只能向下或向右移动，但不能走到一些被禁止的网格（有障碍物）。设计一种算法，寻找机器人从左上角移动到右下角的路径。 <https://leetcode-cn.com/problems/robot-in-a-grid-lcci/>
+###  3.54. <a name='pathWithObstacles'></a>矩阵左上到右下的路径明细(有障碍物) pathWithObstacles
+设想有个机器人坐在一个网格的左上角，网格 r 行 c 列。机器人只能向下或向右移动，但不能走到一些被禁止的网格（有障碍物）。设计一种算法，寻找机器人从左上角移动到右下角的路径。 [链接](https://leetcode-cn.com/problems/robot-in-a-grid-lcci/)
+
 输入:   
 [   
   [0,0,0],   
@@ -1445,7 +1781,7 @@ public:
     }
 };
 ```
-###  3.42. <a name='toa-z'></a>91. 解码方法 1-26 to a-z
+###  3.55. <a name='toa-z'></a>91. 解码方法 1-26 to a-z
 给定一个只包含数字的非空字符串，请计算解码方法的总数。
 输入: "226"   
 输出: 3   
@@ -1474,7 +1810,7 @@ public:
     }
 };
 ```
-###  3.43. <a name='reverseList1'></a>反转链表 reverseList1
+###  3.56. <a name='reverseList1'></a>反转链表 reverseList1
 
 ```c++
  * struct ListNode {
@@ -1498,7 +1834,7 @@ public:
 };
 ```
 
-###  3.44. <a name='IIreverseBetween'></a>92. 反转链表 II 反转区间链表 reverseBetween
+###  3.57. <a name='IIreverseBetween'></a>92. 反转链表 II 反转区间链表 reverseBetween
 反转从位置 m 到 n 的链表。请使用一趟扫描完成反转。
 ```c++
 class Solution {
@@ -1532,7 +1868,7 @@ public:
 };
 ```
 
-###  3.45. <a name='topk'></a>215 topk
+###  3.58. <a name='topk'></a>215 topk
 
 ```c++
 class Solution {
@@ -1564,7 +1900,7 @@ public:
     }
 };
 ```
-###  3.46. <a name='maximal-square'></a>221. 最大正方形 maximal-square
+###  3.59. <a name='maximal-square'></a>221. 最大正方形 maximal-square
 在一个由 0 和 1 组成的二维矩阵内，找到只包含 1 的最大正方形，并返回其面积。<https://leetcode-cn.com/problems/maximal-square/>
 ```c++
 class Solution {
@@ -1589,7 +1925,7 @@ public:
     }
 };
 ```
-###  3.47. <a name='-1'></a>322. 零钱兑换
+###  3.60. <a name='-1'></a>322. 零钱兑换
 给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1。
 ```c++
 class Solution {
@@ -3137,24 +3473,36 @@ public:
 ```
 
 
-###  7.10. <a name='Fibonacci'></a>斐波那契数列 Fibonacci
+###  7.10. <a name='lc70Fibonacci'></a>lc70 斐波那契数列 （爬楼梯） Fibonacci
 
 假定从0开始，第0项为0。(n<=39)
 
 ```c++
-class Solution {
-public:
-    int Fibonacci(int n) {
-        int a = 0, b = 1;
-        if(n == 0) return 0;
-        while(--n){
-            int c = a + b;
-            a = b; 
-            b = c;
-        }
-        return b;
+
+int Fibonacci(int n) {
+    int a = 0, b = 1;
+    if(n == 0) return 0;
+    while(--n){
+        int c = a + b;
+        a = b; 
+        b = c;
     }
-};
+    return b;
+}
+
+// 从第一项开始
+int climbStairs(int n) {
+    if(n < 3) return n;
+    int a = 1, b = 2, c;
+
+    n -= 2;
+    while(n--){
+        c = a + b;
+        a = b;
+        b = c;
+    }
+    return c;
+}
 ```
 
 ###  7.11. <a name='minArray'></a>旋转数组的最小数字（二分查找） minArray
@@ -3181,7 +3529,7 @@ public:
 };
 ```
 
-###  7.12. <a name='DFSexistpath'></a>矩阵中的路径（DFS路径） existpath
+###  7.12. <a name='existpath'></a>矩阵中包含字符串的路径 existpath
 
 请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。
 [["a","b","c","e"],
@@ -3305,7 +3653,7 @@ public:
 };
 ```
 
-###  7.16. <a name='powPower'></a>实现数值的整数次方，即pow() Power
+###  7.16. <a name='lc50powPower'></a>lc50 实现数值的整数次方，即pow() Power
 
 实现函数double Power(double base, int exponent)，求base的 exponent次方。不得使用库函数，同时不需要考虑大数问题。
 
@@ -3318,6 +3666,7 @@ public:
         while(n){
             if(n & 1) ans *= base;
             base *= base;
+            // 位运算
             n >>= 1;
         }
         if(exponent < 0) return 1 / ans;
@@ -3514,36 +3863,8 @@ public:
     }
 };
 ```
-###  7.23. <a name='kfindKthToTail'></a>链表中倒数第k个节点 findKthToTail
 
-输入一个链表，输出该链表中倒数第k个结点。
-
-注意：
-k >= 0;
-如果k大于链表长度，则返回 NULL;
-
-```c++
-class Solution {
-public:
-    ListNode* findKthToTail(ListNode* pListHead, int k) {
-        ListNode *p = pListHead;
-        int llen = 0;
-        while(p){
-            llen++;
-            p = p->next;
-        }
-        if(k>llen) return NULL;
-        p = pListHead;
-        int t = llen -k;
-        while(t--){
-            p = p->next;
-        }
-        return p;
-    }
-};
-```
-
-###  7.24. <a name='entryNodeOfLoop'></a>寻找环形链表入口 entryNodeOfLoop
+###  7.23. <a name='entryNodeOfLoop'></a>寻找环形链表入口 entryNodeOfLoop
 
 ```c++
 /*
@@ -3569,9 +3890,9 @@ public:
 };
 ```
 
-###  7.25. <a name='reverseList'></a>翻转链表 reverseList
+###  7.24. <a name='reverseList'></a>翻转链表 reverseList
 
-####  7.25.1. <a name='1r1'></a>(1)迭代 r1
+####  7.24.1. <a name='1r1'></a>(1)迭代 r1
 ```c++
 class Solution {
 public:
@@ -3589,7 +3910,7 @@ public:
 };
 ```
 
-####  7.25.2. <a name='2r2'></a>(2) 递归 r2
+####  7.24.2. <a name='2r2'></a>(2) 递归 r2
 
 ```c++
 class Solution {
@@ -3606,7 +3927,7 @@ public:
 };
 ```
 
-###  7.26. <a name='merge'></a>合并两个排序的链表 merge
+###  7.25. <a name='merge'></a>合并两个排序的链表 merge
 
 输入两个递增排序的链表，合并这两个链表并使新链表中的结点仍然是按照递增排序的。
 
@@ -3634,7 +3955,7 @@ public:
 ```
 
 
-###  7.27. <a name='printMatrix'></a>顺时针打印矩阵 printMatrix
+###  7.26. <a name='lc54printMatrix'></a>lc54 顺时针打印矩阵 printMatrix
 
 ```c++
 /*
@@ -3663,7 +3984,7 @@ public:
 
             int a = x + dx[d], b = y + dy[d];
             // 碰壁就改变方向； 
-            if (x + dx[d] < 0 || x + dx[d] >= n || y + dy[d] < 0 || y + dy[d] >= m || st[a][b]) d = (d + 1) % 4;
+            if (a < 0 || a >= n || b < 0 || b >= m || st[a][b]) d = (d + 1) % 4;
             x = x + dx[d], y = y + dy[d];
         }
         return res;
@@ -3671,7 +3992,7 @@ public:
 };
 ```
 
-###  7.28. <a name='minMinStack'></a>包含min函数的栈 MinStack
+###  7.27. <a name='minMinStack'></a>包含min函数的栈 MinStack
 
 设计一个支持push，pop，top等操作并且可以在O(1)时间内检索出最小元素的堆栈。\
 push(x)–将元素x插入栈中\
@@ -3708,7 +4029,7 @@ public:
 };
 ```
 
-###  7.29. <a name='isPopOrder'></a>栈的压入、弹出序列 isPopOrder
+###  7.28. <a name='isPopOrder'></a>栈的压入、弹出序列 isPopOrder
 
 输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。假设压入栈的所有数字均不相等。
 例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。\
@@ -3737,7 +4058,7 @@ public:
 
 
 
-###  7.30. <a name='-1'></a>复杂链表的复刻
+###  7.29. <a name='-1'></a>复杂链表的复刻
 
 请实现一个函数可以复制一个复杂链表。
 在复杂链表中，每个结点除了有一个指针指向下一个结点外，还有一个额外的指针指向链表中的任意结点或者null。
@@ -3754,7 +4075,7 @@ public:
 
 ```
 
-###  7.31. <a name='strToInt'></a>字符串转数字 strToInt
+###  7.30. <a name='strToInt'></a>字符串转数字 strToInt
 
 忽略所有行首空格，找到第一个非空格字符，可以是 ‘+/−’ 表示是正数或者负数，紧随其后找到最长的一串连续数字，将其解析成一个整数；
 整数后可能有任意非数字字符，请将其忽略；
@@ -3788,9 +4109,9 @@ public:
 };
 ```
 
-###  7.32. <a name='lastRemaining'></a>约瑟夫坏（圆圈中最后剩下的） lastRemaining
+###  7.31. <a name='lastRemaining'></a>约瑟夫坏（圆圈中最后剩下的） lastRemaining
 
-####  7.32.1. <a name='l1'></a>暴力模拟 l1
+####  7.31.1. <a name='l1'></a>暴力模拟 l1
 ```c++
 class Solution {
 public:
@@ -3812,7 +4133,7 @@ public:
     }
 };
 ```
-####  7.32.2. <a name='l2'></a>递推 l2
+####  7.31.2. <a name='l2'></a>递推 l2
 
 ```c++
 class Solution {
@@ -3825,7 +4146,7 @@ public:
     }
 };
 ```
-###  7.33. <a name='isContinuous'></a>扑克牌顺子 isContinuous
+###  7.32. <a name='isContinuous'></a>扑克牌顺子 isContinuous
 
 ```c++
 class Solution {
@@ -3847,7 +4168,7 @@ public:
 };
 ```
 
-###  7.34. <a name='Router'></a>一排路由器可以覆盖的信号 Router
+###  7.33. <a name='Router'></a>一排路由器可以覆盖的信号 Router
 一条直线上等距离放置了n台路由器。路由器自左向右从1到n编号。第i台路由器到第j台路由器的距离为| i-j |。
 每台路由器都有自己的信号强度，第i台路由器的信号强度为ai。所有与第i台路由器距离不超过ai的路由器可以收到第i台路由器的信号
 （注意，每台路由器都能收到自己的信号）。问一共有多少台路由器可以收到至少k台不同路由器的信号。<https://www.nowcoder.com/profile/1334434/codeBookDetail?submissionId=86144859>
@@ -3878,7 +4199,7 @@ int main() {
     return 0;
 }
 ```
-###  7.35. <a name='slide'></a>滑动窗口最大值 slide
+###  7.34. <a name='slide'></a>滑动窗口最大值 slide
 给定一个数组和滑动窗口的大小，请找出所有滑动窗口里的最大值。
 例如，如果输入数组[2, 3, 4, 2, 6, 2, 5, 1]及滑动窗口的大小3, 那么一共存在6个滑动窗口，它们的最大值分别为[4, 4, 6, 6, 6, 5]。
 
@@ -3926,7 +4247,7 @@ public:
     }
 };
 ```
-###  7.36. <a name='BiA0A1An-1'></a>乘积数组 B[i]=A[0]×A[1]…×A[n-1]
+###  7.35. <a name='BiA0A1An-1'></a>乘积数组 B[i]=A[0]×A[1]…×A[n-1]
 ```c++
 class Solution {
 public:
@@ -3949,7 +4270,7 @@ public:
     }
 };
 ``` 
-###  7.37. <a name='maxProduct'></a>分裂二叉树最大乘积 maxProduct
+###  7.36. <a name='maxProduct'></a>分裂二叉树最大乘积 maxProduct
 给你一棵二叉树，它的根为 root 。请你删除 1 条边，使二叉树分裂成两棵子树，且它们子树和的乘积尽可能大。   
 由于答案可能会很大，请你将结果对 10 ^ 9 + 7 取模后再返回。
 
@@ -3976,7 +4297,7 @@ public:
 };
 ```
 
-###  7.38. <a name='lc43BigMutiple'></a>lc43 大数相乘 BigMutiple
+###  7.37. <a name='lc43BigMutiple'></a>lc43 大数相乘 BigMutiple
 
 ```c++
 string BigMutiple(string num1, string num2) {
@@ -4023,7 +4344,7 @@ int main() {
     return 0;
 }
 ```
-###  7.39. <a name='bigAdd'></a>大数相加 bigAdd
+###  7.38. <a name='bigAdd'></a>大数相加 bigAdd
 
 ```c++
 string add(const string& a, const string& b) {
@@ -4060,7 +4381,7 @@ int main() {
     return 0;
 }
 ```
-###  7.40. <a name='bitopAdd'></a>不用加减乘除做加法 bitopAdd
+###  7.39. <a name='bitopAdd'></a>不用加减乘除做加法 bitopAdd
 A + B 分为2个部分，A^B是不进位加法，(A&B) << 1是进位，二者相加就起到了相同的作用。
 因为A + B = A^B + ((A&B) << 1)，所以说 还是会用到加号+，对此我们的解决方案是 使用一个while()循环，
 不断迭代赋值，将 异或的结果和进位的结果分别变成a和b，因为b不断左移，所以总有一天会变成0，这时候while就跳出来。
